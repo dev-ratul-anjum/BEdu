@@ -1,0 +1,32 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["src/*"],
+            "@Hooks/*": ["src/Hooks/*"],
+            "@Pages/*": ["src/Pages/*"],
+            "@helpers/*": ["src/helpers/*"],
+            "@alert": ["src/helpers/erp_alert/Erp_Alert.jsx"],
+            "@post_api": ["src/helpers/post/use_post_api.ts"]
+        },
+        "jsx": "react-jsx",
+        "allowJs": true,
+        "checkJs": false,
+        "noEmit": false,
+        "strict": false,
+        "skipLibCheck": true,
+        "noImplicitAny": false,
+        "isolatedModules": true,
+        "esModuleInterop": true,
+        "module": "ESNext",
+        "target": "ESNext",
+        "moduleResolution": "node",
+        "ignoreDeprecations": "5.0",
+        "resolveJsonModule": true,
+        "forceConsistentCasingInFileNames": false,
+        "allowSyntheticDefaultImports": true,
+        "outDir": "dist"
+    },
+    "include": ["src"],
+    "exclude": ["node_modules"]
+}
