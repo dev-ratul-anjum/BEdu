@@ -5,7 +5,9 @@ import student_router from './student_router';
 import auth_router from './auth_router';
 import Teacher_layout from '@/layouts/Teacher_layout';
 import Student_layout from '@/layouts/Student_layout';
-import Gurdian_layout from '@/layouts/Gurdian_layout';
+import Guardian_layout from '@/layouts/Guardian_layout';
+import Guardian_router from './guardian_router';
+import guardian_router from './guardian_router';
 
 const router = createBrowserRouter([
     {
@@ -37,13 +39,14 @@ const router = createBrowserRouter([
         ),
     },
     {
-        path: '/gurdian',
+        path: '/guardian',
         element: (
             <>
                 <ScrollToTop />
-                <Gurdian_layout />
+                <Guardian_layout />
             </>
         ),
+        children: guardian_router,
     },
 ]);
 
