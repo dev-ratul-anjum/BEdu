@@ -8,8 +8,9 @@ import {
     BookOpen,
     LayoutDashboard,
     Calendar,
+    CalendarCheck,
     GraduationCap,
-    AlertCircle,
+    CreditCard,
     ChevronLeft,
     ChevronRight,
 } from 'lucide-react';
@@ -44,7 +45,24 @@ const MENU_ITEMS: MenuItem[] = [
         icon: Calendar,
         path: '/guardian/attendance-history',
     },
-    { key: '5', title: 'Notice', icon: AlertCircle, path: '/guardian/notice' },
+    {
+        key: '5',
+        title: 'Exam Schedule',
+        icon: CalendarCheck,
+        path: '/guardian/exam-schedule',
+    },
+    {
+        key: '6',
+        title: 'Fees',
+        icon: CreditCard,
+        path: '/guardian/fees',
+    },
+    {
+        key: '7',
+        title: 'Notice',
+        icon: Bell,
+        path: '/guardian/notice',
+    },
 ];
 
 interface GuardianNavbarProps {
