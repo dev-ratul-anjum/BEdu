@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Layout, theme, Drawer } from 'antd';
 import { Outlet } from 'react-router-dom';
 import ScrollToTop from '@/Hooks/ScrollTop';
-import TeacherSidebar from '@/features/teacher/components/TeacherSidebar';
-import TeacherHeader from '@/features/teacher/components/TeacherHeader';
+import Common_sidebar from './Common_sidebar';
+import Common_header from './Common_header';
 
 const { Content } = Layout;
 
-const Teacher_layout = () => {
+const Common_layout = ({ menuItems }: { menuItems: any }) => {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [collapsed, setCollapsed] = useState(false);
 
@@ -20,11 +20,12 @@ const Teacher_layout = () => {
             <ScrollToTop />
 
             {/* Sidebar for Desktop */}
-            <TeacherSidebar
+            <Common_sidebar
                 collapsed={collapsed}
                 setCollapsed={setCollapsed}
                 mobileOpen={mobileOpen}
                 setMobileOpen={setMobileOpen}
+                menuItems={menuItems}
             />
 
             {/* Drawer for Mobile Sidebar */}
@@ -37,11 +38,12 @@ const Teacher_layout = () => {
                 closable={false}
                 className="lg:hidden"
             >
-                <TeacherSidebar
+                <Common_sidebar
                     collapsed={false}
                     setCollapsed={() => {}}
                     mobileOpen={true}
                     setMobileOpen={setMobileOpen}
+                    menuItems={menuItems}
                 />
             </Drawer>
 
@@ -50,7 +52,7 @@ const Teacher_layout = () => {
                     collapsed ? 'lg:ml-[80px]' : 'lg:ml-[260px]'
                 }`}
             >
-                <TeacherHeader
+                <Common_header
                     collapsed={collapsed}
                     setCollapsed={setCollapsed}
                     setMobileOpen={setMobileOpen}
@@ -72,4 +74,4 @@ const Teacher_layout = () => {
     );
 };
 
-export default Teacher_layout;
+export default Common_layout;

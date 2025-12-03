@@ -11,27 +11,26 @@ import RoutineSchedulePage from '@/pages/dashboard/teacher/routine_schedule_page
 import UserManagementPage from '@/pages/dashboard/teacher/user_management_page';
 import Dashboard_page from '@/pages/dashboard/teacher/dashboard_page';
 import teacher_router from './teacher_router';
+import Protected_route from './Protected_route';
+import Auth_route from './Auth_route';
+import Common_layout from '@/common/layout/Common_layout';
+import { teacher_menu_items } from '@/data/menu_items';
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: (
-            <>
-                <ScrollToTop />
-                <Auth_layout />
-            </>
-        ),
+        element: <Auth_route />,
         children: auth_router,
     },
     {
-        path: '/teacher',
-        element: (
-            <>
-                <ScrollToTop />
-                <Teacher_layout />
-            </>
-        ),
-        children: teacher_router,
+        path: '/teacher-dashboard',
+        element: <Protected_route allowedRole="TEACHER" />,
+        children: [
+            {
+                element: <Common_layout menuItems={teacher_menu_items} />,
+                children: teacher_router,
+            },
+        ],
     },
     {
         path: '/student',

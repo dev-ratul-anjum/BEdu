@@ -1,3 +1,4 @@
+import StudentAddPage from '@/features/teacher/pages/StudentAddPage';
 import Dashboard_page from '@/pages/dashboard/teacher/dashboard_page';
 import NoticeBoardPage from '@/pages/dashboard/teacher/notice_board_page';
 import Teacher_profile from '@/pages/dashboard/teacher/profile_page';
@@ -10,6 +11,7 @@ const teacher_router = [
     { path: 'users', element: <UserManagementPage /> },
     { path: 'routine', element: <RoutineSchedulePage /> },
     { path: 'notice', element: <NoticeBoardPage /> },
+    { path: 'student-addmission', element: <StudentAddPage /> },
 ];
 
 export default teacher_router;
