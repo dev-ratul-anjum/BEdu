@@ -23,7 +23,7 @@ const Attendance_Header: React.FC<Attendance_HeaderProps> = ({
                     <Calendar className="h-5 w-5 text-cyan-500" />
                     <Title
                         level={4}
-                        className="!mb-0"
+                        className="!mb-0 !text-xl !font-semibold"
                     >
                         Attendance Record
                     </Title>

@@ -27,7 +27,7 @@ const Notice_Header: React.FC<Notice_HeaderProps> = ({
                         <Bell className="h-5 w-5 text-cyan-500" />
                         <Title
                             level={4}
-                            className="!mb-0"
+                            className="!mb-0 !text-xl !font-semibold"
                         >
                             Notice Board
                         </Title>

@@ -114,7 +114,7 @@ const Child_result: React.FC = () => {
                     level={3}
                     className="!mb-0"
                 >
-                    {student_name}
+                    Child Result
                 </Title>
             </div>
 

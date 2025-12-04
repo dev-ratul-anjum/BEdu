@@ -60,8 +60,8 @@ const ChildProfileHeader: React.FC<ChildProfileHeaderProps> = ({
                     <div className="space-y-4">
                         <div>
                             <Title
-                                level={3}
-                                className="!mb-2"
+                                level={4}
+                                className="!mb-2 !text-xl !font-semibold"
                             >
                                 {childName}
                             </Title>

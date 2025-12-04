@@ -93,7 +93,7 @@ const Attendance_history: React.FC = () => {
                     level={3}
                     className="!mb-0"
                 >
-                    {student_name}
+                    Attendance History
                 </Title>
             </div>
 

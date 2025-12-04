@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Row, Col, Typography } from 'antd';
-import StatCard from './components/StatCard';
+import StatCard from './components/Stat_card';
 import ChildSelector from './components/Child_selector';
-import ClassRoutine from './components/ClassRoutine';
+import ClassRoutine from './components/Class_routine';
 
 const { Title } = Typography;
 

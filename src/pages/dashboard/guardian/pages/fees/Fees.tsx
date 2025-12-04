@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import Fees_Header from './components/fees_header';
 import Fees_Overview from './components/fees_overview';
 import Fees_Table, { Invoice } from './components/fees_table';
-import { Card, Modal } from 'antd';
+import { Card, Modal, Typography } from 'antd';
 
 const sample_invoices: Invoice[] = [
     {
@@ -101,12 +101,14 @@ const Fees: React.FC = () => {
 
     return (
         <div>
-            <Card className="mb-4">
-                <h2 className="text-lg font-semibold">Fees</h2>
-                <p className="text-sm text-gray-600">
-                    View and manage student fee invoices
-                </p>
-            </Card>
+            <div className="mb-6">
+                <Typography.Title
+                    level={3}
+                    className="!mb-0"
+                >
+                    Fees
+                </Typography.Title>
+            </div>
 
             <Fees_Header
                 month={selected_month}

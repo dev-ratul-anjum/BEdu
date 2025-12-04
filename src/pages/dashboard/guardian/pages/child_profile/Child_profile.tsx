@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Tabs, Space } from 'antd';
-import ChildProfileHeader from './components/ChildProfileHeader';
-import AcademicPerformance from './components/AcademicPerformance';
-import PersonalInformation from './components/PersonalInformation';
+import { Tabs, Space, Typography } from 'antd';
+import ChildProfileHeader from './components/Child_profile_header';
+import AcademicPerformance from './components/Academic_performance';
+import PersonalInformation from './components/Personal_information';
 
 const Child_profile = () => {
     const [selectedChild] = useState('1');
@@ -45,6 +45,14 @@ const Child_profile = () => {
 
     return (
         <div className="w-full">
+            <div className="mb-6">
+                <Typography.Title
+                    level={3}
+                    className="!mb-0"
+                >
+                    Child Profile
+                </Typography.Title>
+            </div>
             <Tabs
                 items={tabItems}
                 defaultActiveKey="overview"
