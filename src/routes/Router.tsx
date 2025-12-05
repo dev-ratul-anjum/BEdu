@@ -6,8 +6,8 @@ import auth_router from './auth_router';
 import Teacher_layout from '@/layouts/Teacher_layout';
 import Student_layout from '@/layouts/Student_layout';
 import Guardian_layout from '@/layouts/Guardian_layout';
-import Guardian_router from './guardian_router';
-import guardian_router from './guardian_router';
+import Guardian_router from './parent_router';
+import guardian_router from './parent_router';
 
 const router = createBrowserRouter([
     {
