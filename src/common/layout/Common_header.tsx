@@ -22,6 +22,7 @@ import {
     LogOut,
     Settings,
 } from 'lucide-react';
+import { useLogoutMutaion } from './layout.services';
 
 const { Header } = Layout;
 
@@ -36,6 +37,8 @@ const Common_header: React.FC<HeaderProps> = ({
     setCollapsed,
     setMobileOpen,
 }) => {
+    const logout_mutaion = useLogoutMutaion();
+
     const {
         token: { colorBgContainer },
     } = theme.useToken();
@@ -72,6 +75,21 @@ const Common_header: React.FC<HeaderProps> = ({
             danger: true,
         },
     ];
+    const handleMenuClick: MenuProps['onClick'] = ({ key }) => {
+        switch (key) {
+            case 'profile':
+                console.log('Go to profile page');
+                break;
+            case 'settings':
+                console.log('Go to settings page');
+                break;
+            case 'logout':
+                logout_mutaion.mutate();
+                break;
+            default:
+                break;
+        }
+    };
 
     return (
         <Header
@@ -197,7 +215,7 @@ const Common_header: React.FC<HeaderProps> = ({
 
                 {/* User Profile */}
                 <Dropdown
-                    menu={{ items: userMenu }}
+                    menu={{ items: userMenu, onClick: handleMenuClick }}
                     trigger={['click']}
                 >
                     <div className="flex items-center gap-3 cursor-pointer pl-2 border-l border-slate-200 ml-2">

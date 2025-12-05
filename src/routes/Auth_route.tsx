@@ -4,12 +4,16 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 export const redirectByRole = (role: string) => {
     switch (role) {
+        case 'SUPER_ADMIN':
+            return '/super-admin-dashboard';
+        case 'ADMIN':
+            return '/admin-dashboard';
         case 'TEACHER':
             return '/teacher-dashboard';
         case 'STUDENT':
             return '/student-dashboard';
-        case 'GUARDIAN':
-            return '/guardian-dashboard';
+        case 'PARENT':
+            return '/parent-dashboard';
         default:
             return '/';
     }
@@ -17,7 +21,7 @@ export const redirectByRole = (role: string) => {
 
 const Auth_route = () => {
     const { user, isLoading } = useAuth();
-    console.log('auth route', user);
+
     if (isLoading) {
         return (
             <div className="flex justify-center items-center min-h-screen bg-gray-50">

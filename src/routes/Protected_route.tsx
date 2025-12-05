@@ -1,10 +1,8 @@
 import { useAuth } from '@/contexts/Auth_context';
-import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
 const Protected_route = ({ allowedRole }) => {
     const { user, isLoading } = useAuth();
-    console.log('protected route ', user);
 
     if (isLoading) {
         return (

@@ -24,7 +24,7 @@ export default function Login_page() {
 
     const loginMutation = useMutation({
         mutationFn: async (payload: LoginPayload) => {
-            const res = await api.post('/user/login', payload);
+            const res = await api.post('/v1/user/login', payload);
             return res.data;
         },
         onSuccess: data => {
@@ -34,12 +34,13 @@ export default function Login_page() {
         onError: (err: any) => {
             // Clear previous errors first
             setErrors({});
-            console.log(err.response);
-            if (
-                err.response?.status === 400 &&
-                err.response?.data?.data?.errors
-            ) {
-                setErrors(err.response.data.data.errors);
+            console.log(err.response?.data);
+            if (err.response?.data?.errors) {
+                const errors = {};
+                err.response.data.errors.forEach(err => {
+                    errors[err.path] = err.message;
+                });
+                setErrors(errors);
             } else if (err.response?.data?.message) {
                 setErrors({ general: err.response.data.message });
             } else {
