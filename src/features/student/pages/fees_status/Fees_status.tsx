@@ -38,7 +38,7 @@ const feesData: MonthFee[] = [
 
 const banks = ['Bank A', 'Bank B', 'Bank C', 'Bank D'];
 
-const StudentFeesPage: React.FC = () => {
+const Student_fees: React.FC = () => {
     const [selectedMonth, setSelectedMonth] = useState<string>('January');
     const [selectedBank, setSelectedBank] = useState<string>(banks[0]);
     const [paymentMethod, setPaymentMethod] = useState<'SSL' | 'Online'>('SSL');
@@ -218,4 +218,4 @@ const StudentFeesPage: React.FC = () => {
     );
 };
 
-export default StudentFeesPage;
+export default Student_fees;

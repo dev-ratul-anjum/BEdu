@@ -1,10 +1,9 @@
-import Student_fees from '@/pages/dashboard/student/pages/fees_status/Fees_status';
-import Student_attendance from '@/pages/dashboard/student/pages/student_attendance/Student_attendance';
-import Student_payment_history from '@/pages/dashboard/student/pages/student_payment_history/Student_payment_history';
-import Student_profile from '@/pages/dashboard/student/pages/student_profile/Student_profile';
-import Student_routine from '@/pages/dashboard/student/pages/student_routine/Student_routine';
-import Student from '@/pages/dashboard/student/Student';
-import path from 'path';
+import Student_attendance from '@/features/student/pages/student_attendance/Student_attendance';
+import Student_profile from '@/features/student/pages/student_profile/Student_profile';
+import Student_routine from '@/features/student/pages/student_routine/Student_routine';
+import Student from '@/features/student/Student';
+import Student_payment_history from '@/features/student/pages/student_payment_history/Student_payment_history';
+import Student_fees from '@/features/student/pages/fees_status/Fees_status';
 
 const student_router = [
     {
