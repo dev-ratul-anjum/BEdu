@@ -35,6 +35,7 @@ const router = createBrowserRouter([
                 <Student_layout />
             </>
         ),
+        children: student_router,
     },
     {
         path: '/gurdian',
