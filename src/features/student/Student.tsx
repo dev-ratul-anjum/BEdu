@@ -1,5 +1,4 @@
 import React from 'react';
-import Student_layout from '@/layouts/Student_layout';
 import Student_routine from './pages/student_routine/Student_routine';
 import Student_card from './components/Student_card';
 import Student_notice_board from './pages/student_notice_board/Student_notice_board';

@@ -1,24 +1,9 @@
-import Forget_pass from '@/pages/auth/forget_pass/Forget_pass';
-import Sign_in from '@/pages/auth/sign_in/Sign_in';
-
-import Sign_up from '@/pages/auth/sign_up/Sign_up';
+import Login_page from '@/features/auth/pages/Login_page';
 
 const auth_router = [
     {
         path: '/',
-        element: <Sign_in />,
-    },
-    {
-        path: '/sign-in',
-        element: <Sign_in />,
-    },
-    {
-        path: '/sign-up',
-        element: <Sign_up />,
-    },
-    {
-        path: '/forget-password',
-        element: <Forget_pass />,
+        element: <Login_page />,
     },
 ];
 
