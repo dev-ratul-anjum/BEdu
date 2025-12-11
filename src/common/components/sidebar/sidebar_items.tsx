@@ -5,6 +5,7 @@ import {
   CreditCard,
   FileText,
   LayoutDashboard,
+  User,
   Users,
 } from 'lucide-react';
 
@@ -120,6 +121,11 @@ const sidebar_items = {
       key: '/parent-dashboard',
       label: 'Dashboard',
       icon: <LayoutDashboard size={20} />,
+    },
+    {
+      key: '/parent-dashboard/profile',
+      label: 'My Profile',
+      icon: <User size={20} />,
     },
     {
       key: '/parent-dashboard/child-profile',
