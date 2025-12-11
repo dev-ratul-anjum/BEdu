@@ -18,7 +18,7 @@ const Auth_layout = () => {
   if (user) {
     return (
       <Navigate
-        to={redirectByRole(user.data.role)}
+        to={redirectByRole(user.role)}
         replace
       />
     );

@@ -1,8 +1,9 @@
 import { get_current_user } from '@/features/auth/service/auth.queries';
 import { useQuery } from '@tanstack/react-query';
 import { Navigate, Outlet } from 'react-router-dom';
+import { TUser_Role } from '../types/models';
 
-const Protected_layout = ({ allowedRole }) => {
+export default function Protected_layout({ allowed_role }: { allowed_role: TUser_Role }) {
   const { data: user, isLoading } = useQuery(get_current_user());
 
   if (isLoading) {
@@ -13,7 +14,7 @@ const Protected_layout = ({ allowedRole }) => {
     );
   }
 
-  if (!user || user.data.role !== allowedRole)
+  if (!user || user.role !== allowed_role)
     return (
       <Navigate
         to="/"
@@ -22,6 +23,4 @@ const Protected_layout = ({ allowedRole }) => {
     );
 
   return <Outlet />;
-};
-
-export default Protected_layout;
+}

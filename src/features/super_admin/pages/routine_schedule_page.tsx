@@ -4,17 +4,15 @@ import {
   Calendar,
   CheckCircle,
   ChevronDown,
-  ChevronUp,
   Clock,
   Filter,
   MapPin,
   MoreHorizontal,
   Plus,
-  Save,
   User,
   X,
 } from 'lucide-react';
-import React, { FormEvent, useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 // --- Types & Interfaces ---
 
@@ -115,7 +113,7 @@ const DEFAULT_NEW_SLOT_FORM: NewSlotFormData = {
   room: '',
 };
 
-export default function RoutineSchedulePage() {
+export default function Super_admin_routine_page() {
   // --- State ---
   const [schedule, setSchedule] = useState<ScheduleMap>(INITIAL_SCHEDULE);
   const [selectedClass, setSelectedClass] = useState('Class 9');

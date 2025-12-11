@@ -6,6 +6,9 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}', 'node_modules/preline/dist/*.js'],
   theme: {
     extend: {
+      fontFamily: {
+        body: ['Inter', 'sans-serif'],
+      },
       colors: {
         primary: {
           DEFAULT: 'hsl(var(--primary))',

@@ -1,24 +1,15 @@
 import { Layout, Menu, theme } from 'antd';
-import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const { Sider } = Layout;
 
-interface SidebarProps {
-  collapsed: boolean;
-  setCollapsed: (collapsed: boolean) => void;
-  mobileOpen: boolean;
-  setMobileOpen: (open: boolean) => void;
-  sidebar_items: any;
-}
-
-const Dashboard_sidebar: React.FC<SidebarProps> = ({
+export default function Dashboard_sidebar({
   collapsed,
   setCollapsed,
   mobileOpen,
   setMobileOpen,
   sidebar_items,
-}) => {
+}: TProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const {
@@ -104,7 +95,7 @@ const Dashboard_sidebar: React.FC<SidebarProps> = ({
           selectedKeys={[location.pathname]}
           items={items}
           onClick={handleMenuClick}
-          className="bg-transparent border-none px-2 [&_.ant-menu-item-selected]:!bg-blue-600 [&_.ant-menu-item-selected]:!text-white [&_.ant-menu-item]:text-slate-300 [&_.ant-menu-item]:my-1"
+          className="bg-transparent border-none px-2 [&_.ant-menu-item-selected]:!bg-blue-600 [&_.ant-menu-item-selected]:!text-white [&_.ant-menu-item]:text-slate-300 [&_.ant-menu-item]:my-1 [&_.ant-menu-item]:rounded-none"
           // Custom styles for menu items
           style={{
             background: 'transparent',
@@ -113,6 +104,12 @@ const Dashboard_sidebar: React.FC<SidebarProps> = ({
       </div>
     </Sider>
   );
-};
+}
 
-export default Dashboard_sidebar;
+type TProps = {
+  collapsed: boolean;
+  setCollapsed: (collapsed: boolean) => void;
+  mobileOpen: boolean;
+  setMobileOpen: (open: boolean) => void;
+  sidebar_items: any;
+};
