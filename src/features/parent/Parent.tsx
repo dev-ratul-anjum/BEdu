@@ -13,7 +13,7 @@ interface StatData {
   bgColor: string;
 }
 
-const Guardian = () => {
+const Parent = () => {
   const [selectedChildId, setSelectedChildId] = useState('1');
 
   // Mock data - Replace with actual API calls
@@ -115,4 +115,4 @@ const Guardian = () => {
   );
 };
 
-export default Guardian;
+export default Parent;
