@@ -11,7 +11,6 @@ import {
   FileText,
   Filter,
   Image as ImageIcon,
-  MoreVertical,
   Paperclip,
   Plus,
   Save,
@@ -20,7 +19,7 @@ import {
   Trash2,
   X,
 } from 'lucide-react';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 // --- Types & Interfaces ---
 
@@ -172,7 +171,7 @@ const Badge = ({
 
 // --- Main Application ---
 
-export default function NoticeBoardPage() {
+export default function Super_admin_notice_board_page() {
   // State: Data
   const [notices, setNotices] = useState<Notice[]>(MOCK_NOTICES);
 

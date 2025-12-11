@@ -22,3 +22,19 @@ export const redirectByRole = (role: TUser_Role) => {
       return '/';
   }
 };
+
+export function toSpacedLowercase(str: string) {
+  return str
+    .replace(/[-_]/g, ' ') // Replace hyphens and underscores with spaces
+    .replace(/([a-z])([A-Z])/g, '$1 $2') // Add space between camelCase words
+    .toLowerCase() // Convert to lowercase
+    .trim() // Remove any leading/trailing whitespace
+    .replace(/\s+/g, ' '); // Replace multiple spaces with single space
+}
+
+export function toTitleCase(str: string) {
+  return str
+    .split(' ')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}

@@ -1,4 +1,4 @@
-import StudentAddPage from '@/features/teacher/pages/StudentAddPage';
+import Super_admin_student_admission_page from '@/features/super_admin/pages/Super_admin_student_admission_page';
 import Dashboard_page from '@/features/teacher/pages/dashboard_page';
 import NoticeBoardPage from '@/features/teacher/pages/notice_board_page';
 import Teacher_profile from '@/features/teacher/pages/profile_page';
@@ -12,7 +12,7 @@ const teacher_routes = [
   { path: 'users', element: <UserManagementPage /> },
   { path: 'routine', element: <RoutineSchedulePage /> },
   { path: 'notice', element: <NoticeBoardPage /> },
-  { path: 'student-addmission', element: <StudentAddPage /> },
+  { path: 'student-addmission', element: <Super_admin_student_admission_page /> },
 ] satisfies RouteObject[];
 
 export default teacher_routes;

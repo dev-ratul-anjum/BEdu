@@ -1,34 +1,29 @@
-import React from 'react';
-import { Card } from 'antd';
+import { cn } from '@/lib/utils';
+import { LucideProps } from 'lucide-react';
 
-interface StatCardProps {
-  title: string;
-  subtitle: string;
-  count: number;
-  backgroundColor?: string;
+export default function StatCard({ stat }: TProps) {
+  return (
+    <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100 flex items-center justify-between">
+      <div className={cn('p-6 rounded-full', stat.color)}>
+        <stat.icon className="h-10 w-10" />
+      </div>
+      <div>
+        <p className="text-sm font-medium text-gray-500">{stat.label}</p>
+        <p className="text-2xl font-bold text-gray-800 mt-1">{stat.value}</p>
+      </div>
+    </div>
+  );
 }
 
-const StatCard: React.FC<StatCardProps> = ({
-  title,
-  subtitle,
-  count,
-  backgroundColor = 'bg-gradient-to-r from-cyan-500 to-cyan-600',
-}) => {
-  return (
-    <Card
-      className={`${backgroundColor} text-white border-0 shadow-lg h-full`}
-      bodyStyle={{ padding: '20px' }}
-      hoverable
-    >
-      <div className="flex flex-col justify-between h-full">
-        <div>
-          <h3 className="text-lg font-semibold mb-1">{title}</h3>
-          <p className="text-sm text-white/80">{subtitle}</p>
-        </div>
-        <div className="text-4xl font-bold mt-4">{count}</div>
-      </div>
-    </Card>
-  );
+export type TStat = {
+  label: string;
+  value: string | number;
+  icon: React.ForwardRefExoticComponent<
+    Omit<LucideProps, 'ref'> & React.RefAttributes<SVGSVGElement>
+  >;
+  color: string;
 };
 
-export default StatCard;
+type TProps = {
+  stat: TStat;
+};
