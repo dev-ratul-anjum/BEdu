@@ -1,4 +1,4 @@
-import sidebar_items from '@/common/components/sidebar/sidebar_items';
+import sidebar_items from '@/common/components/sidebar/sidebar-items';
 import Dashboard_layout from '@/common/layouts/dashboard.layout';
 import { createBrowserRouter } from 'react-router-dom';
 import Auth_layout from '../common/layouts/auth.layout';
@@ -19,7 +19,7 @@ const app_router = createBrowserRouter([
 
   {
     path: '/super-admin-dashboard',
-    element: <Protected_layout allowedRole="SUPER_ADMIN" />,
+    element: <Protected_layout allowed_role="SUPER_ADMIN" />,
     children: [
       {
         element: <Dashboard_layout sidebar_items={sidebar_items.super_admin} />,
@@ -30,7 +30,7 @@ const app_router = createBrowserRouter([
 
   {
     path: '/admin-dashboard',
-    element: <Protected_layout allowedRole="ADMIN" />,
+    element: <Protected_layout allowed_role="ADMIN" />,
     children: [
       {
         element: <Dashboard_layout sidebar_items={sidebar_items.admin} />,
@@ -41,7 +41,7 @@ const app_router = createBrowserRouter([
 
   {
     path: '/teacher-dashboard',
-    element: <Protected_layout allowedRole="TEACHER" />,
+    element: <Protected_layout allowed_role="TEACHER" />,
     children: [
       {
         element: <Dashboard_layout sidebar_items={sidebar_items.teacher} />,
@@ -52,7 +52,7 @@ const app_router = createBrowserRouter([
 
   {
     path: '/student-dashboard',
-    element: <Protected_layout allowedRole="STUDENT" />,
+    element: <Protected_layout allowed_role="STUDENT" />,
     children: [
       {
         element: <Dashboard_layout sidebar_items={sidebar_items.student} />,
@@ -63,7 +63,7 @@ const app_router = createBrowserRouter([
 
   {
     path: '/parent-dashboard',
-    element: <Protected_layout allowedRole="PARENT" />,
+    element: <Protected_layout allowed_role="PARENT" />,
     children: [
       {
         element: <Dashboard_layout sidebar_items={sidebar_items.parent} />,

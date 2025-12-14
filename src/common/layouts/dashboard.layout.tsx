@@ -2,7 +2,7 @@ import Scroll_to_top from '@/common/components/scroll-to-top';
 import { Drawer, Layout, theme } from 'antd';
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import Dashboard_header from '../components/Dashboard_header';
+import Dashboard_header from '../components/dashboard-header';
 import Dashboard_sidebar from '../components/sidebar/Dashboard_sidebar';
 
 const { Content } = Layout;
@@ -12,7 +12,7 @@ const Dashboard_layout = ({ sidebar_items }: { sidebar_items: any }) => {
   const [collapsed, setCollapsed] = useState(false);
 
   const {
-    token: { colorBgContainer, borderRadiusLG },
+    token: { borderRadiusLG },
   } = theme.useToken();
 
   return (
@@ -56,7 +56,7 @@ const Dashboard_layout = ({ sidebar_items }: { sidebar_items: any }) => {
           setMobileOpen={setMobileOpen}
         />
 
-        <Content className="p-4 md:p-6 overflow-y-auto h-[calc(100vh-64px)] bg-slate-50">
+        <Content className="p-4 md:p-6 overflow-y-auto h-[calc(100vh-64px)] bg-zinc-100">
           <div
             style={{
               background: 'transparent',
