@@ -1,5 +1,15 @@
 import { ItemType, MenuItemType } from 'antd/es/menu/interface';
-import { Briefcase, LayoutDashboard, Users, UsersRound } from 'lucide-react';
+import {
+  Bell,
+  Briefcase,
+  Calendar,
+  CreditCard,
+  FileText,
+  LayoutDashboard,
+  User,
+  Users,
+  UsersRound,
+} from 'lucide-react';
 
 const sidebar_items = {
   super_admin: [
@@ -41,7 +51,43 @@ const sidebar_items = {
 
   student: [],
 
-  parent: [],
+  parent: [
+    {
+      key: '/parent-dashboard',
+      label: 'Dashboard',
+      icon: <LayoutDashboard size={20} />,
+    },
+    {
+      key: '/parent-dashboard/profile',
+      label: 'My Profile',
+      icon: <User size={20} />,
+    },
+    {
+      key: '/parent-dashboard/child-profile',
+      label: 'Child Profile',
+      icon: <Users size={20} />,
+    },
+    {
+      key: '/parent-dashboard/child-result',
+      label: 'Child Result',
+      icon: <FileText size={20} />,
+    },
+    {
+      key: '/parent-dashboard/notice',
+      label: 'Notice',
+      icon: <Bell size={20} />,
+    },
+    {
+      key: '/parent-dashboard/exam-schedule',
+      label: 'Exam Schedule',
+      icon: <Calendar size={20} />,
+    },
+    {
+      key: '/parent-dashboard/fees',
+      label: 'Fees',
+      icon: <CreditCard size={20} />,
+    },
+  ],
 } satisfies Record<string, ItemType<MenuItemType>[]>;
 
 export default sidebar_items;

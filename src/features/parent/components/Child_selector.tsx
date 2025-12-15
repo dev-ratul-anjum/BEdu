@@ -28,16 +28,15 @@ const ChildSelector: React.FC<ChildSelectorProps> = ({
 
   return (
     <div className="mb-6">
-      <Text className="text-sm text-gray-500 block mb-2">My Children</Text>
+      <Text className="text-sm font-medium text-gray-500 block mb-2">My Children</Text>
       <Select
         value={selected}
         onChange={handleChange}
-        style={{ width: '100%', height: '40px' }}
+        className="w-full md:w-[300px] !h-10 !text-base"
         options={children.map((child) => ({
           label: child.name,
           value: child.id,
         }))}
-        className="!text-base"
       />
     </div>
   );
