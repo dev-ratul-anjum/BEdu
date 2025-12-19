@@ -2,7 +2,7 @@ import Scroll_to_top from '@/common/components/scroll-to-top';
 import { Drawer, Layout, theme } from 'antd';
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import Dashboard_header from '../components/dashboard-header';
+import Dashboard_header from '../components/dashboard_header';
 import Dashboard_sidebar from '../components/sidebar/Dashboard_sidebar';
 
 const { Content } = Layout;

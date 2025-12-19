@@ -18,30 +18,33 @@ const sidebar_items = {
       label: 'Dashboard',
       icon: <LayoutDashboard size={18} />,
     },
+
+    {
+      key: '/super-admin/teachers',
+      label: 'Teachers',
+      icon: <Briefcase size={18} />,
+    },
+
+    {
+      key: '/super-admin/parents',
+      label: 'Parents',
+      icon: <UsersRound size={18} />,
+    },
+
     {
       key: 'Students',
       label: 'Students',
       icon: <Users size={18} />,
       children: [
         {
-          key: '/super-admin/dashboard/students',
+          key: '/super-admin/students',
           label: 'All Students',
         },
         {
-          key: '/super-admin/dashboard/student-admission',
+          key: '/super-admin/student-admission',
           label: 'Student Admission',
         },
       ],
-    },
-    {
-      key: '/super-admin/dashboard/teachers',
-      label: 'Teachers',
-      icon: <Briefcase size={18} />,
-    },
-    {
-      key: '/super-admin/dashboard/parents',
-      label: 'Parents',
-      icon: <UsersRound size={18} />,
     },
   ],
 

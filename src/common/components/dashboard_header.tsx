@@ -35,7 +35,7 @@ const Dashboard_header: React.FC<HeaderProps> = ({ collapsed, setCollapsed, setM
     }
   };
 
-  const userMenu: MenuProps['items'] = [
+  const dropdownMenu: MenuProps['items'] = [
     {
       key: 'profile',
       label: 'Profile',
@@ -59,6 +59,7 @@ const Dashboard_header: React.FC<HeaderProps> = ({ collapsed, setCollapsed, setM
       danger: true,
     },
   ];
+
   const handleMenuClick: MenuProps['onClick'] = ({ key }) => {
     switch (key) {
       case 'profile':
@@ -199,7 +200,7 @@ const Dashboard_header: React.FC<HeaderProps> = ({ collapsed, setCollapsed, setM
 
         {/* User Profile */}
         <Dropdown
-          menu={{ items: userMenu, onClick: handleMenuClick }}
+          menu={{ items: dropdownMenu, onClick: handleMenuClick }}
           trigger={['click']}
         >
           <div className="flex items-center gap-3 cursor-pointer pl-2 border-l border-slate-200 ml-2">

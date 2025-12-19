@@ -1,8 +1,8 @@
-import sidebar_items from '@/common/components/sidebar/sidebar-items';
-import Dashboard_layout from '@/common/layouts/dashboard.layout';
+import sidebar_items from '@/common/components/sidebar/sidebar_items';
+import Dashboard_layout from '@/common/layouts/dashboard-layout';
 import { createBrowserRouter } from 'react-router-dom';
-import Auth_layout from '../common/layouts/auth.layout';
-import Protected_layout from '../common/layouts/protected.layout';
+import Auth_layout from '../common/layouts/auth-layout';
+import Protected_layout from '../common/layouts/protected-layout';
 import admin_routes from './admin_routes';
 import auth_routes from './auth_routes';
 import parent_routes from './parent_routes';
@@ -70,6 +70,11 @@ const app_router = createBrowserRouter([
         children: parent_routes,
       },
     ],
+  },
+
+  {
+    path: '*',
+    element: <div>404</div>,
   },
 ]);
 

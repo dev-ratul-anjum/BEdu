@@ -1,7 +1,7 @@
-import { Download, Edit, MoreVertical, Printer } from 'lucide-react';
-import { DynamicBreadcrumb } from '../components/Breadcrumbs';
+import { Download, Edit, Printer } from 'lucide-react';
+import { Dynamic_breadcrumb } from '../../../common/components/Dynamic_breadcrumb';
 
-export default function Student_details_page() {
+export default function User_details_page() {
   const profile_data = [
     { label: 'Name:', value: 'Jessia Rose' },
     { label: 'Gender:', value: 'Female' },
@@ -21,16 +21,9 @@ export default function Student_details_page() {
 
   return (
     <>
-      <DynamicBreadcrumb className="mb-6" />
+      <Dynamic_breadcrumb className="mb-6" />
 
       <main className="bg-white rounded-lg shadow-sm">
-        {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b">
-          <h1 className="text-xl font-bold">About Me</h1>
-          <button className="text-gray-400 hover:text-gray-600">
-            <MoreVertical className="w-5 h-5" />
-          </button>
-        </div>
         {/* Content */}
         <div className="p-8">
           <div className="flex flex-col md:flex-row gap-8">

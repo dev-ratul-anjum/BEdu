@@ -1,6 +1,8 @@
-import { RouteObject } from 'react-router-dom';
+import { Navigate, RouteObject } from 'react-router-dom';
 
 const teacher_routes = [
+  { index: true, element: <Navigate to="dashboard" /> },
+
   { path: 'dashboard', element: <div>Teacher Dashboard</div> },
   { path: 'classes', element: <div>Teacher Classes</div> },
   { path: 'attendance', element: <div>Teacher attendance</div> },

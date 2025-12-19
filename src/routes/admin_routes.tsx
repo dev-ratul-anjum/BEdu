@@ -1,6 +1,8 @@
-import { RouteObject } from 'react-router-dom';
+import { Navigate, RouteObject } from 'react-router-dom';
 
 const admin_routes = [
+  { index: true, element: <Navigate to="dashboard" /> },
+
   { path: 'dashboard', element: <div>Admin Dashboard</div> },
   { path: 'users', element: <div>Admin Users</div> },
   { path: 'attendance', element: <div>Admin attendance</div> },
