@@ -18,7 +18,7 @@ const app_router = createBrowserRouter([
   },
 
   {
-    path: '/super-admin-dashboard',
+    path: '/super-admin',
     element: <Protected_layout allowed_role="SUPER_ADMIN" />,
     children: [
       {
@@ -29,7 +29,7 @@ const app_router = createBrowserRouter([
   },
 
   {
-    path: '/admin-dashboard',
+    path: '/admin',
     element: <Protected_layout allowed_role="ADMIN" />,
     children: [
       {
@@ -40,7 +40,7 @@ const app_router = createBrowserRouter([
   },
 
   {
-    path: '/teacher-dashboard',
+    path: '/teacher',
     element: <Protected_layout allowed_role="TEACHER" />,
     children: [
       {
@@ -51,7 +51,7 @@ const app_router = createBrowserRouter([
   },
 
   {
-    path: '/student-dashboard',
+    path: '/student',
     element: <Protected_layout allowed_role="STUDENT" />,
     children: [
       {
@@ -62,7 +62,7 @@ const app_router = createBrowserRouter([
   },
 
   {
-    path: '/parent-dashboard',
+    path: '/parent',
     element: <Protected_layout allowed_role="PARENT" />,
     children: [
       {

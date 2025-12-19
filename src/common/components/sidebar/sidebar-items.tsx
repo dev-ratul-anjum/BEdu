@@ -14,7 +14,7 @@ import {
 const sidebar_items = {
   super_admin: [
     {
-      key: '/super-admin-dashboard',
+      key: '/super-admin/dashboard',
       label: 'Dashboard',
       icon: <LayoutDashboard size={18} />,
     },
@@ -24,22 +24,22 @@ const sidebar_items = {
       icon: <Users size={18} />,
       children: [
         {
-          key: '/super-admin-dashboard/students',
+          key: '/super-admin/dashboard/students',
           label: 'All Students',
         },
         {
-          key: '/super-admin-dashboard/student-admission',
+          key: '/super-admin/dashboard/student-admission',
           label: 'Student Admission',
         },
       ],
     },
     {
-      key: '/super-admin-dashboard/teachers',
+      key: '/super-admin/dashboard/teachers',
       label: 'Teachers',
       icon: <Briefcase size={18} />,
     },
     {
-      key: '/super-admin-dashboard/parents',
+      key: '/super-admin/dashboard/parents',
       label: 'Parents',
       icon: <UsersRound size={18} />,
     },
@@ -53,37 +53,37 @@ const sidebar_items = {
 
   parent: [
     {
-      key: '/parent-dashboard',
+      key: '/parent/dashboard',
       label: 'Dashboard',
       icon: <LayoutDashboard size={20} />,
     },
     {
-      key: '/parent-dashboard/profile',
+      key: '/parent/dashboard/profile',
       label: 'My Profile',
       icon: <User size={20} />,
     },
     {
-      key: '/parent-dashboard/child-profile',
+      key: '/parent/dashboard/child-profile',
       label: 'Child Profile',
       icon: <Users size={20} />,
     },
     {
-      key: '/parent-dashboard/child-result',
+      key: '/parent/dashboard/child-result',
       label: 'Child Result',
       icon: <FileText size={20} />,
     },
     {
-      key: '/parent-dashboard/notice',
+      key: '/parent/dashboard/notice',
       label: 'Notice',
       icon: <Bell size={20} />,
     },
     {
-      key: '/parent-dashboard/exam-schedule',
+      key: '/parent/dashboard/exam-schedule',
       label: 'Exam Schedule',
       icon: <Calendar size={20} />,
     },
     {
-      key: '/parent-dashboard/fees',
+      key: '/parent/dashboard/fees',
       label: 'Fees',
       icon: <CreditCard size={20} />,
     },

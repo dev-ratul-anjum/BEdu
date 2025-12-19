@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
 import './index.css';
 import { query_client } from './lib/api';
-import app_router from './routes';
+import app_router from './routes/router';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
