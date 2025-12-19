@@ -13,7 +13,6 @@ import {
   User,
 } from 'lucide-react';
 import React from 'react';
-import { useLogoutMutaion } from '../../features/auth/service/layout.services';
 
 const { Header } = Layout;
 
@@ -24,8 +23,6 @@ interface HeaderProps {
 }
 
 const Dashboard_header: React.FC<HeaderProps> = ({ collapsed, setCollapsed, setMobileOpen }) => {
-  const logout_mutaion = useLogoutMutaion();
-
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -71,7 +68,7 @@ const Dashboard_header: React.FC<HeaderProps> = ({ collapsed, setCollapsed, setM
         console.log('Go to settings page');
         break;
       case 'logout':
-        logout_mutaion.mutate();
+        alert('Logging out...');
         break;
       default:
         break;
