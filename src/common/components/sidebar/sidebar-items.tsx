@@ -14,7 +14,7 @@ import {
 const sidebar_items = {
   super_admin: [
     {
-      key: '/super-admin/dashboard',
+      key: '/super-admin',
       label: 'Dashboard',
       icon: <LayoutDashboard size={18} />,
     },
@@ -24,22 +24,22 @@ const sidebar_items = {
       icon: <Users size={18} />,
       children: [
         {
-          key: '/super-admin/dashboard/students',
+          key: '/super-admin/students',
           label: 'All Students',
         },
         {
-          key: '/super-admin/dashboard/student-admission',
+          key: '/super-admin/student-admission',
           label: 'Student Admission',
         },
       ],
     },
     {
-      key: '/super-admin/dashboard/teachers',
+      key: '/super-admin/teachers',
       label: 'Teachers',
       icon: <Briefcase size={18} />,
     },
     {
-      key: '/super-admin/dashboard/parents',
+      key: '/super-admin/parents',
       label: 'Parents',
       icon: <UsersRound size={18} />,
     },
@@ -58,32 +58,32 @@ const sidebar_items = {
       icon: <LayoutDashboard size={20} />,
     },
     {
-      key: '/parent/dashboard/profile',
+      key: '/parent/profile',
       label: 'My Profile',
       icon: <User size={20} />,
     },
     {
-      key: '/parent/dashboard/child-profile',
+      key: '/parent/children',
       label: 'Child Profile',
       icon: <Users size={20} />,
     },
     {
-      key: '/parent/dashboard/child-result',
-      label: 'Child Result',
+      key: '/parent/result',
+      label: 'Result',
       icon: <FileText size={20} />,
     },
     {
-      key: '/parent/dashboard/notice',
+      key: '/parent/notice',
       label: 'Notice',
       icon: <Bell size={20} />,
     },
     {
-      key: '/parent/dashboard/exam-schedule',
+      key: '/parent/exam-schedule',
       label: 'Exam Schedule',
       icon: <Calendar size={20} />,
     },
     {
-      key: '/parent/dashboard/fees',
+      key: '/parent/fees',
       label: 'Fees',
       icon: <CreditCard size={20} />,
     },

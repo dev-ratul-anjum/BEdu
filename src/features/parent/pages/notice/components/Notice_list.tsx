@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, Tag, Typography, Divider, Empty, Button, Space } from 'antd';
 import { Pin, Eye, EyeOff, Trash2 } from 'lucide-react';
 
@@ -23,6 +24,12 @@ interface Notice_ListProps {
 }
 
 const Notice_List: React.FC<Notice_ListProps> = ({ notices, on_pin, on_delete, on_mark_read }) => {
+  const navigate = useNavigate();
+
+  const handle_card_click = (id: string) => {
+    navigate(`${id}`);
+  };
+
   const get_category_color = (category: string) => {
     switch (category) {
       case 'academic':
@@ -52,9 +59,10 @@ const Notice_List: React.FC<Notice_ListProps> = ({ notices, on_pin, on_delete, o
       {notices.map((notice) => (
         <Card
           key={notice.key}
-          className={`shadow-sm border-gray-200 hover:shadow-md transition-shadow ${
+          className={`shadow-sm border-gray-200 hover:shadow-md transition-shadow cursor-pointer ${
             !notice.is_read ? 'bg-blue-50' : ''
           }`}
+          onClick={() => handle_card_click(notice.id)}
         >
           <div className="flex items-start justify-between">
             <div className="flex-1">
@@ -77,7 +85,10 @@ const Notice_List: React.FC<Notice_ListProps> = ({ notices, on_pin, on_delete, o
               <Paragraph className="!mb-0 text-gray-700 line-clamp-2">{notice.content}</Paragraph>
             </div>
 
-            <div className="ml-4">
+            <div
+              className="ml-4"
+              onClick={(e) => e.stopPropagation()}
+            >
               <Space
                 direction="vertical"
                 size="small"
@@ -89,7 +100,10 @@ const Notice_List: React.FC<Notice_ListProps> = ({ notices, on_pin, on_delete, o
                     icon={
                       notice.is_read ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />
                     }
-                    onClick={() => on_mark_read(notice.id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      on_mark_read(notice.id);
+                    }}
                   >
                     {notice.is_read ? 'Unread' : 'Read'}
                   </Button>
@@ -100,7 +114,10 @@ const Notice_List: React.FC<Notice_ListProps> = ({ notices, on_pin, on_delete, o
                     type="text"
                     size="small"
                     icon={<Pin className="h-4 w-4" />}
-                    onClick={() => on_pin(notice.id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      on_pin(notice.id);
+                    }}
                   >
                     {notice.is_pinned ? 'Unpin' : 'Pin'}
                   </Button>
@@ -112,7 +129,10 @@ const Notice_List: React.FC<Notice_ListProps> = ({ notices, on_pin, on_delete, o
                     size="small"
                     danger
                     icon={<Trash2 className="h-4 w-4" />}
-                    onClick={() => on_delete(notice.id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      on_delete(notice.id);
+                    }}
                   >
                     Delete
                   </Button>

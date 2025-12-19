@@ -1,27 +1,46 @@
 import { cn } from '@/lib/utils';
-import { LucideProps } from 'lucide-react';
 
 export default function StatCard({ stat }: TProps) {
+  const isGradient = !!stat.gradient;
+
   return (
-    <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100 flex items-center justify-between">
-      <div className={cn('p-6 rounded-full', stat.color)}>
-        <stat.icon className="h-10 w-10" />
+    <div
+      className={cn(
+        'p-6 rounded-lg shadow-sm flex flex-col justify-between h-24 rounded relative overflow-hidden',
+        isGradient ? stat.gradient : 'bg-white border border-gray-200'
+      )}
+    >
+      <div className="flex justify-between items-start z-10 w-full">
+        <h3
+          className={cn(
+            'text-lg font-bold tracking-wide',
+            isGradient ? 'text-white' : 'text-gray-800'
+          )}
+        >
+          {stat.title || stat.label}
+        </h3>
+        <p className={cn('text-2xl font-bold', isGradient ? 'text-white' : 'text-gray-800')}>
+          {stat.value}
+        </p>
       </div>
-      <div>
-        <p className="text-sm font-medium text-gray-500">{stat.label}</p>
-        <p className="text-2xl font-bold text-gray-800 mt-1">{stat.value}</p>
+      <div className="z-10 mt-auto">
+        <p className={cn('text-sm font-medium', isGradient ? 'text-white/90' : 'text-gray-500')}>
+          {stat.subtitle}
+        </p>
       </div>
     </div>
   );
 }
 
 export type TStat = {
-  label: string;
+  title?: string;
+  subtitle?: string;
   value: string | number;
-  icon: React.ForwardRefExoticComponent<
-    Omit<LucideProps, 'ref'> & React.RefAttributes<SVGSVGElement>
-  >;
-  color: string;
+  gradient?: string;
+  // Legacy props for compatibility (optional)
+  label?: string;
+  icon?: any;
+  color?: string;
 };
 
 type TProps = {
