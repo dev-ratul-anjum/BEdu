@@ -6,7 +6,7 @@ export default function StatCard({ stat }: TProps) {
   return (
     <div
       className={cn(
-        'p-6 rounded-lg shadow-sm flex flex-col justify-between h-24 rounded relative overflow-hidden',
+        'p-6 rounded-lg shadow-sm flex flex-col justify-between h-28 rounded relative overflow-hidden',
         isGradient ? stat.gradient : 'bg-white border border-gray-200'
       )}
     >

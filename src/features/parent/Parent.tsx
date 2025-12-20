@@ -46,8 +46,8 @@ const Parent = () => {
     },
     {
       id: 6,
-      title: 'Attendance In Current Month',
-      subtitle: 'Total Attendance In Current Month',
+      title: 'Attendance This Month',
+      subtitle: 'Total Attendance This Month',
       value: 0,
       gradient: 'bg-gradient-to-r from-fuchsia-500 to-fuchsia-400',
     },

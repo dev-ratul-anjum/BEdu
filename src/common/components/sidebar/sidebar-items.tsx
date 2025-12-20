@@ -2,13 +2,16 @@ import { ItemType, MenuItemType } from 'antd/es/menu/interface';
 import {
   Bell,
   Briefcase,
+  BookOpen,
   Calendar,
+  CalendarCheck,
   CreditCard,
   FileText,
   LayoutDashboard,
   User,
   Users,
   UsersRound,
+  DollarSign,
 } from 'lucide-react';
 
 const sidebar_items = {
@@ -49,7 +52,53 @@ const sidebar_items = {
 
   teacher: [],
 
-  student: [],
+  student: [
+    {
+      key: '/student/dashboard',
+      label: 'Dashboard',
+      icon: <LayoutDashboard size={20} />,
+    },
+    // {
+    //   key: '/student/profile',
+    //   label: 'Profile',
+    //   icon: <User size={20} />,
+    // },
+    {
+      key: '/student/notice',
+      label: 'Notice',
+      icon: <Bell size={20} />,
+    },
+    {
+      key: '/student/attendance',
+      label: 'Attendance',
+      icon: <CalendarCheck size={20} />,
+    },
+    {
+      key: '/student/routine',
+      label: 'Routine',
+      icon: <BookOpen size={20} />,
+    },
+    {
+      key: '/student/exam-schedule',
+      label: 'Exam Schedule',
+      icon: <Calendar size={20} />,
+    },
+    {
+      key: '/student/result',
+      label: 'Result',
+      icon: <FileText size={20} />,
+    },
+    {
+      key: '/student/fees',
+      label: 'Fees',
+      icon: <DollarSign size={20} />,
+    },
+    {
+      key: '/student/payment-history',
+      label: 'Payment History',
+      icon: <CreditCard size={20} />,
+    },
+  ],
 
   parent: [
     {
