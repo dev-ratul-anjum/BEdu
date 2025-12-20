@@ -10,10 +10,7 @@ export default {
         body: ['Inter', 'sans-serif'],
       },
       colors: {
-        primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
-        },
+        primary: '#2563EB',
         white: '#F9FAFB',
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',

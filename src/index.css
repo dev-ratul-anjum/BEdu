@@ -7,3 +7,53 @@
 body {
   @apply font-body;
 }
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar,
+.overflow-x-auto::-webkit-scrollbar {
+  height: 4px;
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track,
+.overflow-x-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb,
+.overflow-x-auto::-webkit-scrollbar-thumb {
+  background-color: #2563EB;
+  /* Primary */
+  border-radius: 10px;
+}
+
+.custom-scrollbar,
+.overflow-x-auto {
+  scrollbar-width: thin;
+  scrollbar-color: #2563EB transparent;
+}
+
+/* Print Styles */
+@media print {
+  @page {
+    size: landscape;
+    margin: 20px;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact;
+  }
+
+  .print-header {
+    display: flex !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  /* Ensure table overflow is visible */
+  .overflow-x-auto {
+    overflow: visible !important;
+  }
+}

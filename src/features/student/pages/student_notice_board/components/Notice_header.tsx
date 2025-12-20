@@ -22,16 +22,24 @@ const Notice_Header: React.FC<Notice_HeaderProps> = ({
   return (
     <Card className="shadow-sm border-gray-200 mb-6">
       <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Bell className="h-5 w-5 text-cyan-500" />
-            <Title
-              level={4}
-              className="!mb-0 !text-xl !font-semibold"
-            >
-              Notice Board
-            </Title>
-          </div>
+        <div className="flex items-center gap-3">
+          <Bell className="h-5 w-5 text-cyan-500" />
+          <Title
+            level={4}
+            className="!mb-0 !text-xl !font-semibold"
+          >
+            Notice Board
+          </Title>
+        </div>
+
+        <div className="flex items-center justify-between gap-4">
+          <Input
+            placeholder="Search notices..."
+            prefix={<Search className="h-4 w-4 text-gray-400" />}
+            value={search_query}
+            onChange={(e) => on_search_change(e.target.value)}
+            className="rounded max-w-md"
+          />
 
           <Select
             value={selected_month}
@@ -40,14 +48,6 @@ const Notice_Header: React.FC<Notice_HeaderProps> = ({
             style={{ width: 180 }}
           />
         </div>
-
-        <Input
-          placeholder="Search notices..."
-          prefix={<Search className="h-4 w-4 text-gray-400" />}
-          value={search_query}
-          onChange={(e) => on_search_change(e.target.value)}
-          className="rounded"
-        />
       </div>
     </Card>
   );

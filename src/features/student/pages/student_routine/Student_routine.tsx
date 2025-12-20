@@ -97,20 +97,13 @@ const columns = [
 
 const Student_routine = () => {
   return (
-    <Card
-      title="📘 Class Routine"
-      style={{ margin: '20px', borderRadius: 12 }}
-      headStyle={{ fontSize: 30, fontWeight: 'bold' }}
-    >
-      <Table
-        columns={columns}
-        dataSource={routineData}
-        bordered
-        pagination={false}
-        scroll={{ x: 900 }}
-        style={{ borderRadius: 15 }}
-      />
-    </Card>
+    <Table
+      columns={columns}
+      dataSource={routineData}
+      bordered
+      pagination={false}
+      scroll={{ x: 900 }}
+    />
   );
 };
 

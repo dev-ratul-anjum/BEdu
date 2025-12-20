@@ -6,8 +6,8 @@ import Student_routine from '@/features/student/pages/student_routine/Student_ro
 import Student_exam_schedule from '@/features/student/pages/exam_schedule/Exam_schedule';
 import Student from '@/features/student/Student';
 import Student_result from '@/features/student/pages/student_result/Student_result';
-import NoticeDetails from '@/features/parent/pages/notice/NoticeDetails';
 import { RouteObject } from 'react-router-dom';
+import NoticeDetails from '@/features/student/pages/student_notice_board/NoticeDetails';
 
 const student_routes = [
   { path: 'dashboard', element: <Student /> },

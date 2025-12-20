@@ -47,11 +47,11 @@ const NoticeDetails: React.FC = () => {
   }
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
+    <div className="w-full max-w-6xl mx-auto">
       <Button
         type="text"
         icon={<ArrowLeft className="h-4 w-4" />}
-        onClick={() => navigate('/parent/notice')}
+        onClick={() => navigate(-1)}
         className="mb-6 hover:bg-gray-100"
       >
         Back to Notices
