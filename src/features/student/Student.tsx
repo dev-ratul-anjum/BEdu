@@ -87,18 +87,12 @@ const Student = () => {
       </div>
 
       <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8">
-        <Title
-          level={5}
-          className="!mb-4"
-        >
-          Class Routine
-        </Title>
         <Student_routine />
       </div>
 
       <div className="mb-8">
         <Title
-          level={5}
+          level={3}
           className="!mb-4"
         >
           Latest Notice
