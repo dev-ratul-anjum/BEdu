@@ -2,7 +2,6 @@ import { Button, Card, Col, Row, Select, Typography } from 'antd';
 import { Printer, Search } from 'lucide-react';
 import { useRef, useState } from 'react';
 import dayjs from 'dayjs';
-import { useReactToPrint } from 'react-to-print';
 
 const { Title, Text } = Typography;
 
@@ -41,12 +40,57 @@ const Student_attendance = () => {
       }),
   };
 
-  const componentRef = useRef<HTMLDivElement>(null);
+  // Manual Print Implementation to bypass react-to-print issues
+  const handlePrint = () => {
+    const printContent = document.getElementById('printable-area');
+    if (!printContent) {
+      console.error('Printable area not found');
+      return;
+    }
 
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-    documentTitle: `${selectedMonth}_${selectedYear}_Attendance`,
-  });
+    const windowUrl = 'about:blank';
+    const windowName = 'PrintAttendance';
+    const printWindow = window.open(windowUrl, windowName, 'left=0,top=0,width=800,height=900');
+
+    if (printWindow) {
+      // Gather all styles
+      const styles = Array.from(document.querySelectorAll('style, link[rel="stylesheet"]'))
+        .map((node) => node.outerHTML)
+        .join('');
+
+      printWindow.document.write(`
+        <html>
+          <head>
+            <title>${selectedMonth}_${selectedYear}_Attendance</title>
+            ${styles}
+            <style>
+              @page { size: landscape; margin: 20px; }
+              body { font-family: 'Inter', sans-serif; -webkit-print-color-adjust: exact; }
+              /* Force display of print header in this isolated context */
+              .print-header { display: flex !important; }
+              .no-print { display: none !important; }
+            </style>
+          </head>
+          <body class="bg-white p-4">
+            ${printContent.innerHTML}
+            <script>
+              // Wait for resources to load then print
+              window.onload = () => {
+                setTimeout(() => {
+                  window.print();
+                  window.close();
+                }, 500);
+              };
+            </script>
+          </body>
+        </html>
+      `);
+      printWindow.document.close();
+      printWindow.focus();
+    } else {
+      alert('Please allow popups to print.');
+    }
+  };
 
   return (
     <div className="w-full space-y-6">
@@ -142,7 +186,13 @@ const Student_attendance = () => {
         <Button
           type="primary"
           icon={<Printer className="w-4 h-4" />}
-          onClick={handlePrint}
+          onClick={() => {
+            console.log('DEBUG: Print Button Clicked');
+            // Manual print call
+            if (handlePrint) {
+              handlePrint();
+            }
+          }}
           className="!bg-primary hover:!bg-primary/90 uppercase font-semibold border-none"
         >
           Print Attendance
@@ -150,10 +200,7 @@ const Student_attendance = () => {
       </div>
 
       {/* Attendance Table Card - Target for Print */}
-      <div
-        id="printable-area"
-        ref={componentRef}
-      >
+      <div id="printable-area">
         {/* Custom Print Header */}
         <div className="print-header w-full justify-between items-start border-b border-gray-200 pb-6 mb-6 hidden">
           {/* Logo Section */}
@@ -239,13 +286,13 @@ const Student_attendance = () => {
             <table className="w-full min-w-[1200px] border-collapse text-sm text-center">
               <thead>
                 <tr className="text-gray-500 border-b border-gray-100">
-                  <th className="p-3 w-10 border-r border-gray-100 font-medium">P</th>
-                  <th className="p-3 w-10 border-r border-gray-100 font-medium">L</th>
-                  <th className="p-3 w-10 border-r border-gray-100 font-medium">A</th>
-                  <th className="p-3 w-10 border-r border-gray-100 font-medium">H</th>
-                  <th className="p-3 w-10 border-r border-gray-100 font-medium">F</th>
-                  <th className="p-3 w-10 border-r border-gray-100 font-medium">LE</th>
-                  <th className="p-3 w-16 border-r border-gray-100 font-medium">%</th>
+                  <th className="p-3 w-8 border-r border-gray-100 font-medium">P</th>
+                  <th className="p-3 w-8 border-r border-gray-100 font-medium">L</th>
+                  <th className="p-3 w-8 border-r border-gray-100 font-medium">A</th>
+                  <th className="p-3 w-8 border-r border-gray-100 font-medium">H</th>
+                  <th className="p-3 w-8 border-r border-gray-100 font-medium">F</th>
+                  <th className="p-3 w-8 border-r border-gray-100 font-medium">LE</th>
+                  <th className="p-3 w-8 border-r border-gray-100 font-medium">%</th>
                   {days.map((d) => (
                     <th
                       key={d.date}
@@ -279,7 +326,7 @@ const Student_attendance = () => {
                               : status === 'A'
                                 ? 'text-red-600'
                                 : status === 'W'
-                                  ? 'text-purple-400' // Weekend/Holiday
+                                  ? 'text-purple-400'
                                   : 'text-gray-600'
                           }`}
                         >
