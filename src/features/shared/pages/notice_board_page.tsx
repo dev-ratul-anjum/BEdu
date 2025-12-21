@@ -1,3 +1,4 @@
+import { Dynamic_breadcrumb } from '@/common/components/Dynamic_breadcrumb';
 import {
   AlertCircle,
   Bell,
@@ -11,7 +12,6 @@ import {
   FileText,
   Filter,
   Image as ImageIcon,
-  MoreVertical,
   Paperclip,
   Plus,
   Save,
@@ -20,7 +20,7 @@ import {
   Trash2,
   X,
 } from 'lucide-react';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 // --- Types & Interfaces ---
 
@@ -153,7 +153,7 @@ const Badge = ({
   children: React.ReactNode;
   type: 'role' | 'status' | 'priority';
 }) => {
-  let styles = 'px-2 py-0.5 rounded text-xs font-medium border ';
+  let styles = 'px-2 py-0.5  text-xs font-medium border ';
 
   if (type === 'role') styles += 'bg-blue-50 text-blue-700 border-blue-100';
   if (type === 'status') {
@@ -172,7 +172,7 @@ const Badge = ({
 
 // --- Main Application ---
 
-export default function NoticeBoardPage() {
+export default function Notice_board_page() {
   // State: Data
   const [notices, setNotices] = useState<Notice[]>(MOCK_NOTICES);
 
@@ -339,7 +339,7 @@ export default function NoticeBoardPage() {
     if (modalMode === 'view' && selectedNotice) {
       return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+          <div className="bg-white shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b sticky top-0 bg-white z-10 flex justify-between items-center">
               <div>
                 <h2 className="text-xl font-bold text-gray-800">{selectedNotice.title}</h2>
@@ -352,7 +352,7 @@ export default function NoticeBoardPage() {
               </div>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="p-2 hover:bg-gray-100 rounded-full"
+                className="p-2 hover:bg-gray-100"
               >
                 <X className="w-5 h-5 text-gray-500" />
               </button>
@@ -371,7 +371,7 @@ export default function NoticeBoardPage() {
                 ))}
               </div>
 
-              <div className="prose max-w-none text-gray-700 whitespace-pre-line bg-gray-50 p-4 rounded-lg border">
+              <div className="prose max-w-none text-gray-700 whitespace-pre-line bg-gray-50 p-4 border">
                 {selectedNotice.content}
               </div>
 
@@ -384,7 +384,7 @@ export default function NoticeBoardPage() {
                     {selectedNotice.attachments.map((att) => (
                       <div
                         key={att.id}
-                        className="flex items-center p-3 border rounded-lg hover:bg-blue-50 transition cursor-pointer group"
+                        className="flex items-center p-3 border hover:bg-blue-50 transition cursor-pointer group"
                       >
                         {att.type === 'pdf' ? (
                           <FileText className="w-8 h-8 text-red-500 mr-3" />
@@ -406,10 +406,10 @@ export default function NoticeBoardPage() {
                 </div>
               )}
             </div>
-            <div className="p-6 border-t bg-gray-50 flex justify-end gap-3 rounded-b-xl">
+            <div className="p-6 border-t bg-gray-50 flex justify-end gap-3">
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="px-4 py-2 border rounded-lg bg-white text-gray-700 hover:bg-gray-50"
+                className="px-4 py-2 border bg-white text-gray-700 hover:bg-gray-50"
               >
                 Close
               </button>
@@ -418,7 +418,7 @@ export default function NoticeBoardPage() {
                   setIsModalOpen(false);
                   handleEdit(selectedNotice);
                 }}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2"
+                className="px-4 py-2 bg-blue-600 text-white hover:bg-blue-700 flex items-center gap-2"
               >
                 <Edit2 className="w-4 h-4" /> Edit Notice
               </button>
@@ -431,14 +431,14 @@ export default function NoticeBoardPage() {
     // Create/Edit Form
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-        <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+        <div className="bg-white shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
           <div className="p-6 border-b sticky top-0 bg-white z-10 flex justify-between items-center">
             <h2 className="text-xl font-bold text-gray-800">
               {modalMode === 'create' ? 'Create New Notice' : 'Edit Notice'}
             </h2>
             <button
               onClick={() => setIsModalOpen(false)}
-              className="p-2 hover:bg-gray-100 rounded-full"
+              className="p-2 hover:bg-gray-100"
             >
               <X className="w-5 h-5 text-gray-500" />
             </button>
@@ -462,7 +462,7 @@ export default function NoticeBoardPage() {
                       title: e.target.value,
                     })
                   }
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                  className="w-full px-4 py-2 border focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
                   placeholder="e.g., Annual Sports Day 2024"
                   required
                 />
@@ -478,7 +478,7 @@ export default function NoticeBoardPage() {
                       priority: e.target.value as any,
                     })
                   }
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none bg-white"
+                  className="w-full px-4 py-2 border focus:ring-2 focus:ring-blue-500 outline-none bg-white"
                 >
                   <option value="Low">Low</option>
                   <option value="Medium">Medium</option>
@@ -504,7 +504,7 @@ export default function NoticeBoardPage() {
                     content: e.target.value,
                   })
                 }
-                className="w-full h-40 px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none resize-none"
+                className="w-full h-40 px-4 py-3 border focus:ring-2 focus:ring-blue-500 outline-none resize-none"
                 placeholder="Write your detailed notice here..."
                 required
               />
@@ -513,11 +513,11 @@ export default function NoticeBoardPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-sm font-semibold text-gray-700">Target Audience</label>
-                <div className="flex flex-wrap gap-2 p-2 border rounded-lg bg-gray-50 min-h-[50px]">
+                <div className="flex flex-wrap gap-2 p-2 border bg-gray-50 min-h-[50px]">
                   {['All', 'Student', 'Teacher', 'Parent', 'Admin'].map((role) => (
                     <label
                       key={role}
-                      className="flex items-center space-x-2 bg-white px-3 py-1.5 rounded border cursor-pointer hover:border-blue-300"
+                      className="flex items-center space-x-2 bg-white px-3 py-1.5  border cursor-pointer hover:border-blue-300"
                     >
                       <input
                         type="checkbox"
@@ -539,7 +539,7 @@ export default function NoticeBoardPage() {
                             });
                           }
                         }}
-                        className="rounded text-blue-600 focus:ring-blue-500 h-4 w-4"
+                        className=" text-blue-600 focus:ring-blue-500 h-4 w-4"
                       />
                       <span className="text-sm text-gray-700">{role}</span>
                     </label>
@@ -549,7 +549,7 @@ export default function NoticeBoardPage() {
 
               <div className="space-y-2">
                 <label className="text-sm font-semibold text-gray-700">Attachments</label>
-                <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:bg-gray-50 transition cursor-pointer">
+                <div className="border-2 border-dashed border-gray-300 p-6 text-center hover:bg-gray-50 transition cursor-pointer">
                   <input
                     type="file"
                     className="hidden"
@@ -580,7 +580,7 @@ export default function NoticeBoardPage() {
                       status: e.target.value as Status,
                     })
                   }
-                  className="border rounded px-2 py-1 text-sm bg-gray-50"
+                  className="border  px-2 py-1 text-sm bg-gray-50"
                 >
                   <option value="Draft">Draft</option>
                   <option value="Published">Publish Immediately</option>
@@ -591,13 +591,13 @@ export default function NoticeBoardPage() {
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-5 py-2.5 rounded-lg border text-gray-700 hover:bg-gray-50 font-medium"
+                  className="px-5 py-2.5 border text-gray-700 hover:bg-gray-50 font-medium"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2.5 rounded-lg bg-blue-600 text-white hover:bg-blue-700 font-medium flex items-center gap-2 shadow-lg shadow-blue-200"
+                  className="px-5 py-2.5 bg-blue-600 text-white hover:bg-blue-700 font-medium flex items-center gap-2 shadow-lg shadow-blue-200"
                 >
                   {formData.status === 'Published' ? (
                     <Send className="w-4 h-4" />
@@ -615,13 +615,15 @@ export default function NoticeBoardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 md:p-8 font-sans text-gray-900">
-      <div className="max-w-7xl mx-auto space-y-8">
+    <>
+      <Dynamic_breadcrumb />
+
+      <main className="min-h-screen space-y-8">
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
-              <div className="p-2 bg-blue-600 rounded-lg text-white">
+            <h1 className="text-3xl font-bold flex items-center gap-3">
+              <div className="p-2 bg-blue-600 text-white">
                 <Bell className="w-6 h-6" />
               </div>
               Notice Board
@@ -632,52 +634,50 @@ export default function NoticeBoardPage() {
           </div>
           <button
             onClick={handleCreateNew}
-            className="group flex items-center gap-2 bg-gray-900 hover:bg-gray-800 text-white px-5 py-3 rounded-xl shadow-xl transition-all transform hover:-translate-y-0.5"
+            className="group flex items-center gap-2 bg-gray-900 hover:bg-gray-800 text-white px-5 py-3 shadow-xl transition-all transform hover:-translate-y-0.5"
           >
             <Plus className="w-5 h-5 group-hover:rotate-90 transition-transform" />
             Create Notice
           </button>
         </div>
-
         {/* Stats / Quick Actions (Optional Enhancement) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
+          <div className="bg-white p-5 border border-gray-100 shadow-sm flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-500 font-medium">Total Active</p>
               <p className="text-2xl font-bold text-gray-800">
                 {notices.filter((n) => n.status === 'Published').length}
               </p>
             </div>
-            <div className="p-3 bg-green-50 rounded-full text-green-600">
+            <div className="p-3 bg-green-50 text-green-600">
               <Check className="w-5 h-5" />
             </div>
           </div>
-          <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
+          <div className="bg-white p-5 border border-gray-100 shadow-sm flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-500 font-medium">Drafts</p>
               <p className="text-2xl font-bold text-gray-800">
                 {notices.filter((n) => n.status === 'Draft').length}
               </p>
             </div>
-            <div className="p-3 bg-yellow-50 rounded-full text-yellow-600">
+            <div className="p-3 bg-yellow-50 text-yellow-600">
               <Edit2 className="w-5 h-5" />
             </div>
           </div>
-          <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
+          <div className="bg-white p-5 border border-gray-100 shadow-sm flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-500 font-medium">Priority High</p>
               <p className="text-2xl font-bold text-gray-800">
                 {notices.filter((n) => n.priority === 'High').length}
               </p>
             </div>
-            <div className="p-3 bg-red-50 rounded-full text-red-600">
+            <div className="p-3 bg-red-50 text-red-600">
               <AlertCircle className="w-5 h-5" />
             </div>
           </div>
         </div>
-
         {/* Main Content Card */}
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+        <div className="bg-white shadow-sm border border-gray-200 overflow-hidden">
           {/* Filters Bar */}
           <div className="p-5 border-b border-gray-100 flex flex-col lg:flex-row gap-4 justify-between items-center bg-white">
             <div className="relative w-full lg:w-96">
@@ -687,17 +687,16 @@ export default function NoticeBoardPage() {
                 placeholder="Search notices by title, content..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-100 focus:border-blue-400 outline-none transition"
+                className="w-full pl-10 pr-4 py-2.5 border border-gray-200 focus:ring-2 focus:ring-blue-100 focus:border-blue-400 outline-none transition"
               />
             </div>
-
             <div className="flex flex-wrap gap-3 w-full lg:w-auto">
               <div className="relative">
                 <Filter className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
                 <select
                   value={filterRole}
                   onChange={(e) => setFilterRole(e.target.value as Role)}
-                  className="pl-9 pr-8 py-2.5 border border-gray-200 rounded-lg bg-white text-sm focus:border-blue-400 outline-none appearance-none cursor-pointer hover:bg-gray-50"
+                  className="pl-9 pr-8 py-2.5 border border-gray-200 bg-white text-sm focus:border-blue-400 outline-none appearance-none cursor-pointer hover:bg-gray-50"
                 >
                   <option value="">All Roles</option>
                   <option value="Student">Students</option>
@@ -705,59 +704,56 @@ export default function NoticeBoardPage() {
                   <option value="Parent">Parents</option>
                 </select>
               </div>
-
               <select
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value as Status)}
-                className="px-4 py-2.5 border border-gray-200 rounded-lg bg-white text-sm focus:border-blue-400 outline-none cursor-pointer hover:bg-gray-50"
+                className="px-4 py-2.5 border border-gray-200 bg-white text-sm focus:border-blue-400 outline-none cursor-pointer hover:bg-gray-50"
               >
                 <option value="">All Status</option>
                 <option value="Published">Published</option>
                 <option value="Draft">Draft</option>
                 <option value="Archived">Archived</option>
               </select>
-
-              <div className="border-l pl-3 ml-1 flex items-center bg-gray-100 rounded-lg p-1">
+              <div className="border-l pl-3 ml-1 flex items-center bg-gray-100 p-1">
                 <button
                   onClick={() => setViewMode('list')}
-                  className={`p-1.5 rounded ${viewMode === 'list' ? 'bg-white shadow text-blue-600' : 'text-gray-500 hover:text-gray-700'}`}
+                  className={`p-1.5  ${viewMode === 'list' ? 'bg-white shadow text-blue-600' : 'text-gray-500 hover:text-gray-700'}`}
                 >
                   <Filter className="w-4 h-4 rotate-180" />{' '}
                   {/* Using generic icon for list view metaphor */}
                 </button>
                 <button
                   onClick={() => setViewMode('grid')}
-                  className={`p-1.5 rounded ${viewMode === 'grid' ? 'bg-white shadow text-blue-600' : 'text-gray-500 hover:text-gray-700'}`}
+                  className={`p-1.5  ${viewMode === 'grid' ? 'bg-white shadow text-blue-600' : 'text-gray-500 hover:text-gray-700'}`}
                 >
                   <Filter className="w-4 h-4" /> {/* Using generic icon for grid view metaphor */}
                 </button>
               </div>
             </div>
           </div>
-
           {/* Notices List */}
           <div className="p-0">
             {paginatedNotices.length > 0 ? (
               <div
                 className={`
-                ${viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6' : 'divide-y divide-gray-100'}
-              `}
+                  ${viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6' : 'divide-y divide-gray-100'}
+                `}
               >
                 {paginatedNotices.map((notice) => (
                   <div
                     key={notice.id}
                     className={`
-                      group relative transition-all duration-200
-                      ${
-                        viewMode === 'grid'
-                          ? 'bg-white border rounded-xl p-5 hover:shadow-lg hover:-translate-y-1'
-                          : 'p-5 hover:bg-gray-50 flex flex-col sm:flex-row gap-4 items-start sm:items-center'
-                      }
-                    `}
+                        group relative transition-all duration-200
+                        ${
+                          viewMode === 'grid'
+                            ? 'bg-white border p-5 hover:shadow-lg hover:-translate-y-1'
+                            : 'p-5 hover:bg-gray-50 flex flex-col sm:flex-row gap-4 items-start sm:items-center'
+                        }
+                      `}
                   >
                     {/* Date Block (List View Only) */}
                     {viewMode === 'list' && (
-                      <div className="hidden sm:flex flex-col items-center justify-center bg-blue-50 text-blue-700 rounded-lg h-16 w-16 min-w-[4rem]">
+                      <div className="hidden sm:flex flex-col items-center justify-center bg-blue-50 text-blue-700 h-16 w-16 min-w-[4rem]">
                         <span className="text-xl font-bold">
                           {new Date(notice.createdAt).getDate()}
                         </span>
@@ -766,7 +762,6 @@ export default function NoticeBoardPage() {
                         </span>
                       </div>
                     )}
-
                     {/* Content */}
                     <div className="flex-1 min-w-0 space-y-2">
                       <div className="flex items-center gap-2 mb-1">
@@ -779,49 +774,45 @@ export default function NoticeBoardPage() {
                         <Badge type="status">{notice.status}</Badge>
                         <Badge type="priority">{notice.priority}</Badge>
                       </div>
-
                       <h3
-                        className="text-lg font-bold text-gray-900 truncate pr-8 group-hover:text-blue-600 cursor-pointer"
+                        className="text-lg font-bold truncate pr-8 group-hover:text-blue-600 cursor-pointer"
                         onClick={() => handleView(notice)}
                       >
                         {notice.title}
                       </h3>
-
                       <p className="text-gray-500 text-sm line-clamp-2">{notice.content}</p>
-
                       <div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
                         <span className="flex items-center gap-1">
                           Target: {notice.targetRoles.join(', ')}
                         </span>
                         {notice.attachments.length > 0 && (
-                          <span className="flex items-center gap-1 text-gray-700 bg-gray-100 px-2 py-0.5 rounded">
+                          <span className="flex items-center gap-1 text-gray-700 bg-gray-100 px-2 py-0.5 ">
                             <Paperclip className="w-3 h-3" /> {notice.attachments.length}
                           </span>
                         )}
                       </div>
                     </div>
-
                     {/* Actions */}
                     <div
                       className={`flex items-center gap-2 ${viewMode === 'grid' ? 'mt-4 pt-4 border-t justify-end' : 'sm:ml-auto'}`}
                     >
                       <button
                         onClick={() => handleView(notice)}
-                        className="p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition"
+                        className="p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 transition"
                         title="View"
                       >
                         <Eye className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleEdit(notice)}
-                        className="p-2 text-gray-500 hover:text-green-600 hover:bg-green-50 rounded-lg transition"
+                        className="p-2 text-gray-500 hover:text-green-600 hover:bg-green-50 transition"
                         title="Edit"
                       >
                         <Edit2 className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleDeleteClick(notice.id)}
-                        className="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition"
+                        className="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 transition"
                         title="Delete"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -832,10 +823,10 @@ export default function NoticeBoardPage() {
               </div>
             ) : (
               <div className="p-12 text-center text-gray-500">
-                <div className="bg-gray-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="bg-gray-50 w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <Search className="w-8 h-8 text-gray-400" />
                 </div>
-                <h3 className="text-lg font-medium text-gray-900">No notices found</h3>
+                <h3 className="text-lg font-medium">No notices found</h3>
                 <p>Try adjusting your search or filters to find what you're looking for.</p>
                 <button
                   onClick={() => {
@@ -849,7 +840,6 @@ export default function NoticeBoardPage() {
                 </button>
               </div>
             )}
-
             {/* Pagination */}
             {filteredNotices.length > 0 && (
               <div className="p-4 border-t flex flex-col sm:flex-row justify-between items-center gap-4">
@@ -865,7 +855,7 @@ export default function NoticeBoardPage() {
                   <button
                     onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                     disabled={currentPage === 1}
-                    className="p-2 border rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="p-2 border hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <ChevronLeft className="w-4 h-4" />
                   </button>
@@ -873,7 +863,7 @@ export default function NoticeBoardPage() {
                     <button
                       key={i}
                       onClick={() => setCurrentPage(i + 1)}
-                      className={`w-8 h-8 rounded-lg text-sm font-medium transition ${
+                      className={`w-8 h-8 text-sm font-medium transition ${
                         currentPage === i + 1
                           ? 'bg-blue-600 text-white shadow-md'
                           : 'text-gray-600 hover:bg-gray-100'
@@ -885,7 +875,7 @@ export default function NoticeBoardPage() {
                   <button
                     onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
                     disabled={currentPage === totalPages}
-                    className="p-2 border rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="p-2 border hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <ChevronRight className="w-4 h-4" />
                   </button>
@@ -894,55 +884,52 @@ export default function NoticeBoardPage() {
             )}
           </div>
         </div>
-      </div>
-
-      {/* Delete Confirmation Modal */}
-      {deleteId && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <div className="bg-white rounded-xl shadow-2xl p-6 max-w-sm w-full">
-            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-red-100 text-red-600 mx-auto mb-4">
-              <Trash2 className="w-6 h-6" />
-            </div>
-            <h3 className="text-lg font-bold text-center text-gray-900 mb-2">Delete Notice?</h3>
-            <p className="text-center text-gray-500 mb-6 text-sm">
-              Are you sure you want to delete this notice? This action cannot be undone.
-            </p>
-            <div className="flex gap-3">
-              <button
-                onClick={() => setDeleteId(null)}
-                className="flex-1 px-4 py-2 border rounded-lg hover:bg-gray-50 text-gray-700 font-medium"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={confirmDelete}
-                className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium shadow-lg shadow-red-200"
-              >
-                Delete
-              </button>
+        {/* Delete Confirmation Modal */}
+        {deleteId && (
+          <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+            <div className="bg-white shadow-2xl p-6 max-w-sm w-full">
+              <div className="flex items-center justify-center w-12 h-12 bg-red-100 text-red-600 mx-auto mb-4">
+                <Trash2 className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-bold text-center mb-2">Delete Notice?</h3>
+              <p className="text-center text-gray-500 mb-6 text-sm">
+                Are you sure you want to delete this notice? This action cannot be undone.
+              </p>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setDeleteId(null)}
+                  className="flex-1 px-4 py-2 border hover:bg-gray-50 text-gray-700 font-medium"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={confirmDelete}
+                  className="flex-1 px-4 py-2 bg-red-600 text-white hover:bg-red-700 font-medium shadow-lg shadow-red-200"
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-
-      {/* Global Toast Notification */}
-      {toast && (
-        <div
-          className={`fixed bottom-6 right-6 px-6 py-3 rounded-xl shadow-2xl text-white font-medium flex items-center gap-3 transition-all transform animate-in slide-in-from-bottom-5 z-[70] ${
-            toast.type === 'success' ? 'bg-gray-900' : 'bg-red-600'
-          }`}
-        >
-          {toast.type === 'success' ? (
-            <Check className="w-5 h-5 text-green-400" />
-          ) : (
-            <AlertCircle className="w-5 h-5 text-white" />
-          )}
-          {toast.message}
-        </div>
-      )}
-
-      {/* Main Modal (Create/Edit/View) */}
-      {renderModal()}
-    </div>
+        )}
+        {/* Global Toast Notification */}
+        {toast && (
+          <div
+            className={`fixed bottom-6 right-6 px-6 py-3 shadow-2xl text-white font-medium flex items-center gap-3 transition-all transform animate-in slide-in-from-bottom-5 z-[70] ${
+              toast.type === 'success' ? 'bg-gray-900' : 'bg-red-600'
+            }`}
+          >
+            {toast.type === 'success' ? (
+              <Check className="w-5 h-5 text-green-400" />
+            ) : (
+              <AlertCircle className="w-5 h-5 text-white" />
+            )}
+            {toast.message}
+          </div>
+        )}
+        {/* Main Modal (Create/Edit/View) */}
+        {renderModal()}
+      </main>
+    </>
   );
 }

@@ -4,10 +4,15 @@ import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Dashboard_header from '../components/dashboard_header';
 import Dashboard_sidebar from '../components/sidebar/Dashboard_sidebar';
+import { TSidebar_Items } from '../components/sidebar/sidebar_items';
 
 const { Content } = Layout;
 
-const Dashboard_layout = ({ sidebar_items }: { sidebar_items: any }) => {
+const Dashboard_layout = ({
+  sidebar_items,
+}: {
+  sidebar_items: TSidebar_Items[keyof TSidebar_Items];
+}) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
 
@@ -56,7 +61,7 @@ const Dashboard_layout = ({ sidebar_items }: { sidebar_items: any }) => {
           setMobileOpen={setMobileOpen}
         />
 
-        <Content className="p-4 md:p-6 overflow-y-auto h-[calc(100vh-64px)] bg-zinc-100">
+        <Content className="p-4 md:p-6 overflow-y-auto h-[calc(100vh-64px)] bg-stone-200/50">
           <div
             style={{
               background: 'transparent',

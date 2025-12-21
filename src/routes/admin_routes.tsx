@@ -1,15 +1,11 @@
-import { Navigate, RouteObject } from 'react-router-dom';
+import { RouteObject } from 'react-router-dom';
+import super_admin_routes from './super_admin_routes';
 
 const admin_routes = [
-  { index: true, element: <Navigate to="dashboard" /> },
+  // Copy all existing super-admin routes
+  ...super_admin_routes,
 
-  { path: 'dashboard', element: <div>Admin Dashboard</div> },
-  { path: 'users', element: <div>Admin Users</div> },
-  { path: 'attendance', element: <div>Admin attendance</div> },
-  { path: 'routine', element: <div>Admin routine</div> },
-  { path: 'results', element: <div>Admin results</div> },
-  { path: 'notices', element: <div>Admin notices</div> },
-  { path: 'system', element: <div>Admin system</div> },
+  // 👇 Add admin-specific routes here (if any)
 ] satisfies RouteObject[];
 
 export default admin_routes;

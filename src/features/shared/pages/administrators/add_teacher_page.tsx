@@ -1,14 +1,14 @@
 import { Dynamic_breadcrumb } from '@/common/components/Dynamic_breadcrumb';
 import { MoreVertical } from 'lucide-react';
 
-export default function Student_admission() {
+export default function Add_teacher_page() {
   return (
     <>
       <Dynamic_breadcrumb className="mb-6" />
 
       <main className="bg-white rounded-lg shadow-sm">
         <div className="flex items-center justify-between p-6 border-b">
-          <h2 className="text-lg font-bold">Add New Students</h2>
+          <h2 className="text-lg font-bold">Add New Teacher</h2>
           <button className="text-gray-400 hover:text-gray-600">
             <MoreVertical className="w-5 h-5" />
           </button>
@@ -161,7 +161,7 @@ export default function Student_admission() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Upload Student Photo (150px X 150px)
+                Upload TeacherPhoto (150px X 150px)
               </label>
               <input
                 type="file"
