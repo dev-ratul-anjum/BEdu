@@ -1,4 +1,4 @@
-import Student_fees from '@/features/student/pages/fees_status/Fees_status';
+import Student_fees from '@/features/student/pages/student_fees/Student_fees';
 import Student_attendance from '@/features/student/pages/student_attendance/Student_attendance';
 import Student_notice_board from '@/features/student/pages/student_notice_board/Student_notice_board';
 import Student_payment_history from '@/features/student/pages/student_payment_history/Student_payment_history';
