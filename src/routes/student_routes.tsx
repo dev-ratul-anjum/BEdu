@@ -6,7 +6,7 @@ import Student_routine from '@/features/student/pages/student_routine/Student_ro
 import Student_exam_schedule from '@/features/student/pages/exam_schedule/Exam_schedule';
 import Student from '@/features/student/Student';
 import Student_result from '@/features/student/pages/student_result/Student_result';
-import { RouteObject } from 'react-router-dom';
+import { Navigate, RouteObject } from 'react-router-dom';
 import NoticeDetails from '@/features/student/pages/student_notice_board/NoticeDetails';
 import Student_profile from '@/features/student/pages/student_profile/Student_profile';
 
@@ -21,6 +21,15 @@ const student_routes = [
   { path: 'notice', element: <Student_notice_board /> },
   { path: 'notice/:id', element: <NoticeDetails /> },
   { path: 'exam-schedule', element: <Student_exam_schedule /> },
+  {
+    index: true,
+    element: (
+      <Navigate
+        replace
+        to={'dashboard'}
+      />
+    ),
+  },
 ] as RouteObject[];
 
 export default student_routes;

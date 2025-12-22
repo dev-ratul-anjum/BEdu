@@ -5,7 +5,7 @@ import Fees from '@/features/parent/pages/fees/Fees';
 import Notice from '@/features/parent/pages/notice/Notice';
 import NoticeDetails from '@/features/parent/pages/notice/NoticeDetails';
 import Parent from '@/features/parent/Parent';
-
+import { Navigate } from 'react-router-dom';
 const parent_router = [
   { path: 'dashboard', element: <Parent /> },
   { path: 'children', element: <Child_profile /> },
@@ -14,6 +14,15 @@ const parent_router = [
   { path: 'fees', element: <Fees /> },
   { path: 'exam-schedule', element: <Exam_schedule /> },
   { path: 'result', element: <Child_result /> },
+  {
+    index: true,
+    element: (
+      <Navigate
+        replace
+        to={'dashboard'}
+      />
+    ),
+  },
 ];
 
 export default parent_router;

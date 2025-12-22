@@ -1,20 +1,19 @@
+import { Dynamic_breadcrumb } from '@/common/components/Dynamic_breadcrumb';
 import {
   AlertTriangle,
   BookOpen,
   Calendar,
   CheckCircle,
   ChevronDown,
-  ChevronUp,
   Clock,
   Filter,
   MapPin,
   MoreHorizontal,
   Plus,
-  Save,
   User,
   X,
 } from 'lucide-react';
-import React, { FormEvent, useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 // --- Types & Interfaces ---
 
@@ -115,7 +114,7 @@ const DEFAULT_NEW_SLOT_FORM: NewSlotFormData = {
   room: '',
 };
 
-export default function RoutineSchedulePage() {
+export default function Routine_schedule_page() {
   // --- State ---
   const [schedule, setSchedule] = useState<ScheduleMap>(INITIAL_SCHEDULE);
   const [selectedClass, setSelectedClass] = useState('Class 9');
@@ -309,7 +308,7 @@ export default function RoutineSchedulePage() {
                 [name]: e.target.value as any,
               })
             }
-            className="w-full appearance-none pl-4 pr-10 py-2 bg-white border border-slate-200 text-slate-700 text-sm rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all cursor-pointer"
+            className="w-full appearance-none pl-4 pr-10 py-2 bg-white border border-slate-200 text-slate-700 text-sm  focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all cursor-pointer"
           >
             {options.map((opt) => (
               <option
@@ -335,20 +334,22 @@ export default function RoutineSchedulePage() {
           }
           required={['subject', 'teacher'].includes(name)}
           placeholder={label}
-          className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm"
+          className="w-full px-4 py-2  border border-slate-200 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm"
         />
       )}
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-slate-50/50 p-4 md:p-8 font-sans text-slate-900">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <>
+      <Dynamic_breadcrumb />
+
+      <main className="min-h-screen space-y-6">
         {/* --- Header --- */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-6  shadow-sm border border-slate-200">
           <div>
-            <h1 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-              <div className="p-2.5 bg-indigo-600 rounded-lg shadow-md shadow-indigo-500/20">
+            <h1 className="text-2xl font-bold flex items-center gap-3">
+              <div className="p-2.5 bg-indigo-600  shadow-md shadow-indigo-500/20">
                 <Calendar className="w-6 h-6 text-white" />
               </div>
               Routine & Schedule Management
@@ -357,7 +358,6 @@ export default function RoutineSchedulePage() {
               Manage class timings, assign teachers, and resolve conflicts.
             </p>
           </div>
-
           <div className="hidden md:flex flex-col items-end mr-2">
             <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
               Current Term
@@ -365,9 +365,8 @@ export default function RoutineSchedulePage() {
             <span className="text-sm font-medium text-slate-700">Fall 2024</span>
           </div>
         </div>
-
         {/* --- Filters and Controls --- */}
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
+        <div className="bg-white  border border-slate-200 shadow-sm p-4">
           <div className="flex flex-col lg:flex-row gap-4 justify-between items-start lg:items-center">
             <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
               {/* Class Selector */}
@@ -378,7 +377,7 @@ export default function RoutineSchedulePage() {
                 <select
                   value={selectedClass}
                   onChange={(e) => setSelectedClass(e.target.value)}
-                  className="w-full appearance-none pl-9 pr-10 py-2.5 bg-slate-50 border border-slate-200 text-slate-700 text-sm font-medium rounded-xl hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all cursor-pointer"
+                  className="w-full appearance-none pl-9 pr-10 py-2.5 bg-slate-50 border border-slate-200 text-slate-700 text-sm font-medium  hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all cursor-pointer"
                 >
                   {MOCK_CLASSES.map((c) => (
                     <option key={c}>{c}</option>
@@ -386,7 +385,6 @@ export default function RoutineSchedulePage() {
                 </select>
                 <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
               </div>
-
               {/* Section Selector */}
               <div className="relative group w-full sm:w-48">
                 <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none">
@@ -395,7 +393,7 @@ export default function RoutineSchedulePage() {
                 <select
                   value={selectedSection}
                   onChange={(e) => setSelectedSection(e.target.value)}
-                  className="w-full appearance-none pl-9 pr-10 py-2.5 bg-slate-50 border border-slate-200 text-slate-700 text-sm font-medium rounded-xl hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all cursor-pointer"
+                  className="w-full appearance-none pl-9 pr-10 py-2.5 bg-slate-50 border border-slate-200 text-slate-700 text-sm font-medium  hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all cursor-pointer"
                 >
                   {MOCK_SECTIONS.map((s) => (
                     <option key={s}>{s}</option>
@@ -403,51 +401,46 @@ export default function RoutineSchedulePage() {
                 </select>
                 <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
               </div>
-
               {/* Add Time Button */}
               <button
                 onClick={() => setIsAddTimeModalOpen(true)}
-                className="flex items-center justify-center gap-2 px-4 py-2.5 bg-indigo-50 text-indigo-700 rounded-xl hover:bg-indigo-100 font-medium transition-all border border-indigo-200 whitespace-nowrap"
+                className="flex items-center justify-center gap-2 px-4 py-2.5 bg-indigo-50 text-indigo-700  hover:bg-indigo-100 font-medium transition-all border border-indigo-200 whitespace-nowrap"
               >
                 <Plus className="w-4 h-4" />
                 Add Time
               </button>
-
               {/* Add Row Button */}
               <button
                 onClick={handleAddRow}
-                className="flex items-center justify-center gap-2 px-4 py-2.5 bg-green-50 text-green-700 rounded-xl hover:bg-green-100 font-medium transition-all border border-green-200 whitespace-nowrap"
+                className="flex items-center justify-center gap-2 px-4 py-2.5 bg-green-50 text-green-700  hover:bg-green-100 font-medium transition-all border border-green-200 whitespace-nowrap"
               >
                 <Plus className="w-4 h-4" />
                 Add Row ({rowCount})
               </button>
             </div>
-
             {/* Add Routine Button */}
             <button
               onClick={() => setIsAddSlotModalOpen(true)}
-              className="flex items-center justify-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 font-medium transition-all shadow-md shadow-indigo-500/20 whitespace-nowrap w-full lg:w-auto"
+              className="flex items-center justify-center gap-2 px-5 py-2.5 bg-indigo-600 text-white  hover:bg-indigo-700 font-medium transition-all shadow-md shadow-indigo-500/20 whitespace-nowrap w-full lg:w-auto"
             >
               <Plus className="w-5 h-5" />
               Add Routine
             </button>
           </div>
-
           <div className="flex items-center gap-2 text-sm text-slate-500 mt-4">
             <span className="flex items-center gap-1">
-              <div className="w-3 h-3 bg-indigo-50 border border-indigo-200 rounded"></div> Academic
+              <div className="w-3 h-3 bg-indigo-50 border border-indigo-200 "></div> Academic
             </span>
             <span className="flex items-center gap-1 ml-2">
-              <div className="w-3 h-3 bg-amber-50 border border-amber-200 rounded"></div> Break
+              <div className="w-3 h-3 bg-amber-50 border border-amber-200 "></div> Break
             </span>
           </div>
         </div>
-
         {/* --- Conflict Alert --- */}
         {!conflictResolved && (
-          <div className="bg-rose-50 border-l-4 border-rose-500 p-5 rounded-r-xl shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 animate-in fade-in slide-in-from-top-4">
+          <div className="bg-rose-50 border-l-4 border-rose-500 p-5 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 animate-in fade-in slide-in-from-top-4">
             <div className="flex items-start gap-4">
-              <div className="p-2 bg-white rounded-full shadow-sm">
+              <div className="p-2 bg-white  shadow-sm">
                 <AlertTriangle className="h-6 w-6 text-rose-500" />
               </div>
               <div>
@@ -461,15 +454,14 @@ export default function RoutineSchedulePage() {
             </div>
             <button
               onClick={handleResolveConflict}
-              className="whitespace-nowrap px-4 py-2 bg-rose-600 text-white text-sm font-medium rounded-lg hover:bg-rose-700 transition-colors shadow-sm"
+              className="whitespace-nowrap px-4 py-2 bg-rose-600 text-white text-sm font-medium  hover:bg-rose-700 transition-colors shadow-sm"
             >
               Resolve Conflict
             </button>
           </div>
         )}
-
         {/* --- Schedule Table --- */}
-        <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+        <div className="bg-white border border-slate-200  shadow-sm overflow-hidden">
           <div className="overflow-x-auto custom-scrollbar">
             <table className="min-w-full divide-y divide-slate-200">
               <thead className="bg-slate-50/80">
@@ -502,14 +494,13 @@ export default function RoutineSchedulePage() {
                         <span>{slot.label}</span>
                       </div>
                     </td>
-
                     {/* Break Row Logic */}
                     {slot.type === 'break' ? (
                       <td
                         colSpan={DAYS.length}
                         className="px-4 py-3 text-center"
                       >
-                        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-100/50 text-amber-700 text-sm font-bold border border-amber-200 border-dashed">
+                        <span className="inline-flex items-center gap-2 px-4 py-1.5  bg-amber-100/50 text-amber-700 text-sm font-bold border border-amber-200 border-dashed">
                           ☕ Tiffin Break / Prayer Break
                         </span>
                       </td>
@@ -519,7 +510,6 @@ export default function RoutineSchedulePage() {
                         const session = schedule[`${day}-${slot.start}`];
                         const isConflict =
                           !conflictResolved && day === 'Tuesday' && slot.start === '10:00';
-
                         return (
                           <td
                             key={`${day}-${slot.start}`}
@@ -528,7 +518,7 @@ export default function RoutineSchedulePage() {
                             {session ? (
                               <div
                                 onClick={() => openEditModal(day, slot.start)}
-                                className={`h-full w-full p-3 rounded-xl border hover:shadow-md transition-all cursor-pointer group/card flex flex-col justify-between ${isConflict ? 'bg-rose-100 border-rose-300' : 'bg-indigo-50 border-indigo-100 hover:border-indigo-300'}`}
+                                className={`h-full w-full p-3  border hover:shadow-md transition-all cursor-pointer group/card flex flex-col justify-between ${isConflict ? 'bg-rose-100 border-rose-300' : 'bg-indigo-50 border-indigo-100 hover:border-indigo-300'}`}
                               >
                                 <div>
                                   <div
@@ -546,21 +536,18 @@ export default function RoutineSchedulePage() {
                                   </div>
                                 </div>
                                 <div className="opacity-0 group-hover/card:opacity-100 transition-opacity flex justify-end">
-                                  <div className="p-1 bg-white rounded-full shadow-sm text-indigo-600">
+                                  <div className="p-1 bg-white  shadow-sm text-indigo-600">
                                     <MoreHorizontal className="w-3 h-3" />
                                   </div>
                                 </div>
                                 {isConflict && (
-                                  <AlertTriangle
-                                    className="absolute top-2 right-2 w-4 h-4 text-rose-600"
-                                    title="Conflict"
-                                  />
+                                  <AlertTriangle className="absolute top-2 right-2 w-4 h-4 text-rose-600" />
                                 )}
                               </div>
                             ) : (
                               <div
                                 onClick={() => openEditModal(day, slot.start)}
-                                className="h-full w-full rounded-xl border-2 border-dashed border-slate-200 flex flex-col items-center justify-center gap-2 text-slate-300 hover:border-indigo-300 hover:text-indigo-500 hover:bg-indigo-50/30 transition-all cursor-pointer"
+                                className="h-full w-full  border-2 border-dashed border-slate-200 flex flex-col items-center justify-center gap-2 text-slate-300 hover:border-indigo-300 hover:text-indigo-500 hover:bg-indigo-50/30 transition-all cursor-pointer"
                               >
                                 <Plus className="w-6 h-6" />
                                 <span className="text-xs font-medium">Add Class</span>
@@ -576,250 +563,244 @@ export default function RoutineSchedulePage() {
             </table>
           </div>
         </div>
-      </div>
-
-      {/* --- Add Routine Modal (Same for button and cell clicks) --- */}
-      {(isAddSlotModalOpen || isEditSlotModalOpen) && (
-        <div className="fixed inset-0 z-50 overflow-y-auto">
-          <div
-            className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity"
-            onClick={() => {
-              setIsAddSlotModalOpen(false);
-              setIsEditSlotModalOpen(false);
-            }}
-          ></div>
-          <div className="flex min-h-full items-center justify-center p-4">
-            <div className="relative bg-white rounded-2xl shadow-xl w-full max-w-5xl transform transition-all">
-              {/* Modal Header */}
-              <div className="flex justify-between items-center px-6 py-4 border-b border-slate-100 bg-indigo-50 rounded-t-2xl">
-                <h3 className="text-xl font-bold text-indigo-800 flex items-center gap-2">
-                  <Plus className="w-5 h-5" />
-                  {isAddSlotModalOpen ? 'Schedule New Class Slot' : 'Edit Class Slot'}
-                </h3>
-                <button
-                  onClick={() => {
-                    setIsAddSlotModalOpen(false);
-                    setIsEditSlotModalOpen(false);
-                  }}
-                  className="p-2 text-slate-500 hover:bg-indigo-100 rounded-full transition-colors"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              {/* Form */}
-              <div className="p-6">
-                <form
-                  onSubmit={isAddSlotModalOpen ? handleAddNewSlot : handleSaveEdit}
-                  className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4"
-                >
-                  {isAddSlotModalOpen ? (
-                    <>
-                      {renderFormInput('Class', 'class', 'text', MOCK_CLASSES)}
-                      {renderFormInput('Section', 'section', 'text', MOCK_SECTIONS)}
-                      {renderFormInput('Day', 'day', 'text', DAYS)}
-                      {renderFormInput(
-                        'Start Time',
-                        'startTime',
-                        'text',
-                        timeSlots.filter((t) => t.type === 'class').map((t) => t.start)
+        {/* --- Add Routine Modal (Same for button and cell clicks) --- */}
+        {(isAddSlotModalOpen || isEditSlotModalOpen) && (
+          <div className="fixed inset-0 z-50 overflow-y-auto">
+            <div
+              className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity"
+              onClick={() => {
+                setIsAddSlotModalOpen(false);
+                setIsEditSlotModalOpen(false);
+              }}
+            ></div>
+            <div className="flex min-h-full items-center justify-center p-4">
+              <div className="relative bg-white  shadow-xl w-full max-w-5xl transform transition-all">
+                {/* Modal Header */}
+                <div className="flex justify-between items-center px-6 py-4 border-b border-slate-100 bg-indigo-50 ">
+                  <h3 className="text-xl font-bold text-indigo-800 flex items-center gap-2">
+                    <Plus className="w-5 h-5" />
+                    {isAddSlotModalOpen ? 'Schedule New Class Slot' : 'Edit Class Slot'}
+                  </h3>
+                  <button
+                    onClick={() => {
+                      setIsAddSlotModalOpen(false);
+                      setIsEditSlotModalOpen(false);
+                    }}
+                    className="p-2 text-slate-500 hover:bg-indigo-100  transition-colors"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+                {/* Form */}
+                <div className="p-6">
+                  <form
+                    onSubmit={isAddSlotModalOpen ? handleAddNewSlot : handleSaveEdit}
+                    className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4"
+                  >
+                    {isAddSlotModalOpen ? (
+                      <>
+                        {renderFormInput('Class', 'class', 'text', MOCK_CLASSES)}
+                        {renderFormInput('Section', 'section', 'text', MOCK_SECTIONS)}
+                        {renderFormInput('Day', 'day', 'text', DAYS)}
+                        {renderFormInput(
+                          'Start Time',
+                          'startTime',
+                          'text',
+                          timeSlots.filter((t) => t.type === 'class').map((t) => t.start)
+                        )}
+                        {renderFormInput('End Time', 'endTime', 'time')}
+                        {renderFormInput('Subject', 'subject')}
+                        {renderFormInput('Teacher', 'teacher')}
+                        {renderFormInput('Room Number', 'room')}
+                      </>
+                    ) : (
+                      <>
+                        <div className="col-span-2">
+                          <label className="block text-xs font-medium text-slate-500 mb-1">
+                            Day
+                          </label>
+                          <div className="px-4 py-2 bg-slate-50  text-sm">{editingSlot?.day}</div>
+                        </div>
+                        <div className="col-span-2">
+                          <label className="block text-xs font-medium text-slate-500 mb-1">
+                            Time Slot
+                          </label>
+                          <div className="px-4 py-2 bg-slate-50  text-sm">
+                            {timeSlots.find((t) => t.start === editingSlot?.timeStart)?.label}
+                          </div>
+                        </div>
+                        <div className="col-span-2 md:col-span-4 lg:col-span-4">
+                          <label className="block text-xs font-medium text-slate-500 mb-1">
+                            Subject
+                          </label>
+                          <input
+                            type="text"
+                            value={editFormData.subject}
+                            onChange={(e) =>
+                              setEditFormData({
+                                ...editFormData,
+                                subject: e.target.value,
+                              })
+                            }
+                            placeholder="e.g. Mathematics"
+                            className="w-full px-4 py-2  border border-slate-200 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm"
+                          />
+                        </div>
+                        <div className="col-span-2 md:col-span-4 lg:col-span-2">
+                          <label className="block text-xs font-medium text-slate-500 mb-1">
+                            Teacher
+                          </label>
+                          <input
+                            type="text"
+                            value={editFormData.teacher}
+                            onChange={(e) =>
+                              setEditFormData({
+                                ...editFormData,
+                                teacher: e.target.value,
+                              })
+                            }
+                            placeholder="e.g. Mr. Rofiq"
+                            className="w-full px-4 py-2  border border-slate-200 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm"
+                          />
+                        </div>
+                        <div className="col-span-2 md:col-span-4 lg:col-span-2">
+                          <label className="block text-xs font-medium text-slate-500 mb-1">
+                            Room Number
+                          </label>
+                          <input
+                            type="text"
+                            value={editFormData.room}
+                            onChange={(e) =>
+                              setEditFormData({
+                                ...editFormData,
+                                room: e.target.value,
+                              })
+                            }
+                            placeholder="e.g. 101"
+                            className="w-full px-4 py-2  border border-slate-200 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm"
+                          />
+                        </div>
+                      </>
+                    )}
+                    <div className="col-span-2 md:col-span-4 lg:col-span-8 flex justify-end gap-3 pt-4 border-t border-slate-100 mt-4">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (isAddSlotModalOpen) {
+                            setNewSlotFormData(DEFAULT_NEW_SLOT_FORM);
+                            setIsAddSlotModalOpen(false);
+                          } else {
+                            setIsEditSlotModalOpen(false);
+                          }
+                        }}
+                        className="px-5 py-2 border border-slate-300 text-slate-600  hover:bg-slate-100 font-medium transition-colors"
+                      >
+                        Cancel
+                      </button>
+                      {isEditSlotModalOpen && (
+                        <button
+                          type="button"
+                          onClick={handleDeleteSlot}
+                          className="px-5 py-2 border border-rose-200 text-rose-600  hover:bg-rose-50 font-medium transition-colors"
+                        >
+                          Clear Slot
+                        </button>
                       )}
-                      {renderFormInput('End Time', 'endTime', 'time')}
-                      {renderFormInput('Subject', 'subject')}
-                      {renderFormInput('Teacher', 'teacher')}
-                      {renderFormInput('Room Number', 'room')}
-                    </>
-                  ) : (
-                    <>
-                      <div className="col-span-2">
-                        <label className="block text-xs font-medium text-slate-500 mb-1">Day</label>
-                        <div className="px-4 py-2 bg-slate-50 rounded-xl text-sm">
-                          {editingSlot?.day}
-                        </div>
-                      </div>
-                      <div className="col-span-2">
-                        <label className="block text-xs font-medium text-slate-500 mb-1">
-                          Time Slot
-                        </label>
-                        <div className="px-4 py-2 bg-slate-50 rounded-xl text-sm">
-                          {timeSlots.find((t) => t.start === editingSlot?.timeStart)?.label}
-                        </div>
-                      </div>
-                      <div className="col-span-2 md:col-span-4 lg:col-span-4">
-                        <label className="block text-xs font-medium text-slate-500 mb-1">
-                          Subject
-                        </label>
-                        <input
-                          type="text"
-                          value={editFormData.subject}
-                          onChange={(e) =>
-                            setEditFormData({
-                              ...editFormData,
-                              subject: e.target.value,
-                            })
-                          }
-                          placeholder="e.g. Mathematics"
-                          className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm"
-                        />
-                      </div>
-                      <div className="col-span-2 md:col-span-4 lg:col-span-2">
-                        <label className="block text-xs font-medium text-slate-500 mb-1">
-                          Teacher
-                        </label>
-                        <input
-                          type="text"
-                          value={editFormData.teacher}
-                          onChange={(e) =>
-                            setEditFormData({
-                              ...editFormData,
-                              teacher: e.target.value,
-                            })
-                          }
-                          placeholder="e.g. Mr. Rofiq"
-                          className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm"
-                        />
-                      </div>
-                      <div className="col-span-2 md:col-span-4 lg:col-span-2">
-                        <label className="block text-xs font-medium text-slate-500 mb-1">
-                          Room Number
-                        </label>
-                        <input
-                          type="text"
-                          value={editFormData.room}
-                          onChange={(e) =>
-                            setEditFormData({
-                              ...editFormData,
-                              room: e.target.value,
-                            })
-                          }
-                          placeholder="e.g. 101"
-                          className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm"
-                        />
-                      </div>
-                    </>
-                  )}
-
-                  <div className="col-span-2 md:col-span-4 lg:col-span-8 flex justify-end gap-3 pt-4 border-t border-slate-100 mt-4">
+                      <button
+                        type="submit"
+                        className="px-5 py-2 bg-indigo-600 text-white  hover:bg-indigo-700 font-medium transition-colors shadow-md shadow-indigo-500/20 flex items-center gap-2"
+                      >
+                        <CheckCircle className="w-4 h-4" />
+                        {isAddSlotModalOpen ? 'Add Schedule' : 'Save Changes'}
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+        {/* --- Add Time Slot Modal --- */}
+        {isAddTimeModalOpen && (
+          <div className="fixed inset-0 z-50 overflow-y-auto">
+            <div
+              className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity"
+              onClick={() => setIsAddTimeModalOpen(false)}
+            ></div>
+            <div className="flex min-h-full items-center justify-center p-4">
+              <div className="relative bg-white  shadow-xl w-full max-w-md transform transition-all">
+                <div className="flex justify-between items-center px-6 py-4 border-b border-slate-100 bg-blue-50 ">
+                  <h3 className="text-xl font-bold text-blue-800 flex items-center gap-2">
+                    <Plus className="w-5 h-5" />
+                    Add New Time Slot
+                  </h3>
+                  <button
+                    onClick={() => setIsAddTimeModalOpen(false)}
+                    className="p-2 text-slate-500 hover:bg-blue-100  transition-colors"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+                <form
+                  onSubmit={handleAddTimeSlot}
+                  className="p-6 space-y-4"
+                >
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-1.5">
+                      Start Time
+                    </label>
+                    <input
+                      type="time"
+                      value={newTimeSlot.start}
+                      onChange={(e) =>
+                        setNewTimeSlot({
+                          ...newTimeSlot,
+                          start: e.target.value,
+                        })
+                      }
+                      className="w-full px-4 py-2  border border-slate-200 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-1.5">
+                      End Time
+                    </label>
+                    <input
+                      type="time"
+                      value={newTimeSlot.end}
+                      onChange={(e) =>
+                        setNewTimeSlot({
+                          ...newTimeSlot,
+                          end: e.target.value,
+                        })
+                      }
+                      className="w-full px-4 py-2  border border-slate-200 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
+                      required
+                    />
+                  </div>
+                  <div className="flex gap-3 pt-4 mt-2">
                     <button
                       type="button"
-                      onClick={() => {
-                        if (isAddSlotModalOpen) {
-                          setNewSlotFormData(DEFAULT_NEW_SLOT_FORM);
-                          setIsAddSlotModalOpen(false);
-                        } else {
-                          setIsEditSlotModalOpen(false);
-                        }
-                      }}
-                      className="px-5 py-2 border border-slate-300 text-slate-600 rounded-xl hover:bg-slate-100 font-medium transition-colors"
+                      onClick={() => setIsAddTimeModalOpen(false)}
+                      className="flex-1 px-4 py-2 border border-slate-300 text-slate-600  hover:bg-slate-100 font-medium transition-colors"
                     >
                       Cancel
                     </button>
-                    {isEditSlotModalOpen && (
-                      <button
-                        type="button"
-                        onClick={handleDeleteSlot}
-                        className="px-5 py-2 border border-rose-200 text-rose-600 rounded-xl hover:bg-rose-50 font-medium transition-colors"
-                      >
-                        Clear Slot
-                      </button>
-                    )}
                     <button
                       type="submit"
-                      className="px-5 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 font-medium transition-colors shadow-md shadow-indigo-500/20 flex items-center gap-2"
+                      className="flex-1 px-4 py-2 bg-blue-600 text-white  hover:bg-blue-700 font-medium transition-colors shadow-sm flex justify-center items-center gap-2"
                     >
-                      <CheckCircle className="w-4 h-4" />
-                      {isAddSlotModalOpen ? 'Add Schedule' : 'Save Changes'}
+                      <Plus className="w-4 h-4" />
+                      Add Time Slot
                     </button>
                   </div>
                 </form>
               </div>
             </div>
           </div>
-        </div>
-      )}
-
-      {/* --- Add Time Slot Modal --- */}
-      {isAddTimeModalOpen && (
-        <div className="fixed inset-0 z-50 overflow-y-auto">
-          <div
-            className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity"
-            onClick={() => setIsAddTimeModalOpen(false)}
-          ></div>
-          <div className="flex min-h-full items-center justify-center p-4">
-            <div className="relative bg-white rounded-2xl shadow-xl w-full max-w-md transform transition-all">
-              <div className="flex justify-between items-center px-6 py-4 border-b border-slate-100 bg-blue-50 rounded-t-2xl">
-                <h3 className="text-xl font-bold text-blue-800 flex items-center gap-2">
-                  <Plus className="w-5 h-5" />
-                  Add New Time Slot
-                </h3>
-                <button
-                  onClick={() => setIsAddTimeModalOpen(false)}
-                  className="p-2 text-slate-500 hover:bg-blue-100 rounded-full transition-colors"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              <form
-                onSubmit={handleAddTimeSlot}
-                className="p-6 space-y-4"
-              >
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                    Start Time
-                  </label>
-                  <input
-                    type="time"
-                    value={newTimeSlot.start}
-                    onChange={(e) =>
-                      setNewTimeSlot({
-                        ...newTimeSlot,
-                        start: e.target.value,
-                      })
-                    }
-                    className="w-full px-4 py-2 rounded-lg border border-slate-200 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                    End Time
-                  </label>
-                  <input
-                    type="time"
-                    value={newTimeSlot.end}
-                    onChange={(e) =>
-                      setNewTimeSlot({
-                        ...newTimeSlot,
-                        end: e.target.value,
-                      })
-                    }
-                    className="w-full px-4 py-2 rounded-lg border border-slate-200 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
-                    required
-                  />
-                </div>
-
-                <div className="flex gap-3 pt-4 mt-2">
-                  <button
-                    type="button"
-                    onClick={() => setIsAddTimeModalOpen(false)}
-                    className="flex-1 px-4 py-2 border border-slate-300 text-slate-600 rounded-lg hover:bg-slate-100 font-medium transition-colors"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium transition-colors shadow-sm flex justify-center items-center gap-2"
-                  >
-                    <Plus className="w-4 h-4" />
-                    Add Time Slot
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
+        )}
+      </main>
+    </>
   );
 }

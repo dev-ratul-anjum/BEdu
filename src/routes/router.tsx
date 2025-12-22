@@ -1,8 +1,8 @@
-import sidebar_items from '@/common/components/sidebar/sidebar-items';
-import Dashboard_layout from '@/common/layouts/dashboard.layout';
+import sidebar_items from '@/common/components/sidebar/sidebar_items';
+import App_layout from '@/common/layouts/app_layout';
 import { createBrowserRouter } from 'react-router-dom';
-import Auth_layout from '../common/layouts/auth.layout';
-import Protected_layout from '../common/layouts/protected.layout';
+import Auth_layout from '../common/layouts/auth_layout';
+import Protected_layout from '../common/layouts/protected_layout';
 import admin_routes from './admin_routes';
 import auth_routes from './auth_routes';
 import parent_routes from './parent_routes';
@@ -22,7 +22,7 @@ const app_router = createBrowserRouter([
     element: <Protected_layout allowed_role="SUPER_ADMIN" />,
     children: [
       {
-        element: <Dashboard_layout sidebar_items={sidebar_items.super_admin} />,
+        element: <App_layout sidebar_items={sidebar_items.super_admin} />,
         children: super_admin_routes,
       },
     ],
@@ -33,7 +33,7 @@ const app_router = createBrowserRouter([
     element: <Protected_layout allowed_role="ADMIN" />,
     children: [
       {
-        element: <Dashboard_layout sidebar_items={sidebar_items.admin} />,
+        element: <App_layout sidebar_items={sidebar_items.admin} />,
         children: admin_routes,
       },
     ],
@@ -44,7 +44,7 @@ const app_router = createBrowserRouter([
     element: <Protected_layout allowed_role="TEACHER" />,
     children: [
       {
-        element: <Dashboard_layout sidebar_items={sidebar_items.teacher} />,
+        element: <App_layout sidebar_items={sidebar_items.teacher} />,
         children: teacher_routes,
       },
     ],
@@ -55,7 +55,7 @@ const app_router = createBrowserRouter([
     element: <Protected_layout allowed_role="STUDENT" />,
     children: [
       {
-        element: <Dashboard_layout sidebar_items={sidebar_items.student} />,
+        element: <App_layout sidebar_items={sidebar_items.student} />,
         children: student_routes,
       },
     ],
@@ -66,10 +66,15 @@ const app_router = createBrowserRouter([
     element: <Protected_layout allowed_role="PARENT" />,
     children: [
       {
-        element: <Dashboard_layout sidebar_items={sidebar_items.parent} />,
+        element: <App_layout sidebar_items={sidebar_items.parent} />,
         children: parent_routes,
       },
     ],
+  },
+
+  {
+    path: '*',
+    element: <div>404</div>,
   },
 ]);
 
