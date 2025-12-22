@@ -139,7 +139,7 @@ const Student_profile: React.FC = () => {
                 </div>
                 <Text
                   strong
-                  className="text-[#7c32ff] text-lg"
+                  className="text-primary text-lg"
                 >
                   {student.name}
                 </Text>
