@@ -2,12 +2,13 @@ import Scroll_to_top from '@/common/components/scroll-to-top';
 import { Drawer, Layout, theme } from 'antd';
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import Dashboard_header from '../components/dashboard-header';
-import Dashboard_sidebar from '../components/sidebar/Dashboard_sidebar';
+import App_header from '../components/app_header';
+import App_sidebar from '../components/sidebar/app_sidebar';
+import { TSidebar_Items } from '../components/sidebar/sidebar_items';
 
 const { Content } = Layout;
 
-const Dashboard_layout = ({ sidebar_items }: { sidebar_items: any }) => {
+const App_layout = ({ sidebar_items }: { sidebar_items: TSidebar_Items[keyof TSidebar_Items] }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
 
@@ -20,7 +21,7 @@ const Dashboard_layout = ({ sidebar_items }: { sidebar_items: any }) => {
       <Scroll_to_top />
 
       {/* Sidebar for Desktop */}
-      <Dashboard_sidebar
+      <App_sidebar
         collapsed={collapsed}
         setCollapsed={setCollapsed}
         mobileOpen={mobileOpen}
@@ -38,7 +39,7 @@ const Dashboard_layout = ({ sidebar_items }: { sidebar_items: any }) => {
         closable={false}
         className="lg:hidden"
       >
-        <Dashboard_sidebar
+        <App_sidebar
           collapsed={false}
           setCollapsed={() => {}}
           mobileOpen={true}
@@ -50,13 +51,13 @@ const Dashboard_layout = ({ sidebar_items }: { sidebar_items: any }) => {
       <Layout
         className={`transition-all duration-300 ${collapsed ? 'lg:ml-[80px]' : 'lg:ml-[260px]'}`}
       >
-        <Dashboard_header
+        <App_header
           collapsed={collapsed}
           setCollapsed={setCollapsed}
           setMobileOpen={setMobileOpen}
         />
 
-        <Content className="p-4 md:p-6 overflow-y-auto h-[calc(100vh-64px)] bg-zinc-100">
+        <Content className="p-4 md:p-6 overflow-y-auto h-[calc(100vh-64px)] bg-stone-200/50">
           <div
             style={{
               background: 'transparent',
@@ -72,4 +73,4 @@ const Dashboard_layout = ({ sidebar_items }: { sidebar_items: any }) => {
   );
 };
 
-export default Dashboard_layout;
+export default App_layout;

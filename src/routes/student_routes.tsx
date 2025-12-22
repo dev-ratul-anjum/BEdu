@@ -1,6 +1,8 @@
-import { RouteObject } from 'react-router-dom';
+import { Navigate, RouteObject } from 'react-router-dom';
 
 const student_routes = [
+  { index: true, element: <Navigate to="dashboard" /> },
+
   { path: 'dashboard', element: <div>Student Dashboard</div> },
   { path: 'attendance', element: <div>Student Attendance</div> },
   { path: 'routine', element: <div>Student routine</div> },

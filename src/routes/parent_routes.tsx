@@ -1,4 +1,8 @@
+import { Navigate } from 'react-router-dom';
+
 const parent_router = [
+  { index: true, element: <Navigate to="dashboard" /> },
+
   { path: 'dashboard', element: <div>Parent Dashboard</div> },
   { path: 'children', element: <div>Parent Children</div> },
   { path: 'payments', element: <div>Parent payments</div> },

@@ -1,9 +1,10 @@
-import { Layout, Menu, theme } from 'antd';
+import { Layout, Menu } from 'antd';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { TSidebar_Items } from './sidebar_items';
 
 const { Sider } = Layout;
 
-export default function Dashboard_sidebar({
+export default function App_sidebar({
   collapsed,
   setCollapsed,
   mobileOpen,
@@ -12,34 +13,12 @@ export default function Dashboard_sidebar({
 }: TProps) {
   const navigate = useNavigate();
   const location = useLocation();
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
 
   const handleMenuClick = (e: { key: string }) => {
     navigate(e.key);
     if (window.innerWidth < 1024) {
       setMobileOpen(false);
     }
-  };
-
-  // Transform menu items for Ant Design Menu
-  const items = sidebar_items.map((item) => ({
-    key: item.key,
-    icon: item.icon,
-    label: item.label,
-    children: item.children?.map((child) => ({
-      key: child.key,
-      label: child.label,
-    })),
-  }));
-
-  // Find open keys based on current path
-  const getOpenKeys = () => {
-    const foundItem = sidebar_items.find((item) =>
-      item.children?.some((child) => child.key === location.pathname)
-    );
-    return foundItem ? [foundItem.key] : [];
   };
 
   return (
@@ -91,9 +70,8 @@ export default function Dashboard_sidebar({
         <Menu
           theme="dark"
           mode="inline"
-          defaultOpenKeys={getOpenKeys()}
           selectedKeys={[location.pathname]}
-          items={items}
+          items={sidebar_items()}
           onClick={handleMenuClick}
           className="bg-transparent border-none px-2 [&_.ant-menu-item-selected]:!bg-blue-600 [&_.ant-menu-item-selected]:!text-white [&_.ant-menu-item]:text-slate-300 [&_.ant-menu-item]:my-1 [&_.ant-menu-item]:rounded-none"
           // Custom styles for menu items
@@ -111,5 +89,5 @@ type TProps = {
   setCollapsed: (collapsed: boolean) => void;
   mobileOpen: boolean;
   setMobileOpen: (open: boolean) => void;
-  sidebar_items: any;
+  sidebar_items: TSidebar_Items[keyof TSidebar_Items];
 };
