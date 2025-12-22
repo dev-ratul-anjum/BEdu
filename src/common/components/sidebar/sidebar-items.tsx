@@ -58,11 +58,11 @@ const sidebar_items = {
       label: 'Dashboard',
       icon: <LayoutDashboard size={20} />,
     },
-    // {
-    //   key: '/student/profile',
-    //   label: 'Profile',
-    //   icon: <User size={20} />,
-    // },
+    {
+      key: '/student/profile',
+      label: 'My Profile',
+      icon: <User size={20} />,
+    },
     {
       key: '/student/notice',
       label: 'Notice',

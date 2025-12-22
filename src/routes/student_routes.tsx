@@ -8,10 +8,11 @@ import Student from '@/features/student/Student';
 import Student_result from '@/features/student/pages/student_result/Student_result';
 import { RouteObject } from 'react-router-dom';
 import NoticeDetails from '@/features/student/pages/student_notice_board/NoticeDetails';
+import Student_profile from '@/features/student/pages/student_profile/Student_profile';
 
 const student_routes = [
   { path: 'dashboard', element: <Student /> },
-  // { path: 'profile', element: <Student_profile},
+  { path: 'profile', element: <Student_profile /> },
   { path: 'routine', element: <Student_routine /> },
   { path: 'fees', element: <Student_fees /> },
   { path: 'payment-history', element: <Student_payment_history /> },
