@@ -5,11 +5,11 @@ import Teacher_payment_page from '@/features/shared/pages/administrators/teacher
 import Attendance_page from '@/features/shared/pages/attendance_page';
 import Exam_results_page from '@/features/shared/pages/exam_results_page';
 import Notice_board_page from '@/features/shared/pages/notice_board_page';
-import Parents_page from '@/features/shared/pages/parents_page';
+import Parents_page from '@/features/shared/pages/parents_page/Parents_page';
 import Routine_schedule_page from '@/features/shared/pages/routine_schedule_page';
 import Students_page from '@/features/shared/pages/students_page';
 import Teachers_page from '@/features/shared/pages/teachers_page';
-import User_details_page from '@/features/shared/pages/user_details_page';
+import User_details_page from '@/features/shared/pages/parents_page/User_details_page';
 import { Navigate, RouteObject } from 'react-router-dom';
 
 const admin_routes = [

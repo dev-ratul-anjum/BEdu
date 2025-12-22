@@ -1,5 +1,5 @@
 import { Download, Edit, Printer } from 'lucide-react';
-import { Dynamic_breadcrumb } from '../../../common/components/Dynamic_breadcrumb';
+import { Dynamic_breadcrumb } from '../../../../common/components/Dynamic_breadcrumb';
 
 export default function User_details_page() {
   const profile_data = [
