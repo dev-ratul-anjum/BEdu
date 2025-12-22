@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { MoreVertical, Plus } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Dynamic_breadcrumb } from '../../../../common/components/Dynamic_breadcrumb';
 
@@ -57,18 +58,26 @@ export default function Students_page() {
 
       <main className="min-h-screen bg-stone-100">
         <div className="bg-white rounded-lg shadow-sm p-6">
-          {/* Table Header */}
-          <div className="flex items-center justify-between p-6 border-b">
+          <div className="flex justify-between px-6">
             <h2 className="text-lg font-bold">All Students Data</h2>
-            <div className="flex gap-2">
+            <Link to="/admin/student-admission">
+              <button className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/80 font-medium flex items-center gap-2">
+                <Plus size={20} />
+                ADD STUDENT
+              </button>
+            </Link>
+          </div>
+          {/* Table Header */}
+          <div className="flex flex-col md:flex-row items-center justify-between p-6 border-b gap-4">
+            <div className="flex flex-col md:flex-row gap-2 w-full md:w-auto">
               <input
                 type="text"
                 placeholder="Search by Name, Phone, Email ..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="flex-1 px-4 w-96 py-2 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none"
+                className="w-full md:w-96 px-4 py-2 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none"
               />
-              <button className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/80 font-medium">
+              <button className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/80 font-medium w-full md:w-auto">
                 SEARCH
               </button>
             </div>

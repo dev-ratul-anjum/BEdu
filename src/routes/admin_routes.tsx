@@ -1,6 +1,6 @@
 import Add_teacher_page from '@/features/shared/pages/administrators/add_teacher_page';
 import Administrator_dashboard_page from '@/features/shared/pages/administrators/administrator_dashboard_page';
-import Student_admission_page from '@/features/shared/pages/administrators/student_admission_page';
+import Student_admission_page from '@/features/shared/pages/administrators/student_admission_page/Student_admission_page';
 import Teacher_payment_page from '@/features/shared/pages/administrators/teacher_payment_page';
 import Attendance_page from '@/features/shared/pages/attendance_page';
 import Exam_results_page from '@/features/shared/pages/exam_results_page';
