@@ -7,10 +7,12 @@ import Exam_results_page from '@/features/shared/pages/exam_results_page';
 import Notice_board_page from '@/features/shared/pages/notice_board_page';
 import Parents_page from '@/features/shared/pages/parents_page/Parents_page';
 import Routine_schedule_page from '@/features/shared/pages/routine_schedule_page';
-import Students_page from '@/features/shared/pages/students_page';
+import Students_page from '@/features/shared/pages/students_page/Students_page';
 import Teachers_page from '@/features/shared/pages/teachers_page';
-import User_details_page from '@/features/shared/pages/parents_page/User_details_page';
+import User_details_page from '@/features/shared/pages/parents_page/Parent_details_page';
 import { Navigate, RouteObject } from 'react-router-dom';
+import Student_details_page from '@/features/shared/pages/students_page/Student_details_page';
+import Parent_details_page from '@/features/shared/pages/parents_page/Parent_details_page';
 
 const admin_routes = [
   { path: 'dashboard', element: <Administrator_dashboard_page /> },
@@ -21,10 +23,10 @@ const admin_routes = [
   { path: 'teacher-payment', element: <Teacher_payment_page /> },
 
   { path: 'parents', element: <Parents_page /> },
-  { path: 'parents/:parentId', element: <User_details_page /> },
+  { path: 'parents/:parentId', element: <Parent_details_page /> },
 
   { path: 'students', element: <Students_page /> },
-  { path: 'students/:studentId', element: <User_details_page /> },
+  { path: 'students/:studentId', element: <Student_details_page /> },
   { path: 'student-admission', element: <Student_admission_page /> },
 
   { path: 'attendance', element: <Attendance_page /> },

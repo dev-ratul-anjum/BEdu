@@ -1,46 +1,55 @@
-import { MoreVertical } from 'lucide-react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Dynamic_breadcrumb } from '../../../common/components/Dynamic_breadcrumb';
+import { Dynamic_breadcrumb } from '../../../../common/components/Dynamic_breadcrumb';
 
 export default function Students_page() {
+  const [searchQuery, setSearchQuery] = useState('');
+
   const students = [
     {
-      id: '0021',
+      id: '0024',
       name: 'Mark Willy',
       gender: 'Male',
       class: '2',
       subject: 'English',
       section: 'A',
       address: 'TA-107 Newyork',
-      phone: '+ 123 9988568',
+      phone: '+1 123 9988568',
       email: 'kazifahim93@gmail.com',
       avatar: '👨',
     },
     {
-      id: '0021',
-      name: 'Mark Willy',
-      gender: 'Male',
+      id: '0025',
+      name: 'Sarah Connor',
+      gender: 'Female',
       class: '2',
       subject: 'Physics',
-      section: 'A',
-      address: 'TA-107 Newyork',
-      phone: '+ 123 9988568',
-      email: 'kazifahim93@gmail.com',
-      avatar: '👨',
+      section: 'B',
+      address: 'CA-202 Los Angeles',
+      phone: '+1 456 7890123',
+      email: 'sarah.connor@example.com',
+      avatar: '�',
     },
     {
-      id: '0021',
-      name: 'Mark Willy',
+      id: '0026',
+      name: 'John Doe',
       gender: 'Male',
       class: '2',
-      subject: 'English',
-      section: 'A',
-      address: 'TA-107 Newyork',
-      phone: '+ 123 9988568',
-      email: 'kazifahim93@gmail.com',
-      avatar: '👨',
+      subject: 'MATH',
+      section: 'C',
+      address: 'TX-303 Austin',
+      phone: '+1 789 0123456',
+      email: 'john.doe@example.com',
+      avatar: '�',
     },
   ];
+
+  const filteredStudents = students.filter(
+    (student) =>
+      student.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      student.phone.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      student.email.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <>
@@ -54,10 +63,12 @@ export default function Students_page() {
             <div className="flex gap-2">
               <input
                 type="text"
-                placeholder="Search by Phone ..."
-                className="flex-1 px-4 w-96 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none"
+                placeholder="Search by Name, Phone, Email ..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="flex-1 px-4 w-96 py-2 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none"
               />
-              <button className="px-6 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 font-medium">
+              <button className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/80 font-medium">
                 SEARCH
               </button>
             </div>
@@ -101,7 +112,7 @@ export default function Students_page() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                {students.map((student, index) => (
+                {filteredStudents.map((student, index) => (
                   <tr
                     key={index}
                     className="hover:bg-gray-50 transition-colors"
@@ -133,12 +144,25 @@ export default function Students_page() {
                     <td className="px-6 py-4 text-sm text-gray-600">{student.phone}</td>
                     <td className="px-6 py-4 text-sm text-gray-600">{student.email}</td>
                     <td className="px-6 py-4">
-                      <button className="text-gray-400 hover:text-gray-600">
-                        <MoreVertical className="w-5 h-5" />
-                      </button>
+                      <Link
+                        to={student.id}
+                        className="px-3 py-1 text-xs font-medium text-white bg-primary rounded hover:bg-primary/90 hover:text-white"
+                      >
+                        Details
+                      </Link>
                     </td>
                   </tr>
                 ))}
+                {filteredStudents.length === 0 && (
+                  <tr>
+                    <td
+                      colSpan={11}
+                      className="px-6 py-4 text-center text-gray-500"
+                    >
+                      No students found matching your search.
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
@@ -147,7 +171,7 @@ export default function Students_page() {
             <button className="px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded">
               Previous
             </button>
-            <button className="px-4 py-2 text-sm bg-orange-500 text-white rounded">1</button>
+            <button className="px-4 py-2 text-sm bg-primary text-white rounded">1</button>
             <button className="px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded">2</button>
             <button className="px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded">
               Next
