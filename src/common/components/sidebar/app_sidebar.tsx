@@ -4,7 +4,7 @@ import { TSidebar_Items } from './sidebar_items';
 
 const { Sider } = Layout;
 
-export default function Dashboard_sidebar({
+export default function App_sidebar({
   collapsed,
   setCollapsed,
   mobileOpen,

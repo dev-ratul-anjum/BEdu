@@ -13,8 +13,15 @@ import {
 
 const sidebar_items = {
   super_admin: () => [
+    // Copy all common super-admin items
+    ...replaceKeyPrefix(sidebar_items.admin(), '/admin', '/super-admin'),
+
+    // 👇 Add admin-specific items here (if any)
+  ],
+
+  admin: () => [
     {
-      key: '/super-admin/dashboard',
+      key: '/admin/dashboard',
       label: 'Dashboard',
       icon: <LayoutDashboard size={18} />,
     },
@@ -26,11 +33,11 @@ const sidebar_items = {
       icon: <Users size={18} />,
       children: [
         {
-          key: '/super-admin/students',
+          key: '/admin/students',
           label: 'All Students',
         },
         {
-          key: '/super-admin/student-admission',
+          key: '/admin/student-admission',
           label: 'Student Admission',
         },
       ],
@@ -43,44 +50,37 @@ const sidebar_items = {
       icon: <Briefcase size={18} />,
       children: [
         {
-          key: '/super-admin/teachers',
+          key: '/admin/teachers',
           label: 'Teachers',
         },
         {
-          key: '/super-admin/add-new-teacher',
+          key: '/admin/add-new-teacher',
           label: 'Add Teacher',
         },
         {
-          key: '/super-admin/teacher-payment',
+          key: '/admin/teacher-payment',
           label: 'Teacher Payment',
         },
       ],
     },
 
     {
-      key: '/super-admin/parents',
+      key: '/admin/parents',
       label: 'Parents',
       icon: <UsersRound size={18} />,
     },
 
     {
-      key: '/super-admin/attendance',
+      key: '/admin/attendance',
       label: 'Attendance',
       icon: <ScrollText size={18} />,
     },
 
-    { key: '/super-admin/class-routine', label: 'Class Routine', icon: <Calendar size={18} /> },
+    { key: '/admin/class-routine', label: 'Class Routine', icon: <Calendar size={18} /> },
 
-    { key: '/super-admin/exam-results', label: 'Exam Results', icon: <Newspaper size={18} /> },
+    { key: '/admin/exam-results', label: 'Exam Results', icon: <Newspaper size={18} /> },
 
-    { key: '/super-admin/notice-board', label: 'Notice Board', icon: <Megaphone size={18} /> },
-  ],
-
-  admin: () => [
-    // Copy all common super-admin items
-    ...replaceKeyPrefix(sidebar_items.super_admin(), '/super-admin', '/admin'),
-
-    // 👇 Add admin-specific items here (if any)
+    { key: '/admin/notice-board', label: 'Notice Board', icon: <Megaphone size={18} /> },
   ],
 
   teacher: () => [

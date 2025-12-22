@@ -22,7 +22,7 @@ interface HeaderProps {
   setMobileOpen: (open: boolean) => void;
 }
 
-const Dashboard_header: React.FC<HeaderProps> = ({ collapsed, setCollapsed, setMobileOpen }) => {
+const App_header: React.FC<HeaderProps> = ({ collapsed, setCollapsed, setMobileOpen }) => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -216,4 +216,4 @@ const Dashboard_header: React.FC<HeaderProps> = ({ collapsed, setCollapsed, setM
   );
 };
 
-export default Dashboard_header;
+export default App_header;
