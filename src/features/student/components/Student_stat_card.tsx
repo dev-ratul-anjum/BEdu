@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
 
-export default function StatCard({ stat }: TProps) {
+export default function Student_card({ stat }: TProps) {
   const isGradient = !!stat.gradient;
 
   return (

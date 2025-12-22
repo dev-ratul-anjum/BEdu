@@ -9,6 +9,12 @@ import {
   ScrollText,
   Users,
   UsersRound,
+  Bell,
+  BookOpen,
+  CalendarCheck,
+  FileText,
+  DollarSign,
+  User,
 } from 'lucide-react';
 
 const sidebar_items = {
@@ -104,8 +110,86 @@ const sidebar_items = {
     { key: '/teacher/grades', label: 'Grades', icon: <GraduationCap size={18} /> },
   ],
 
-  student: () => [],
-  parent: () => [],
+  student: () => [
+    {
+      key: '/student/dashboard',
+      label: 'Dashboard',
+      icon: <LayoutDashboard size={20} />,
+    },
+    {
+      key: '/student/profile',
+      label: 'My Profile',
+      icon: <User size={20} />,
+    },
+    {
+      key: '/student/notice',
+      label: 'Notice',
+      icon: <Bell size={20} />,
+    },
+    {
+      key: '/student/attendance',
+      label: 'Attendance',
+      icon: <CalendarCheck size={20} />,
+    },
+    {
+      key: '/student/routine',
+      label: 'Routine',
+      icon: <BookOpen size={20} />,
+    },
+    {
+      key: '/student/exam-schedule',
+      label: 'Exam Schedule',
+      icon: <Calendar size={20} />,
+    },
+    {
+      key: '/student/result',
+      label: 'Result',
+      icon: <FileText size={20} />,
+    },
+    {
+      key: '/student/fees',
+      label: 'Fees',
+      icon: <DollarSign size={20} />,
+    },
+    {
+      key: '/student/payment-history',
+      label: 'Payment History',
+      icon: <CreditCard size={20} />,
+    },
+  ],
+
+  parent: () => [
+    {
+      key: '/parent/dashboard',
+      label: 'Dashboard',
+      icon: <LayoutDashboard size={20} />,
+    },
+    {
+      key: '/parent/children',
+      label: 'Child Profile',
+      icon: <Users size={20} />,
+    },
+    {
+      key: '/parent/result',
+      label: 'Result',
+      icon: <FileText size={20} />,
+    },
+    {
+      key: '/parent/notice',
+      label: 'Notice',
+      icon: <Bell size={20} />,
+    },
+    {
+      key: '/parent/exam-schedule',
+      label: 'Exam Schedule',
+      icon: <Calendar size={20} />,
+    },
+    {
+      key: '/parent/fees',
+      label: 'Fees',
+      icon: <CreditCard size={20} />,
+    },
+  ],
 } satisfies TSidebar_Items;
 
 export default sidebar_items;

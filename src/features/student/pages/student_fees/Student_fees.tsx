@@ -90,7 +90,7 @@ const feeData: MonthFee[] = [
   },
 ];
 
-const Fees = () => {
+const Student_fees = () => {
   const [selectedYear, setSelectedYear] = useState<string>('2025');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<'SSL' | 'Online'>('SSL');
@@ -403,4 +403,4 @@ const Fees = () => {
   );
 };
 
-export default Fees;
+export default Student_fees;
