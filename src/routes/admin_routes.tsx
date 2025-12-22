@@ -1,7 +1,6 @@
 import Add_teacher_page from '@/features/shared/pages/administrators/add_teacher_page/Add_teacher_page';
 import Administrator_dashboard_page from '@/features/shared/pages/administrators/administrator_dashboard_page';
 import Student_admission_page from '@/features/shared/pages/administrators/student_admission_page/Student_admission_page';
-import Teacher_payment_page from '@/features/shared/pages/administrators/teacher_payment_page';
 import Attendance_page from '@/features/shared/pages/attendance_page';
 import Exam_results_page from '@/features/shared/pages/exam_results_page';
 import Notice_board_page from '@/features/shared/pages/notice_board_page';
@@ -13,6 +12,7 @@ import User_details_page from '@/features/shared/pages/parents_page/Parent_detai
 import { Navigate, RouteObject } from 'react-router-dom';
 import Student_details_page from '@/features/shared/pages/students_page/Student_details_page';
 import Parent_details_page from '@/features/shared/pages/parents_page/Parent_details_page';
+import Teacher_payroll_page from '@/features/shared/pages/administrators/teacher_payroll_page/Teacher_payroll_page';
 
 const admin_routes = [
   { path: 'dashboard', element: <Administrator_dashboard_page /> },
@@ -20,8 +20,7 @@ const admin_routes = [
   { path: 'teachers', element: <Teachers_page /> },
   { path: 'teachers/:teacherId', element: <User_details_page /> },
   { path: 'add-new-teacher', element: <Add_teacher_page /> },
-  { path: 'teacher-payment', element: <Teacher_payment_page /> },
-
+  { path: 'teacher-payroll', element: <Teacher_payroll_page /> },
   { path: 'parents', element: <Parents_page /> },
   { path: 'parents/:parentId', element: <Parent_details_page /> },
 

@@ -64,8 +64,8 @@ const sidebar_items = {
           label: 'Add Teacher',
         },
         {
-          key: '/admin/teacher-payment',
-          label: 'Teacher Payment',
+          key: '/admin/teacher-payroll',
+          label: 'Teacher Payroll',
         },
       ],
     },
