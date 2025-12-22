@@ -14,7 +14,6 @@ const sample_schedules: Schedule_Record[] = [
     time: '09:00 AM - 11:00 AM',
     venue: 'Hall A',
     teacher: 'Mr. Allen',
-    class_name: 'Class I (A)',
   },
   {
     key: 2,
@@ -24,7 +23,6 @@ const sample_schedules: Schedule_Record[] = [
     time: '09:00 AM - 11:00 AM',
     venue: 'Hall B',
     teacher: 'Ms. Clara',
-    class_name: 'Class I (A)',
   },
   {
     key: 3,
@@ -34,7 +32,6 @@ const sample_schedules: Schedule_Record[] = [
     time: '10:00 AM - 12:00 PM',
     venue: 'Lab 1',
     teacher: 'Mr. Stone',
-    class_name: 'Class I (A)',
   },
   {
     key: 4,
@@ -44,7 +41,6 @@ const sample_schedules: Schedule_Record[] = [
     time: '11:00 AM - 01:00 PM',
     venue: 'Lab 2',
     teacher: 'Ms. Roberts',
-    class_name: 'Class I (A)',
   },
   {
     key: 5,
@@ -54,7 +50,6 @@ const sample_schedules: Schedule_Record[] = [
     time: '09:00 AM - 11:00 AM',
     venue: 'Hall A',
     teacher: 'Mr. Allen',
-    class_name: 'Class I (B)',
   },
 ];
 

@@ -107,11 +107,6 @@ const sidebar_items = {
       icon: <LayoutDashboard size={20} />,
     },
     {
-      key: '/parent/profile',
-      label: 'My Profile',
-      icon: <User size={20} />,
-    },
-    {
       key: '/parent/children',
       label: 'Child Profile',
       icon: <Users size={20} />,

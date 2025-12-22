@@ -14,7 +14,6 @@ const sample_schedules: Schedule_Record[] = [
     time: '09:00 AM - 11:00 AM',
     venue: 'Hall A',
     teacher: 'Mr. Allen',
-    class_name: 'Class I (A)',
   },
   {
     key: 2,
@@ -24,7 +23,6 @@ const sample_schedules: Schedule_Record[] = [
     time: '09:00 AM - 11:00 AM',
     venue: 'Hall B',
     teacher: 'Ms. Clara',
-    class_name: 'Class I (A)',
   },
   {
     key: 3,
@@ -34,7 +32,6 @@ const sample_schedules: Schedule_Record[] = [
     time: '10:00 AM - 12:00 PM',
     venue: 'Lab 1',
     teacher: 'Mr. Stone',
-    class_name: 'Class I (A)',
   },
   {
     key: 4,
@@ -44,7 +41,6 @@ const sample_schedules: Schedule_Record[] = [
     time: '11:00 AM - 01:00 PM',
     venue: 'Lab 2',
     teacher: 'Ms. Roberts',
-    class_name: 'Class I (A)',
   },
   {
     key: 5,
@@ -54,13 +50,13 @@ const sample_schedules: Schedule_Record[] = [
     time: '09:00 AM - 11:00 AM',
     venue: 'Hall A',
     teacher: 'Mr. Allen',
-    class_name: 'Class I (B)',
   },
 ];
 
 const Exam_schedule: React.FC = () => {
-  const [selected_exams, set_selected_exams] = useState<string[]>([]);
-  const [search_query, set_search_query] = useState<string>('');
+  const [selected_exam, set_selected_exam] = useState<string | undefined>(undefined);
+  const [selected_year, set_selected_year] = useState<string>('2025');
+  const [show_results, set_show_results] = useState<boolean>(false);
 
   const exam_options = useMemo(() => {
     return Array.from(new Set(sample_schedules.map((s) => s.exam_name))).map((e) => ({
@@ -68,6 +64,12 @@ const Exam_schedule: React.FC = () => {
       value: e,
     }));
   }, []);
+
+  const handleSearch = () => {
+    if (selected_exam && selected_year) {
+      set_show_results(true);
+    }
+  };
 
   return (
     <div className="w-full">
@@ -86,18 +88,21 @@ const Exam_schedule: React.FC = () => {
         className="w-full"
       >
         <Exam_Schedule_Header
-          selected_exams={selected_exams}
-          on_exams_change={set_selected_exams}
-          search_query={search_query}
-          on_search_change={set_search_query}
+          selected_exam={selected_exam}
+          on_exam_change={set_selected_exam}
+          selected_year={selected_year}
+          on_year_change={set_selected_year}
           exam_options={exam_options}
+          on_search_click={handleSearch}
         />
 
-        <Exam_Schedule_Table
-          records={sample_schedules}
-          selected_exams={selected_exams}
-          search_query={search_query}
-        />
+        {show_results && (
+          <Exam_Schedule_Table
+            records={sample_schedules}
+            selected_exam={selected_exam}
+            selected_year={selected_year}
+          />
+        )}
       </Space>
     </div>
   );

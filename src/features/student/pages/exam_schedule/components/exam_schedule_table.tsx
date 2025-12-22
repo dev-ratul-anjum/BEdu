@@ -11,7 +11,6 @@ export interface Schedule_Record {
   time: string;
   venue: string;
   teacher: string;
-  class_name?: string;
 }
 
 interface Exam_Schedule_TableProps {
@@ -59,19 +58,13 @@ const Exam_Schedule_Table: React.FC<Exam_Schedule_TableProps> = ({
       dataIndex: 'teacher',
       key: 'teacher',
     },
-    {
-      title: 'Class',
-      dataIndex: 'class_name',
-      key: 'class_name',
-      render: (c: string) => c || '-',
-    },
   ];
 
   return (
     <Table
       dataSource={filtered}
       columns={columns}
-      pagination={{ pageSize: 10 }}
+      pagination={false}
       className="border rounded-lg"
     />
   );

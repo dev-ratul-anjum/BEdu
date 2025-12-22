@@ -1,56 +1,105 @@
-import React from 'react';
-import { Card, Select, Input, Typography } from 'antd';
-import { Calendar } from 'lucide-react';
+import { Button, Card, Col, Row, Select, Typography } from 'antd';
+import { Search } from 'lucide-react';
 
-const { Title } = Typography;
+const { Text } = Typography;
 
 interface Exam_Schedule_HeaderProps {
-  selected_exams: string[];
-  on_exams_change: (exams: string[]) => void;
-  search_query: string;
-  on_search_change: (q: string) => void;
+  selected_exam?: string;
+  on_exam_change: (exam: string) => void;
+  selected_year: string;
+  on_year_change: (year: string) => void;
   exam_options: { label: string; value: string }[];
+  on_search_click: () => void;
 }
 
 const Exam_Schedule_Header: React.FC<Exam_Schedule_HeaderProps> = ({
-  selected_exams,
-  on_exams_change,
-  search_query,
-  on_search_change,
+  selected_exam,
+  on_exam_change,
+  selected_year,
+  on_year_change,
   exam_options,
+  on_search_click,
 }) => {
   return (
-    <Card className="shadow-sm border-gray-200 mb-6">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <Calendar className="h-5 w-5 text-cyan-500" />
-          <Title
-            level={4}
-            className="!mb-0 !text-xl !font-semibold"
-          >
-            Exam Schedule
-          </Title>
-        </div>
-
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
+    <Card
+      className="shadow-sm border-gray-200 rounded-lg mb-6"
+      title={
+        <Text
+          strong
+          className="text-lg text-gray-700"
+        >
+          Select Criteria
+        </Text>
+      }
+    >
+      <Row
+        gutter={24}
+        align="bottom"
+      >
+        <Col
+          xs={24}
+          md={12}
+          lg={10}
+        >
+          <div className="mb-2">
+            <Text
+              strong
+              className="text-gray-500"
+            >
+              Select Exam *
+            </Text>
+          </div>
           <Select
-            mode="multiple"
-            allowClear
-            placeholder="Select exam(s)"
-            value={selected_exams}
-            onChange={(vals) => on_exams_change(vals as string[])}
+            className="w-full h-10"
+            placeholder="Select a exam"
+            value={selected_exam}
+            onChange={(val) => on_exam_change(val as string)}
             options={exam_options}
-            style={{ minWidth: 240 }}
           />
+        </Col>
 
-          <Input
-            placeholder="Search by subject, teacher or venue"
-            value={search_query}
-            onChange={(e) => on_search_change(e.target.value)}
-            className="w-full sm:w-80"
+        <Col
+          xs={24}
+          md={12}
+          lg={10}
+        >
+          <div className="mb-2">
+            <Text
+              strong
+              className="text-gray-500"
+            >
+              Select Year *
+            </Text>
+          </div>
+          <Select
+            className="w-full h-10"
+            placeholder="Select Year"
+            value={selected_year}
+            onChange={on_year_change}
+            options={[
+              { value: '2024', label: '2024' },
+              { value: '2025', label: '2025' },
+              { value: '2026', label: '2026' },
+            ]}
           />
-        </div>
-      </div>
+        </Col>
+
+        <Col
+          xs={24}
+          md={24}
+          lg={4}
+          className="mt-4 lg:mt-0 flex justify-end lg:justify-start"
+        >
+          <Button
+            type="primary"
+            icon={<Search className="w-4 h-4" />}
+            onClick={on_search_click}
+            className="w-full h-10 bg-blue-600 hover:bg-blue-700 font-semibold uppercase"
+          >
+            Search
+          </Button>
+        </Col>
+      </Row>
     </Card>
   );
 };
