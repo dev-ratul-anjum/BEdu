@@ -46,6 +46,10 @@ const sidebar_items = {
           key: '/admin/student-admission',
           label: 'Student Admission',
         },
+        {
+          key: '/admin/students-due',
+          label: 'Students Due',
+        },
       ],
     },
 
@@ -64,8 +68,8 @@ const sidebar_items = {
           label: 'Add Teacher',
         },
         {
-          key: '/admin/teacher-payment',
-          label: 'Teacher Payment',
+          key: '/admin/teacher-payroll',
+          label: 'Teacher Payroll',
         },
       ],
     },

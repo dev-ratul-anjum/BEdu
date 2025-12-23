@@ -1,10 +1,10 @@
 import { Download, Edit, Printer } from 'lucide-react';
-import { Dynamic_breadcrumb } from '../../../common/components/Dynamic_breadcrumb';
+import { Dynamic_breadcrumb } from '../../../../common/components/Dynamic_breadcrumb';
 
-export default function User_details_page() {
+export default function Student_details_page() {
   const profile_data = [
-    { label: 'Name:', value: 'Jessia Rose' },
-    { label: 'Gender:', value: 'Female' },
+    { label: 'Name:', value: 'Mark Willy' },
+    { label: 'Gender:', value: 'Male' },
     { label: 'Father Name:', value: 'Steve Jones' },
     { label: 'Mother Name:', value: 'Naomi Rose' },
     { label: 'Date Of Birth:', value: '07.08.2016' },
