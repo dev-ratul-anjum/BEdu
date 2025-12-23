@@ -13,6 +13,7 @@ import { Navigate, RouteObject } from 'react-router-dom';
 import Student_details_page from '@/features/shared/pages/all_students_page/Student_details_page';
 import Parent_details_page from '@/features/shared/pages/parents_page/Parent_details_page';
 import Teacher_payroll_page from '@/features/shared/pages/administrators/teacher_payroll_page/Teacher_payroll_page';
+import Teacher_payroll_details from '@/features/shared/pages/administrators/teacher_payroll_page/Teacher_payroll_details';
 import Students_due_page from '@/features/shared/pages/administrators/students_due/Students_due_page';
 import Student_due_details from '@/features/shared/pages/administrators/students_due/Student_due_details';
 
@@ -23,6 +24,7 @@ const admin_routes = [
   { path: 'teachers/:teacherId', element: <User_details_page /> },
   { path: 'add-new-teacher', element: <Add_teacher_page /> },
   { path: 'teacher-payroll', element: <Teacher_payroll_page /> },
+  { path: 'teacher-payroll/:teacherId', element: <Teacher_payroll_details /> },
   { path: 'parents', element: <Parents_page /> },
   { path: 'parents/:parentId', element: <Parent_details_page /> },
 

@@ -4,6 +4,7 @@ import { SearchOutlined, PrinterOutlined } from '@ant-design/icons';
 import { Button, Card, Input, Select, Table, Tag, Tooltip } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 interface PaymentRecord {
   key: string;
@@ -183,7 +184,14 @@ export default function Teacher_payroll_page() {
       title: 'Teacher ID',
       dataIndex: 'id',
       key: 'id',
-      render: (text) => <span className="font-medium text-primary">{text}</span>,
+      render: (text) => (
+        <Link
+          to={`/admin/teacher-payroll/${text}`}
+          className="font-medium text-primary hover:underline"
+        >
+          {text}
+        </Link>
+      ),
     },
     {
       title: 'Name',

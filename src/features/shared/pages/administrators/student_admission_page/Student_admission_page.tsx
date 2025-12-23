@@ -18,6 +18,12 @@ import { useState } from 'react';
 const { Step } = Steps;
 const { Option } = Select;
 
+const mockExistingStudents = [
+  { class: 10, roll: 1 },
+  { class: 10, roll: 2 },
+  { class: 9, roll: 5 },
+];
+
 export default function Student_admission_page() {
   const [current, setCurrent] = useState(0);
   const [form] = Form.useForm();
@@ -54,11 +60,24 @@ export default function Student_admission_page() {
               lg={6}
             >
               <Form.Item
-                name="name"
-                label="Name"
-                rules={[{ required: true, message: 'Please enter name' }]}
+                name="firstName"
+                label="First Name"
+                rules={[{ required: true, message: 'Please enter first name' }]}
               >
-                <Input placeholder="Enter Name" />
+                <Input placeholder="Enter First Name" />
+              </Form.Item>
+            </Col>
+            <Col
+              xs={24}
+              md={12}
+              lg={6}
+            >
+              <Form.Item
+                name="lastName"
+                label="Last Name"
+                rules={[{ required: true, message: 'Please enter last name' }]}
+              >
+                <Input placeholder="Enter Last Name" />
               </Form.Item>
             </Col>
             <Col
@@ -143,6 +162,26 @@ export default function Student_admission_page() {
               <Form.Item
                 name="roll"
                 label="Roll"
+                dependencies={['class']}
+                rules={[
+                  ({ getFieldValue }) => ({
+                    validator(_, value) {
+                      const selectedClass = getFieldValue('class');
+                      if (!value || !selectedClass) {
+                        return Promise.resolve();
+                      }
+                      const exists = mockExistingStudents.some(
+                        (s) => s.class === selectedClass && s.roll === Number(value)
+                      );
+                      if (exists) {
+                        return Promise.reject(
+                          new Error('Roll number already exists for this class')
+                        );
+                      }
+                      return Promise.resolve();
+                    },
+                  }),
+                ]}
               >
                 <Input placeholder="Enter Roll" />
               </Form.Item>
@@ -189,6 +228,7 @@ export default function Student_admission_page() {
               <Form.Item
                 name="photo"
                 label="Student Photo"
+                rules={[{ required: true, message: 'Please upload student photo' }]}
               >
                 <Upload
                   maxCount={1}
