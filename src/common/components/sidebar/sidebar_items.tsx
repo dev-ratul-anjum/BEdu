@@ -46,6 +46,10 @@ const sidebar_items = {
           key: '/admin/student-admission',
           label: 'Student Admission',
         },
+        {
+          key: '/admin/students-due',
+          label: 'Students Due',
+        },
       ],
     },
 
