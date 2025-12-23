@@ -1,193 +1,237 @@
+import { Dynamic_breadcrumb } from '@/common/components/Dynamic_breadcrumb';
+import { PlusOutlined, SearchOutlined, UserOutlined } from '@ant-design/icons';
+import { Avatar, Button, Card, Col, Input, Row, Select, Table, Tag } from 'antd';
+import type { ColumnsType } from 'antd/es/table';
 import { useState } from 'react';
-import { MoreVertical, Plus } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Dynamic_breadcrumb } from '../../../../common/components/Dynamic_breadcrumb';
+
+interface StudentRecord {
+  id: string;
+  name: string;
+  gender: string;
+  class: string;
+  subject: string;
+  section: string;
+  address: string;
+  phone: string;
+  email: string;
+  avatar: string;
+}
+
+const mockStudents: StudentRecord[] = [
+  {
+    id: '0024',
+    name: 'Mark Willy',
+    gender: 'Male',
+    class: '2',
+    subject: 'English',
+    section: 'A',
+    address: 'TA-107 Newyork',
+    phone: '+1 123 9988568',
+    email: 'kazifahim93@gmail.com',
+    avatar: 'Mark',
+  },
+  {
+    id: '0025',
+    name: 'Sarah Connor',
+    gender: 'Female',
+    class: '2',
+    subject: 'Physics',
+    section: 'B',
+    address: 'CA-202 Los Angeles',
+    phone: '+1 456 7890123',
+    email: 'sarah.connor@example.com',
+    avatar: 'Sarah',
+  },
+  {
+    id: '0026',
+    name: 'John Doe',
+    gender: 'Male',
+    class: '2',
+    subject: 'MATH',
+    section: 'C',
+    address: 'TX-303 Austin',
+    phone: '+1 789 0123456',
+    email: 'john.doe@example.com',
+    avatar: 'John',
+  },
+];
 
 export default function Students_page() {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchText, setSearchText] = useState('');
+  const [classFilter, setClassFilter] = useState('All');
+  const [sectionFilter, setSectionFilter] = useState('All');
 
-  const students = [
+  const resetFilters = () => {
+    setSearchText('');
+    setClassFilter('All');
+    setSectionFilter('All');
+  };
+
+  const filteredData = mockStudents.filter((student) => {
+    const matchesSearch =
+      student.name.toLowerCase().includes(searchText.toLowerCase()) ||
+      student.phone.includes(searchText) ||
+      student.email.toLowerCase().includes(searchText.toLowerCase());
+    const matchesClass = classFilter === 'All' || student.class === classFilter;
+    const matchesSection = sectionFilter === 'All' || student.section === sectionFilter;
+    return matchesSearch && matchesClass && matchesSection;
+  });
+
+  const columns: ColumnsType<StudentRecord> = [
     {
-      id: '0024',
-      name: 'Mark Willy',
-      gender: 'Male',
-      class: '2',
-      subject: 'English',
-      section: 'A',
-      address: 'TA-107 Newyork',
-      phone: '+1 123 9988568',
-      email: 'kazifahim93@gmail.com',
-      avatar: '👨',
+      title: 'ID',
+      dataIndex: 'id',
+      key: 'id',
+      render: (text) => (
+        <Link
+          to={text}
+          className="font-semibold text-primary hover:underline"
+        >
+          #{text}
+        </Link>
+      ),
     },
     {
-      id: '0025',
-      name: 'Sarah Connor',
-      gender: 'Female',
-      class: '2',
-      subject: 'Physics',
-      section: 'B',
-      address: 'CA-202 Los Angeles',
-      phone: '+1 456 7890123',
-      email: 'sarah.connor@example.com',
-      avatar: '�',
+      title: 'Photo',
+      dataIndex: 'avatar',
+      key: 'avatar',
+      render: (name) => (
+        <Avatar
+          style={{ backgroundColor: '#1890ff' }}
+          icon={<UserOutlined />}
+        >
+          {name[0]}
+        </Avatar>
+      ),
     },
     {
-      id: '0026',
-      name: 'John Doe',
-      gender: 'Male',
-      class: '2',
-      subject: 'MATH',
-      section: 'C',
-      address: 'TX-303 Austin',
-      phone: '+1 789 0123456',
-      email: 'john.doe@example.com',
-      avatar: '�',
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+      render: (text, record) => (
+        <Link
+          to={record.id}
+          className="font-medium hover:text-primary hover:underline"
+        >
+          {text}
+        </Link>
+      ),
+    },
+    {
+      title: 'Gender',
+      dataIndex: 'gender',
+      key: 'gender',
+    },
+    {
+      title: 'Class',
+      dataIndex: 'class',
+      key: 'class',
+    },
+    {
+      title: 'Subject',
+      dataIndex: 'subject',
+      key: 'subject',
+    },
+    {
+      title: 'Section',
+      dataIndex: 'section',
+      key: 'section',
+    },
+    {
+      title: 'Address',
+      dataIndex: 'address',
+      key: 'address',
+    },
+    {
+      title: 'Phone',
+      dataIndex: 'phone',
+      key: 'phone',
+    },
+    {
+      title: 'E-mail',
+      dataIndex: 'email',
+      key: 'email',
+    },
+    {
+      title: 'Actions',
+      key: 'actions',
+      render: (_, record) => (
+        <Link to={record.id}>
+          <Button
+            type="primary"
+            size="small"
+          >
+            Details
+          </Button>
+        </Link>
+      ),
     },
   ];
-
-  const filteredStudents = students.filter(
-    (student) =>
-      student.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      student.phone.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      student.email.toLowerCase().includes(searchQuery.toLowerCase())
-  );
 
   return (
     <>
       <Dynamic_breadcrumb className="mb-6" />
 
-      <main className="min-h-screen bg-stone-100">
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <div className="flex justify-between px-6">
-            <h2 className="text-lg font-bold">All Students Data</h2>
-            <Link to="/admin/student-admission">
-              <button className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/80 font-medium flex items-center gap-2">
-                <Plus size={20} />
-                ADD STUDENT
-              </button>
-            </Link>
-          </div>
-          {/* Table Header */}
-          <div className="flex flex-col md:flex-row items-center justify-between p-6 border-b gap-4">
-            <div className="flex flex-col md:flex-row gap-2 w-full md:w-auto">
-              <input
-                type="text"
-                placeholder="Search by Name, Phone, Email ..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full md:w-96 px-4 py-2 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none"
-              />
-              <button className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/80 font-medium w-full md:w-auto">
-                SEARCH
-              </button>
-            </div>
-          </div>
-          {/* Table */}
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-50 border-b">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase cursor-pointer hover:bg-gray-100">
-                    ID
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase">
-                    Photo
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase cursor-pointer hover:bg-gray-100">
-                    Name
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase cursor-pointer hover:bg-gray-100">
-                    Gender
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase cursor-pointer hover:bg-gray-100">
-                    Class
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase cursor-pointer hover:bg-gray-100">
-                    Subject
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase cursor-pointer hover:bg-gray-100">
-                    Section
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase cursor-pointer hover:bg-gray-100">
-                    Address
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase cursor-pointer hover:bg-gray-100">
-                    Phone
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase cursor-pointer hover:bg-gray-100">
-                    E-mail
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase"></th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {filteredStudents.map((student, index) => (
-                  <tr
-                    key={index}
-                    className="hover:bg-gray-50 transition-colors"
-                  >
-                    <td className="px-6 py-4 text-sm text-gray-900">#{student.id}</td>
-                    <td className="px-6 py-4">
-                      <Link
-                        to={student.id}
-                        className="block"
-                      >
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-white text-lg">
-                          {student.avatar}
-                        </div>
-                      </Link>
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">
-                      <Link
-                        to={student.id}
-                        className="block"
-                      >
-                        {student.name}
-                      </Link>
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-600">{student.gender}</td>
-                    <td className="px-6 py-4 text-sm text-gray-600">{student.class}</td>
-                    <td className="px-6 py-4 text-sm text-gray-600">{student.subject}</td>
-                    <td className="px-6 py-4 text-sm text-gray-600">{student.section}</td>
-                    <td className="px-6 py-4 text-sm text-gray-600">{student.address}</td>
-                    <td className="px-6 py-4 text-sm text-gray-600">{student.phone}</td>
-                    <td className="px-6 py-4 text-sm text-gray-600">{student.email}</td>
-                    <td className="px-6 py-4">
-                      <Link
-                        to={student.id}
-                        className="px-3 py-1 text-xs font-medium text-white bg-primary rounded hover:bg-primary/90 hover:text-white"
-                      >
-                        Details
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
-                {filteredStudents.length === 0 && (
-                  <tr>
-                    <td
-                      colSpan={11}
-                      className="px-6 py-4 text-center text-gray-500"
-                    >
-                      No students found matching your search.
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-          {/* Pagination */}
-          <div className="flex items-center justify-end gap-2 p-6 border-t">
-            <button className="px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded">
-              Previous
-            </button>
-            <button className="px-4 py-2 text-sm bg-primary text-white rounded">1</button>
-            <button className="px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded">2</button>
-            <button className="px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded">
-              Next
-            </button>
-          </div>
+      <Card className="rounded-lg shadow-sm border-0">
+        <div className="flex flex-col md:flex-row items-center justify-between border-b pb-4 mb-6 gap-4">
+          <h2 className="text-lg font-bold">All Students Data</h2>
+          <Link to="/admin/student-admission">
+            <Button
+              type="primary"
+              icon={<PlusOutlined />}
+            >
+              ADD STUDENT
+            </Button>
+          </Link>
         </div>
-      </main>
+
+        <div className="flex flex-col md:flex-row gap-4 mb-6">
+          <Input
+            prefix={<SearchOutlined className="text-gray-400" />}
+            placeholder="Search by Name, Phone, Email..."
+            className="w-full md:w-80"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+          <Select
+            value={classFilter}
+            className="w-full md:w-40"
+            onChange={setClassFilter}
+            options={[
+              { value: 'All', label: 'All Classes' },
+              { value: '1', label: 'Class 1' },
+              { value: '2', label: 'Class 2' },
+              { value: '3', label: 'Class 3' },
+            ]}
+          />
+          <Select
+            value={sectionFilter}
+            className="w-full md:w-40"
+            onChange={setSectionFilter}
+            options={[
+              { value: 'All', label: 'All Sections' },
+              { value: 'A', label: 'Section A' },
+              { value: 'B', label: 'Section B' },
+              { value: 'C', label: 'Section C' },
+            ]}
+          />
+          <Button
+            danger
+            onClick={resetFilters}
+          >
+            Reset Filters
+          </Button>
+        </div>
+
+        <Table
+          columns={columns}
+          dataSource={filteredData}
+          pagination={{ pageSize: 10 }}
+          scroll={{ x: true }}
+          rowKey="id"
+        />
+      </Card>
     </>
   );
 }
