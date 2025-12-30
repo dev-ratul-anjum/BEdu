@@ -109,7 +109,7 @@ export default function Teacher_management() {
         <div className="mb-6 flex items-center justify-between">
           <h2 className="text-xl font-medium text-slate-700">List of Teacher</h2>
           <button
-            onClick={() => navigate('/admin/add-new-teacher')}
+            onClick={() => navigate('/admin/management/teacher-management/add-teacher')}
             className="flex items-center gap-2 rounded-lg border-2 border-primary border-dashed bg-blue-50 px-4 py-2 text-primary font-medium hover:bg-blue-100 transition-colors"
           >
             <Plus size={18} />
