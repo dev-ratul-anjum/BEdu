@@ -1,14 +1,18 @@
+import { useNavigate } from 'react-router-dom';
+
 export default function Management() {
+  const navigate = useNavigate();
+
   const managementItems = [
-    { title: 'Teacher Management' },
-    { title: 'Student Management' },
-    { title: 'Department Management' },
-    { title: 'Routine Management' },
-    { title: 'Class Management' },
-    { title: 'Fees Management' },
-    { title: 'Exams Routine Management' },
-    { title: 'Result Management' },
-    { title: 'Admission Management' },
+    { title: 'Teacher Management', path: '/admin/management/teacher-management' },
+    { title: 'Student Management', path: 'student-management' }, // Placeholder
+    { title: 'Department Management', path: 'department-management' }, // Placeholder
+    { title: 'Routine Management', path: 'routine-management' }, // Placeholder
+    { title: 'Class Management', path: 'class-management' }, // Placeholder
+    { title: 'Fees Management', path: 'fees-management' }, // Placeholder
+    { title: 'Exams Routine Management', path: 'exams-routine-management' }, // Placeholder
+    { title: 'Result Management', path: 'result-management' }, // Placeholder
+    { title: 'Admission Management', path: 'admission-management' }, // Placeholder
   ];
 
   return (
@@ -21,6 +25,7 @@ export default function Management() {
         {managementItems.map((item, index) => (
           <button
             key={index}
+            onClick={() => item.path && navigate(item.path)}
             className="
               h-24 rounded-2xl border-2 border-slate-200 bg-white text-lg font-medium text-slate-700
               transition-all duration-200
