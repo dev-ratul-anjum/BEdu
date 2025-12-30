@@ -1,6 +1,7 @@
-import { Eye, Pencil, Trash2, Plus } from 'lucide-react';
+import { Eye, Pencil, Trash2, Plus, Search } from 'lucide-react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Table, Avatar, Space, Button } from 'antd';
+import { Table, Avatar, Space, Button, Input } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 
 interface TeacherType {
@@ -40,6 +41,16 @@ export default function Teacher_management() {
       avatar: 'https://placehold.co/100',
     },
   ];
+
+  const [searchText, setSearchText] = useState('');
+
+  const filteredTeachers = teachers.filter(
+    (teacher) =>
+      teacher.name.toLowerCase().includes(searchText.toLowerCase()) ||
+      teacher.id.toLowerCase().includes(searchText.toLowerCase()) ||
+      teacher.email.toLowerCase().includes(searchText.toLowerCase()) ||
+      teacher.phone.toLowerCase().includes(searchText.toLowerCase())
+  );
 
   const columns: ColumnsType<TeacherType> = [
     {
@@ -111,20 +122,45 @@ export default function Teacher_management() {
       </header>
 
       <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-        <div className="mb-6 flex items-center justify-between">
+        <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <h2 className="text-xl font-medium text-slate-700">List of Teacher</h2>
-          <button
-            onClick={() => navigate('/admin/management/teacher-management/add-teacher')}
-            className="flex items-center gap-2 rounded-xl border-2 border-primary border-dashed bg-blue-50 px-4 py-2 text-primary font-medium hover:bg-blue-100 transition-colors"
-          >
-            <Plus size={18} />
-            Add New Teacher
-          </button>
+
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="flex items-center gap-2">
+              <Input
+                prefix={
+                  <Search
+                    size={18}
+                    className="text-slate-400"
+                  />
+                }
+                placeholder="Search by ID, name..."
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+                className="w-full sm:w-64"
+                allowClear
+              />
+              <Button
+                onClick={() => setSearchText('')}
+                disabled={!searchText}
+              >
+                Reset
+              </Button>
+            </div>
+
+            <button
+              onClick={() => navigate('/admin/management/teacher-management/add-teacher')}
+              className="flex items-center gap-2 rounded-xl border-2 border-primary border-dashed bg-blue-50 px-4 py-2 text-primary font-medium hover:bg-primary/10 transition-colors whitespace-nowrap"
+            >
+              <Plus size={18} />
+              Add New Teacher
+            </button>
+          </div>
         </div>
 
         <Table
           columns={columns}
-          dataSource={teachers}
+          dataSource={filteredTeachers}
           pagination={{
             pageSize: 10,
             showSizeChanger: true,
