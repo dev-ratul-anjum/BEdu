@@ -85,7 +85,12 @@ export default function Teacher_management() {
       key: 'action',
       render: (_, record) => (
         <div className="flex items-center gap-2">
-          <button className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-primary transition-colors">
+          <button
+            onClick={() =>
+              navigate(`/admin/management/teacher-management/teacher-profile/${record.id}`)
+            }
+            className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-primary transition-colors"
+          >
             <Eye size={16} />
           </button>
           <button className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-blue-600 transition-colors">
@@ -110,7 +115,7 @@ export default function Teacher_management() {
           <h2 className="text-xl font-medium text-slate-700">List of Teacher</h2>
           <button
             onClick={() => navigate('/admin/management/teacher-management/add-teacher')}
-            className="flex items-center gap-2 rounded-lg border-2 border-primary border-dashed bg-blue-50 px-4 py-2 text-primary font-medium hover:bg-blue-100 transition-colors"
+            className="flex items-center gap-2 rounded-xl border-2 border-primary border-dashed bg-blue-50 px-4 py-2 text-primary font-medium hover:bg-blue-100 transition-colors"
           >
             <Plus size={18} />
             Add New Teacher
