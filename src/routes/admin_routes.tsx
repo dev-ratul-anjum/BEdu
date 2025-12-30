@@ -16,9 +16,13 @@ import Teacher_payroll_details from '@/features/shared/pages/administrators/teac
 import Students_due_page from '@/features/shared/pages/administrators/students_due/Students_due_page';
 import Student_due_details from '@/features/shared/pages/administrators/students_due/Student_due_details';
 import Teacher_details_page from '@/features/shared/pages/all_teachers_page/Teacher_details_page';
+import Admin_dashboard from '../features/admin/dashboard/Admin_dashboard';
+import Role_management from '../features/admin/role-management/Role_management';
 
 const admin_routes = [
-  { path: 'dashboard', element: <Administrator_dashboard_page /> },
+  { path: 'dashboard', element: <Admin_dashboard /> },
+  { path: 'role-management', element: <Role_management /> },
+  // { path: 'dashboard', element: <Administrator_dashboard_page /> },
 
   { path: 'teachers', element: <All_teachers_page /> },
   { path: 'teachers/:teacherId', element: <Teacher_details_page /> },

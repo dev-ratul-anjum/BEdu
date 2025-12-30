@@ -31,6 +31,11 @@ const sidebar_items = {
       label: 'Dashboard',
       icon: <LayoutDashboard size={18} />,
     },
+    {
+      key: '/admin/role-management',
+      label: 'Role Management',
+      icon: <Users size={18} />,
+    },
 
     // Students Section
     {

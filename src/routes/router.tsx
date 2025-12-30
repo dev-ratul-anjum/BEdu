@@ -9,6 +9,8 @@ import parent_routes from './parent_routes';
 import student_routes from './student_routes';
 import super_admin_routes from './super_admin_routes';
 import teacher_routes from './teacher_routes';
+import Admin_dashboard from '@/features/admin/dashboard/Admin_dashboard';
+import Role_management from '@/features/admin/role-management/Role_management';
 
 const app_router = createBrowserRouter([
   {
@@ -17,6 +19,14 @@ const app_router = createBrowserRouter([
     children: auth_routes,
   },
 
+  {
+    path: '/admin-dashboard',
+    element: <Admin_dashboard />,
+  },
+  {
+    path: '/role-management',
+    element: <Role_management />,
+  },
   {
     path: '/super-admin',
     element: <Protected_layout allowed_role="SUPER_ADMIN" />,
