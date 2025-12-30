@@ -5,27 +5,15 @@ import Auth_layout from '../common/layouts/auth_layout';
 import Protected_layout from '../common/layouts/protected_layout';
 import admin_routes from './admin_routes';
 import auth_routes from './auth_routes';
-import parent_routes from './parent_routes';
 import student_routes from './student_routes';
-import super_admin_routes from './super_admin_routes';
 import teacher_routes from './teacher_routes';
+import parent_routes from './parent_routes';
 
 const app_router = createBrowserRouter([
   {
     path: '/',
     element: <Auth_layout />,
     children: auth_routes,
-  },
-
-  {
-    path: '/super-admin',
-    element: <Protected_layout allowed_role="SUPER_ADMIN" />,
-    children: [
-      {
-        element: <App_layout sidebar_items={sidebar_items.super_admin} />,
-        children: super_admin_routes,
-      },
-    ],
   },
 
   {

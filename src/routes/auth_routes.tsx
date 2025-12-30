@@ -1,4 +1,4 @@
-import Login_page from '@/features/auth/pages/Login_page';
+import Login_page from '@/features/auth/login/Login';
 import { RouteObject } from 'react-router-dom';
 
 const auth_routes = [

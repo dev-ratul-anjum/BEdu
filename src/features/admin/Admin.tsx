@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 
-export default function Administrator_dashboard_page() {
+export default function Admin_page() {
   const [current_view, set_current_view] = useState('Month');
 
   const stats = [
