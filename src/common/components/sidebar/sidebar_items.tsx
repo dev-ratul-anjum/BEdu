@@ -31,6 +31,11 @@ const sidebar_items = {
       label: 'Dashboard',
       icon: <LayoutDashboard size={18} />,
     },
+    {
+      key: '/admin/management',
+      label: 'Management',
+      icon: <LayoutDashboard size={18} />,
+    },
 
     // Students Section
     {
