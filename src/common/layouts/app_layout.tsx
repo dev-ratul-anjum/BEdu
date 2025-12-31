@@ -57,7 +57,7 @@ const App_layout = ({ sidebar_items }: { sidebar_items: TSidebar_Items[keyof TSi
           setMobileOpen={setMobileOpen}
         />
 
-        <Content className="p-4 md:p-6 overflow-y-auto h-[calc(100vh-64px)] bg-stone-200/50">
+        <Content className="overflow-hidden h-[calc(100vh-64px)] bg-stone-200/50">
           <div
             style={{
               background: 'transparent',

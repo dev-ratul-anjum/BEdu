@@ -99,105 +99,12 @@ const App_header: React.FC<HeaderProps> = ({ collapsed, setCollapsed, setMobileO
               className="pl-10 border-none bg-transparent shadow-none focus:shadow-none placeholder:text-slate-400 text-slate-600"
             />
           </div>
+          {/* <h3 className="text-lg font-semibold text-slate-600 text-center">Admin Dashboard</h3> */}
         </div>
       </div>
 
       {/* Right Section: Actions & Profile */}
       <div className="flex items-center gap-2 sm:gap-4">
-        {/* Secondary Search (Name/Admission) - Desktop only */}
-        <div className="hidden xl:flex items-center gap-2 mr-4">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-            <Input
-              placeholder="Name/Admission No."
-              className="pl-10 border-none bg-transparent shadow-none focus:shadow-none placeholder:text-slate-400 text-slate-600 w-48"
-            />
-          </div>
-        </div>
-
-        {/* Session Year */}
-        <div className="hidden lg:flex items-center gap-1 text-slate-600 text-sm font-medium cursor-pointer hover:text-blue-600">
-          <span>2025 [Jan-Dec]</span>
-          <ChevronDown size={14} />
-        </div>
-
-        {/* Language */}
-        <div className="hidden lg:flex items-center gap-1 text-slate-600 text-sm font-medium cursor-pointer hover:text-blue-600">
-          <span>EN</span>
-          <ChevronDown size={14} />
-        </div>
-
-        {/* Icons */}
-        <div className="flex items-center gap-1 sm:gap-2">
-          <Button
-            type="text"
-            shape="circle"
-            icon={
-              <Bot
-                size={20}
-                className="text-slate-500"
-              />
-            }
-          />
-
-          <Badge
-            count={0}
-            size="small"
-            color="#8b5cf6"
-          >
-            <Button
-              type="text"
-              shape="circle"
-              icon={
-                <MessageSquare
-                  size={20}
-                  className="text-slate-500"
-                />
-              }
-            />
-          </Badge>
-
-          <Badge
-            count={0}
-            size="small"
-            color="#8b5cf6"
-          >
-            <Button
-              type="text"
-              shape="circle"
-              icon={
-                <Bell
-                  size={20}
-                  className="text-slate-500"
-                />
-              }
-            />
-          </Badge>
-
-          <Button
-            type="text"
-            shape="circle"
-            icon={
-              <Globe
-                size={20}
-                className="text-slate-500"
-              />
-            }
-            className="hidden sm:flex"
-          />
-          <Button
-            type="text"
-            shape="circle"
-            icon={
-              <BarChart2
-                size={20}
-                className="text-slate-500"
-              />
-            }
-            className="hidden sm:flex"
-          />
-        </div>
-
         {/* User Profile */}
         <Dropdown
           menu={{ items: dropdownMenu, onClick: handleMenuClick }}
