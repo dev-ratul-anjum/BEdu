@@ -165,29 +165,9 @@ const sidebar_items = {
       icon: <LayoutDashboard size={20} />,
     },
     {
-      key: '/parent/children',
-      label: 'Child Profile',
-      icon: <Users size={20} />,
-    },
-    {
-      key: '/parent/result',
-      label: 'Result',
-      icon: <FileText size={20} />,
-    },
-    {
-      key: '/parent/notice',
-      label: 'Notice',
+      key: '/parent/allnotice',
+      label: 'All Notice',
       icon: <Bell size={20} />,
-    },
-    {
-      key: '/parent/exam-schedule',
-      label: 'Exam Schedule',
-      icon: <Calendar size={20} />,
-    },
-    {
-      key: '/parent/fees',
-      label: 'Fees',
-      icon: <CreditCard size={20} />,
     },
   ],
 } satisfies TSidebar_Items;
