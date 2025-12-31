@@ -1,41 +1,20 @@
 import sidebar_items from '@/common/components/sidebar/sidebar_items';
 import App_layout from '@/common/layouts/app_layout';
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import Auth_layout from '../common/layouts/auth_layout';
 import Protected_layout from '../common/layouts/protected_layout';
 import admin_routes from './admin_routes';
 import auth_routes from './auth_routes';
-import parent_routes from './parent_routes';
 import student_routes from './student_routes';
-import super_admin_routes from './super_admin_routes';
 import teacher_routes from './teacher_routes';
-import Admin_dashboard from '@/features/admin/dashboard/Admin_dashboard';
-import Role_management from '@/features/admin/role-management/Role_management';
+import parent_routes from './parent_routes';
+import Parents_login from '@/features/auth/parents/Parents_login';
 
 const app_router = createBrowserRouter([
   {
     path: '/',
     element: <Auth_layout />,
     children: auth_routes,
-  },
-
-  {
-    path: '/admin-dashboard',
-    element: <Admin_dashboard />,
-  },
-  {
-    path: '/role-management',
-    element: <Role_management />,
-  },
-  {
-    path: '/super-admin',
-    element: <Protected_layout allowed_role="SUPER_ADMIN" />,
-    children: [
-      {
-        element: <App_layout sidebar_items={sidebar_items.super_admin} />,
-        children: super_admin_routes,
-      },
-    ],
   },
 
   {
@@ -73,11 +52,28 @@ const app_router = createBrowserRouter([
 
   {
     path: '/parent',
-    element: <Protected_layout allowed_role="PARENT" />,
     children: [
       {
+        index: true,
+        element: (
+          <Navigate
+            to="/parent/login"
+            replace
+          />
+        ),
+      },
+      {
+        path: 'login',
+        element: <Parents_login />,
+      },
+      {
         element: <App_layout sidebar_items={sidebar_items.parent} />,
-        children: parent_routes,
+        children: [
+          {
+            element: <Protected_layout allowed_role="PARENT" />,
+            children: parent_routes,
+          },
+        ],
       },
     ],
   },
