@@ -1,6 +1,12 @@
-import { cn, to_spaced_lowercase, to_title_case } from '@/lib/utils';
-import { Breadcrumb } from 'antd'; // or your UI library
+import { to_spaced_lowercase, to_title_case } from '@/lib/utils';
 import { Link, useLocation } from 'react-router-dom';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from '../components/shadcn-ui/breadcrumb';
 
 function format_breadcrumb_label(str: string) {
   return to_title_case(to_spaced_lowercase(str));
@@ -23,10 +29,20 @@ export const Dynamic_breadcrumb = ({ className = 'mb-6' }: TProps) => {
   ];
 
   return (
-    <Breadcrumb
-      className={cn(className)}
-      items={breadcrumb_items}
-    />
+    <>
+      <Breadcrumb>
+        <BreadcrumbList>
+          {breadcrumb_items.map((item, index) => (
+            <BreadcrumbItem key={index}>
+              <BreadcrumbLink href="#">{item.title}</BreadcrumbLink>
+              {index !== breadcrumb_items.length - 1 && (
+                <BreadcrumbSeparator className="hidden md:block" />
+              )}
+            </BreadcrumbItem>
+          ))}
+        </BreadcrumbList>
+      </Breadcrumb>
+    </>
   );
 };
 

@@ -1,21 +1,22 @@
 import {
+  Bell,
+  BookOpen,
   Briefcase,
   Calendar,
+  CalendarCheck,
   CreditCard,
+  DollarSign,
+  FileText,
   GraduationCap,
   LayoutDashboard,
   Megaphone,
   Newspaper,
   ScrollText,
+  User,
   Users,
   UsersRound,
-  Bell,
-  BookOpen,
-  CalendarCheck,
-  FileText,
-  DollarSign,
-  User,
 } from 'lucide-react';
+import { TSidebar_Link } from './sidebar_links';
 
 const sidebar_items = {
   super_admin: () => [
@@ -27,175 +28,168 @@ const sidebar_items = {
 
   admin: () => [
     {
-      key: '/admin/dashboard',
-      label: 'Dashboard',
-      icon: <LayoutDashboard size={18} />,
+      url: '/admin/dashboard',
+      title: 'Dashboard',
+      icon: LayoutDashboard,
     },
     {
-      key: '/admin/management',
-      label: 'Management',
-      icon: <LayoutDashboard size={18} />,
+      url: '/admin/management',
+      title: 'Management',
+      icon: LayoutDashboard,
     },
 
     // Students Section
     {
-      key: 'students',
-      label: 'Students',
-      icon: <Users size={18} />,
+      url: 'students',
+      title: 'Students',
+      icon: Users,
       children: [
         {
-          key: '/admin/students',
-          label: 'All Students',
+          url: '/admin/students',
+          title: 'All Students',
         },
         {
-          key: '/admin/student-admission',
-          label: 'Student Admission',
+          url: '/admin/student-admission',
+          title: 'Student Admission',
         },
         {
-          key: '/admin/students-due',
-          label: 'Students Due',
+          url: '/admin/students-due',
+          title: 'Students Due',
         },
       ],
     },
 
     // Teachers Section
     {
-      key: 'teachers',
-      label: 'Teachers',
-      icon: <Briefcase size={18} />,
+      url: 'teachers',
+      title: 'Teachers',
+      icon: Briefcase,
       children: [
         {
-          key: '/admin/teachers',
-          label: 'Teachers',
+          url: '/admin/teachers',
+          title: 'Teachers',
         },
         {
-          key: '/admin/add-new-teacher',
-          label: 'Add Teacher',
+          url: '/admin/add-new-teacher',
+          title: 'Add Teacher',
         },
         {
-          key: '/admin/teacher-payroll',
-          label: 'Teacher Payroll',
+          url: '/admin/teacher-payroll',
+          title: 'Teacher Payroll',
         },
       ],
     },
 
     {
-      key: '/admin/parents',
-      label: 'Parents',
-      icon: <UsersRound size={18} />,
+      url: '/admin/parents',
+      title: 'Parents',
+      icon: UsersRound,
     },
 
     {
-      key: '/admin/attendance',
-      label: 'Attendance',
-      icon: <ScrollText size={18} />,
+      url: '/admin/attendance',
+      title: 'Attendance',
+      icon: ScrollText,
     },
 
-    { key: '/admin/class-routine', label: 'Class Routine', icon: <Calendar size={18} /> },
+    { url: '/admin/class-routine', title: 'Class Routine', icon: Calendar },
 
-    { key: '/admin/exam-results', label: 'Exam Results', icon: <Newspaper size={18} /> },
+    { url: '/admin/exam-results', title: 'Exam Results', icon: Newspaper },
 
-    { key: '/admin/notice-board', label: 'Notice Board', icon: <Megaphone size={18} /> },
+    { url: '/admin/notice-board', title: 'Notice Board', icon: Megaphone },
   ],
 
   teacher: () => [
     {
-      key: '/teacher/dashboard',
-      label: 'Dashboard',
-      icon: <LayoutDashboard size={18} />,
+      url: '/teacher/dashboard',
+      title: 'Dashboard',
+      icon: LayoutDashboard,
     },
     {
-      key: '/teacher/attendance',
-      label: 'Attendance',
-      icon: <ScrollText size={18} />,
+      url: '/teacher/attendance',
+      title: 'Attendance',
+      icon: ScrollText,
     },
 
-    { key: '/teacher/class-routine', label: 'Class Routine', icon: <Calendar size={18} /> },
+    { url: '/teacher/class-routine', title: 'Class Routine', icon: Calendar },
 
-    { key: '/teacher/notice-board', label: 'Notice Board', icon: <Megaphone size={18} /> },
+    { url: '/teacher/notice-board', title: 'Notice Board', icon: Megaphone },
 
-    { key: '/teacher/classes', label: 'Classes', icon: <CreditCard size={18} /> },
+    { url: '/teacher/classes', title: 'Classes', icon: CreditCard },
 
-    { key: '/teacher/grades', label: 'Grades', icon: <GraduationCap size={18} /> },
+    { url: '/teacher/grades', title: 'Grades', icon: GraduationCap },
   ],
 
   student: () => [
     {
-      key: '/student/dashboard',
-      label: 'Dashboard',
-      icon: <LayoutDashboard size={20} />,
+      url: '/student/dashboard',
+      title: 'Dashboard',
+      icon: LayoutDashboard,
     },
     {
-      key: '/student/profile',
-      label: 'My Profile',
-      icon: <User size={20} />,
+      url: '/student/profile',
+      title: 'My Profile',
+      icon: User,
     },
     {
-      key: '/student/notice',
-      label: 'Notice',
-      icon: <Bell size={20} />,
+      url: '/student/notice',
+      title: 'Notice',
+      icon: Bell,
     },
     {
-      key: '/student/attendance',
-      label: 'Attendance',
-      icon: <CalendarCheck size={20} />,
+      url: '/student/attendance',
+      title: 'Attendance',
+      icon: CalendarCheck,
     },
     {
-      key: '/student/routine',
-      label: 'Routine',
-      icon: <BookOpen size={20} />,
+      url: '/student/routine',
+      title: 'Routine',
+      icon: BookOpen,
     },
     {
-      key: '/student/exam-schedule',
-      label: 'Exam Schedule',
-      icon: <Calendar size={20} />,
+      url: '/student/exam-schedule',
+      title: 'Exam Schedule',
+      icon: Calendar,
     },
     {
-      key: '/student/result',
-      label: 'Result',
-      icon: <FileText size={20} />,
+      url: '/student/result',
+      title: 'Result',
+      icon: FileText,
     },
     {
-      key: '/student/fees',
-      label: 'Fees',
-      icon: <DollarSign size={20} />,
+      url: '/student/fees',
+      title: 'Fees',
+      icon: DollarSign,
     },
     {
-      key: '/student/payment-history',
-      label: 'Payment History',
-      icon: <CreditCard size={20} />,
+      url: '/student/payment-history',
+      title: 'Payment History',
+      icon: CreditCard,
     },
   ],
 
   parent: () => [
     {
-      key: '/parent/dashboard',
-      label: 'Dashboard',
-      icon: <LayoutDashboard size={20} />,
+      url: '/parent/dashboard',
+      title: 'Dashboard',
+      icon: LayoutDashboard,
     },
     {
-      key: '/parent/allnotice',
-      label: 'All Notice',
-      icon: <Bell size={20} />,
+      url: '/parent/allnotice',
+      title: 'All Notice',
+      icon: Bell,
     },
   ],
 } satisfies TSidebar_Items;
 
 export default sidebar_items;
 
-function replaceKeyPrefix(items: TMenu_Item[], from: string, to: string) {
+function replaceKeyPrefix(items: TSidebar_Link[], from: string, to: string) {
   return items.map((item) => ({
     ...item,
-    key: item.key?.replace(from, to),
+    url: item.url?.replace(from, to),
     children: item.children ? replaceKeyPrefix(item.children, from, to) : undefined,
   }));
 }
 
-type TMenu_Item = {
-  key: string;
-  label: string;
-  icon?: React.ReactNode;
-  children?: TMenu_Item[];
-};
-
-export type TSidebar_Items = Record<string, () => TMenu_Item[]>;
+export type TSidebar_Items = Record<string, () => TSidebar_Link[]>;

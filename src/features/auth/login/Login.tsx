@@ -1,3 +1,4 @@
+import { Button } from '@/common/components/shadcn-ui/button';
 import { EyeOff, Lock, User } from 'lucide-react';
 
 export default function Login_page() {
@@ -77,12 +78,7 @@ export default function Login_page() {
           </div>
 
           {/* Sign In */}
-          <button
-            type="submit"
-            className="w-full py-3 px-4 border border-transparent rounded-lg text-sm font-bold text-white tracking-wide bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 shadow-md hover:shadow-lg transform active:scale-[0.98] transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center"
-          >
-            Sign In
-          </button>
+          <Button className="w-full">Sign In</Button>
         </form>
       </div>
     </div>

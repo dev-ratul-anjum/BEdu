@@ -21,7 +21,7 @@ export default function Management() {
         <h1 className="text-xl font-semibold text-gray-800">Management</h1>
       </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {managementItems.map((item, index) => (
           <button
             key={index}
