@@ -39,15 +39,24 @@ export const Notice_carousel: React.FC<NoticeCarouselProps> = ({ notices }) => {
 
   return (
     <Card
-      bodyStyle={{ padding: 0 }} // 🔴 VERY IMPORTANT
-      className={`bg-gradient-to-r ${getNoticeTypeColor(
+      bodyStyle={{ padding: 0 }}
+      className={`relative bg-gradient-to-r ${getNoticeTypeColor(
         currentNotice.type
       )} border backdrop-blur-sm rounded-xl overflow-hidden`}
     >
-      <div className="p-4 md:p-6 flex flex-col md:flex-row gap-4">
+      <div className="p-4 md:p-6 flex gap-4">
+        {/* LEFT BUTTON */}
+        <button
+          onClick={prevNotice}
+          className="absolute left-2 top-1/2 -translate-y-1/2
+                     p-2 rounded-lg border border-slate-600/40 
+                     bg-slate-700/40 hover:bg-slate-600/40 transition z-10"
+        >
+          <ChevronLeft className="w-4 h-4 text-white" />
+        </button>
+
         {/* CONTENT */}
-        <div className="flex-1 min-w-0">
-          {/* Title */}
+        <div className="flex-1 min-w-0 px-8">
           <div className="flex items-center gap-3 mb-2">
             <span className="text-2xl md:text-3xl shrink-0">{currentNotice.icon}</span>
             <div className="min-w-0">
@@ -58,7 +67,6 @@ export const Notice_carousel: React.FC<NoticeCarouselProps> = ({ notices }) => {
             </div>
           </div>
 
-          {/* 🔥 TEXT OVERFLOW FIX */}
           <div
             className="
               text-slate-800 text-sm leading-relaxed
@@ -72,24 +80,15 @@ export const Notice_carousel: React.FC<NoticeCarouselProps> = ({ notices }) => {
           </div>
         </div>
 
-        {/* CONTROLS */}
-        <div className="flex justify-between md:flex-col gap-2 shrink-0">
-          <button
-            onClick={prevNotice}
-            className="p-2 rounded-lg border border-slate-600/40 
-                       bg-slate-700/40 hover:bg-slate-600/40 transition"
-          >
-            <ChevronLeft className="w-4 h-4 text-white" />
-          </button>
-
-          <button
-            onClick={nextNotice}
-            className="p-2 rounded-lg border border-slate-600/40 
-                       bg-slate-700/40 hover:bg-slate-600/40 transition"
-          >
-            <ChevronRight className="w-4 h-4 text-white" />
-          </button>
-        </div>
+        {/* RIGHT BUTTON */}
+        <button
+          onClick={nextNotice}
+          className="absolute right-2 top-1/2 -translate-y-1/2
+                     p-2 rounded-lg border border-slate-600/40 
+                     bg-slate-700/40 hover:bg-slate-600/40 transition z-10"
+        >
+          <ChevronRight className="w-4 h-4 text-white" />
+        </button>
       </div>
 
       {/* DOTS */}
