@@ -28,21 +28,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/common/components/shadcn-ui/select';
-import { PaymentInfoTable } from './components/PaymentInfoTable';
+import { PaymentInfoTable } from './components/Payment_info_table';
 
 export default function Student_profile() {
   const navigate = useNavigate();
   const { studentId } = useParams();
-  const [selectedClass, setSelectedClass] = useState('5'); // Default to Class 5
+  const [selectedClass, setSelectedClass] = useState('2'); // Default to Class 2
 
   // Mock Data matching the wireframe
   const studentInfo = {
     name: 'Xyz', // Assuming Xyz is the name from wireframe
-    class: '5',
+    class: '2',
     section: 'A',
     roll: '3',
-    due: '500 BDT',
-    totalPay: '3000 BDT',
+    due: '0 BDT',
+    totalPay: '10000 BDT',
     photoUrl: '', // Placeholder
   };
 
@@ -56,14 +56,20 @@ export default function Student_profile() {
   // Consolidated Mock Payment Data
   const paymentData: Record<string, { records: any[]; totalDue: number; totalPayment: number }> = {
     '3': {
-      records: [], // Empty rows as per wireframe
+      records: [
+        { date: '10 Jan 2025', time: '09:00 AM', method: 'Cash', amount: 2000 },
+        { date: '15 Feb 2025', time: '11:00 AM', method: 'Bkash', amount: 3000 },
+      ],
       totalDue: 300,
       totalPayment: 5000,
     },
     '2': {
-      records: [],
+      records: [
+        { date: '20 Jan 2025', time: '10:25 AM', method: 'bkash', amount: 5000 },
+        { date: '02 Feb 2025', time: '00:25 AM', method: 'nagad', amount: 5000 },
+      ],
       totalDue: 0,
-      totalPayment: 5000,
+      totalPayment: 10000,
     },
     // '5' and others will default to undefined/empty in usage
   };

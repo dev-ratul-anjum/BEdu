@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { format } from 'date-fns';
+import { format, isValid, parse } from 'date-fns';
+import { useEffect, useState } from 'react';
 
 import { Button } from '@/common/components/shadcn-ui/button';
 import { Input } from '@/common/components/shadcn-ui/input';
@@ -215,39 +216,10 @@ export default function Add_student() {
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
                       <FormLabel>Date of birth</FormLabel>
-                      <Popover modal={true}>
-                        <PopoverTrigger asChild>
-                          <Button
-                            variant={'outline'}
-                            type="button"
-                            disabled={false}
-                            style={{ opacity: 1, pointerEvents: 'auto', cursor: 'pointer' }}
-                            className={cn(
-                              'w-full pl-3 text-left font-normal',
-                              !field.value && 'text-muted-foreground'
-                            )}
-                          >
-                            {field.value ? (
-                              format(field.value, 'yyyy-MM-dd')
-                            ) : (
-                              <span>YYYY-MM-DD</span>
-                            )}
-                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                          </Button>
-                        </PopoverTrigger>
-                        <PopoverContent
-                          className="w-auto p-0"
-                          align="start"
-                        >
-                          <Calendar
-                            mode="single"
-                            selected={field.value}
-                            onSelect={field.onChange}
-                            disabled={(date) => date > new Date() || date < new Date('1900-01-01')}
-                            initialFocus
-                          />
-                        </PopoverContent>
-                      </Popover>
+                      <DatePickerWithInput
+                        value={field.value}
+                        onChange={field.onChange}
+                      />
                       <FormMessage />
                     </FormItem>
                   )}
@@ -470,6 +442,75 @@ export default function Add_student() {
           </form>
         </Form>
       </div>
+    </div>
+  );
+}
+
+function DatePickerWithInput({
+  value,
+  onChange,
+}: {
+  value?: Date;
+  onChange: (date: Date | undefined) => void;
+}) {
+  const [dateString, setDateString] = useState(value ? format(value, 'yyyy-MM-dd') : '');
+
+  useEffect(() => {
+    if (value) {
+      setDateString(format(value, 'yyyy-MM-dd'));
+    }
+  }, [value]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    setDateString(val);
+    const parsed = parse(val, 'yyyy-MM-dd', new Date());
+    if (isValid(parsed) && val.length === 10) {
+      onChange(parsed);
+    } else if (val === '') {
+      onChange(undefined);
+    }
+  };
+
+  return (
+    <div className="flex items-center gap-2">
+      <div className="relative w-full">
+        <Input
+          value={dateString}
+          onChange={handleInputChange}
+          placeholder="YYYY-MM-DD"
+          maxLength={10}
+        />
+        <div className="absolute right-0 top-0 h-full flex items-center pr-2">
+          {/* Icon or clearer? Optional */}
+        </div>
+      </div>
+      <Popover modal={true}>
+        <PopoverTrigger asChild>
+          <Button
+            variant="outline"
+            size="icon"
+            className="shrink-0"
+          >
+            <CalendarIcon className="h-4 w-4 opacity-50" />
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent
+          className="w-auto p-0"
+          align="start"
+        >
+          <Calendar
+            mode="single"
+            selected={value}
+            onSelect={(date) => {
+              onChange(date);
+              // The useEffect will handle updating the string
+            }}
+            disabled={(date) => date > new Date() || date < new Date('1900-01-01')}
+            initialFocus
+          />
+        </PopoverContent>
+      </Popover>
     </div>
   );
 }
