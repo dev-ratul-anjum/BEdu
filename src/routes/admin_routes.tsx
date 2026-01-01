@@ -7,6 +7,7 @@ import Teacher_profile from '@/features/admin/management/teacher_management/teac
 import Admin_dashboard from '@/features/admin/dashboard/Admin_dashboard';
 import Role_management from '@/features/admin/role-management/Role_management';
 import Student_management from '@/features/admin/management/student_management/Student_management';
+import Add_student from '@/features/admin/management/student_management/add_student/Add_student';
 
 const admin_routes = [
   { path: 'dashboard', element: <Admin_dashboard /> },
@@ -20,10 +21,8 @@ const admin_routes = [
     element: <Teacher_profile />,
   },
 
-  {
-    path: 'management/student-management',
-    element: <Student_management />,
-  },
+  { path: 'management/student-management', element: <Student_management /> },
+  { path: 'management/student-management/add-student', element: <Add_student /> },
 
   {
     index: true,
