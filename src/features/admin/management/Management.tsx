@@ -5,12 +5,12 @@ export default function Management() {
 
   const managementItems = [
     { title: 'Teacher Management', path: '/admin/management/teacher-management' },
-    { title: 'Student Management', path: 'student-management' }, // Placeholder
-    { title: 'Department Management', path: 'department-management' }, // Placeholder
-    { title: 'Routine Management', path: 'routine-management' }, // Placeholder
-    { title: 'Class Management', path: 'class-management' }, // Placeholder
-    { title: 'Fees Management', path: 'fees-management' }, // Placeholder
-    { title: 'Exams Routine Management', path: 'exams-routine-management' }, // Placeholder
+    { title: 'Student Management', path: '/admin/management/student-management' },
+    { title: 'Department Management', path: '/admin/management/department-management' },
+    { title: 'Routine Management', path: '/admin/management/routine-management' },
+    { title: 'Class Management', path: '/admin/management/class-management' },
+    { title: 'Fees Management', path: '/admin/management/fees-management' },
+    { title: 'Exams Routine Management', path: '/admin/management/exams-routine-management' },
     { title: 'Result Management', path: 'result-management' }, // Placeholder
     { title: 'Admission Management', path: 'admission-management' }, // Placeholder
     { title: 'Notice Management', path: 'notice-management' }, // Placeholder
