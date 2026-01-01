@@ -18,7 +18,7 @@ import {
   DialogTitle,
 } from '@/common/components/shadcn-ui/dialog';
 import { Button } from '@/common/components/shadcn-ui/button';
-import { getClassById, updateClass, ClassItem, Section, getClasses } from './data/class_data';
+import { getClassById, updateClass, ClassItem, Section, getClasses } from '../data/class_data';
 
 const Class_details = () => {
   const navigate = useNavigate();

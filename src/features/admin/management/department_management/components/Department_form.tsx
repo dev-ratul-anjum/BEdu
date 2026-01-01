@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { Button } from '@/common/components/shadcn-ui/button';
 import { Input } from '@/common/components/shadcn-ui/input';
-import { addDepartment, getDepartmentById, updateDepartment } from './data/department_data';
+import { addDepartment, getDepartmentById, updateDepartment } from '../data/department_data';
 
 const Department_form = () => {
   const navigate = useNavigate();

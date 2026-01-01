@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, Plus, Trash2 } from 'lucide-react';
 import { Button } from '@/common/components/shadcn-ui/button';
 import { Input } from '@/common/components/shadcn-ui/input';
-import { addClass, getClassById, updateClass, Section } from './data/class_data';
+import { addClass, getClassById, updateClass, Section } from '../data/class_data';
 
 const Class_form = () => {
   const navigate = useNavigate();
