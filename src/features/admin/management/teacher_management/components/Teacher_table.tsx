@@ -1,3 +1,4 @@
+import { Avatar, AvatarFallback, AvatarImage } from '@/common/components/shadcn-ui/avatar';
 import { Button } from '@/common/components/shadcn-ui/button';
 import { Checkbox } from '@/common/components/shadcn-ui/checkbox';
 import {
@@ -29,7 +30,7 @@ import { ChevronDown, Edit, Eye, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-export const columns: ColumnDef<TNoticeTable>[] = [
+export const columns: ColumnDef<TTeacherTable>[] = [
   {
     id: 'select',
     header: ({ table }) => (
@@ -51,31 +52,50 @@ export const columns: ColumnDef<TNoticeTable>[] = [
     ),
   },
   {
-    accessorKey: 'title',
-    header: 'Title',
-    cell: ({ row }) => <span>{row.original.title}</span>,
+    accessorKey: 'avatar',
+    header: 'Photo',
+    cell: ({ row }) => (
+      <Avatar>
+        <AvatarImage src={row.original.avatar} />
+        <AvatarFallback className="uppercase">{row.original.name.slice(0, 2)}</AvatarFallback>
+      </Avatar>
+    ),
+  },
+  {
+    accessorKey: 'name',
+    header: 'Name',
+    cell: ({ row }) => <span>{row.original.name}</span>,
     enableGlobalFilter: true,
   },
   {
-    accessorKey: 'description',
-    header: 'Description',
-    cell: ({ row }) => <span>{row.original.description}</span>,
+    accessorKey: 'designation',
+    header: 'Designation',
+    cell: ({ row }) => <span>{row.original.designation}</span>,
+    enableGlobalFilter: true,
   },
   {
-    accessorKey: 'publishedDate',
-    header: 'PublishedDate',
-    cell: ({ row }) => <span>{row.original.publishedDate}</span>,
+    accessorKey: 'address',
+    header: 'Address',
+    cell: ({ row }) => <span>{row.original.address}</span>,
+    enableGlobalFilter: true,
   },
   {
-    accessorKey: 'fileUrl',
-    header: 'FileUrl',
-    cell: ({ row }) => <span>{row.original.fileUrl}</span>,
+    accessorKey: 'phone',
+    header: 'Phone',
+    cell: ({ row }) => <span>{row.original.phone}</span>,
+    enableGlobalFilter: true,
+  },
+  {
+    accessorKey: 'email',
+    header: 'Email',
+    cell: ({ row }) => <span>{row.original.email}</span>,
+    enableGlobalFilter: true,
   },
   {
     id: 'actions',
     header: () => <span className="text-right inline-block w-full">Actions</span>,
     cell: ({ row }) => {
-      const notice = row.original;
+      const teacher = row.original;
 
       return (
         <div className="flex items-center justify-end">
@@ -84,7 +104,7 @@ export const columns: ColumnDef<TNoticeTable>[] = [
             className="hover:bg-transparent"
             asChild
           >
-            <Link to={notice.id}>
+            <Link to={teacher.id}>
               <Eye className="w-4 h-4" />
             </Link>
           </Button>
@@ -94,7 +114,7 @@ export const columns: ColumnDef<TNoticeTable>[] = [
             className="hover:bg-transparent"
             asChild
           >
-            <Link to={`edit-notice/${row.original.id}`}>
+            <Link to={`edit-teacher/${row.original.id}`}>
               <Edit className="w-4 h-4 text-blue-500" />
             </Link>
           </Button>
@@ -112,13 +132,13 @@ export const columns: ColumnDef<TNoticeTable>[] = [
   },
 ];
 
-export default function NoticeTable({ notices }: { notices: TNoticeTable[] }) {
+export default function Teacher_table({ teachers }: { teachers: TTeacherTable[] }) {
   const [globalFilter, setGlobalFilter] = useState('');
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
 
   const table = useReactTable({
-    data: notices,
+    data: teachers,
     columns,
     onGlobalFilterChange: setGlobalFilter,
     getCoreRowModel: getCoreRowModel(),
@@ -138,7 +158,7 @@ export default function NoticeTable({ notices }: { notices: TNoticeTable[] }) {
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Search by title..."
+          placeholder="Search by name, email, designation, address, phone..."
           value={globalFilter}
           onChange={(e) => setGlobalFilter(e.target.value)}
           className="max-w-sm"
@@ -245,11 +265,13 @@ export default function NoticeTable({ notices }: { notices: TNoticeTable[] }) {
   );
 }
 
-export type TNoticeTable = {
+export type TTeacherTable = {
   key: string;
   id: string;
-  title: string;
-  description: string;
-  publishedDate: string;
-  fileUrl?: string;
+  name: string;
+  designation: string;
+  address: string;
+  phone: string;
+  email: string;
+  avatar: string;
 };
