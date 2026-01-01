@@ -13,6 +13,7 @@ export default function Management() {
     { title: 'Exams Routine Management', path: '/admin/management/exams-routine-management' },
     { title: 'Result Management', path: 'result-management' }, // Placeholder
     { title: 'Admission Management', path: 'admission-management' }, // Placeholder
+    { title: 'Notice Management', path: 'notice-management' }, // Placeholder
   ];
 
   return (
