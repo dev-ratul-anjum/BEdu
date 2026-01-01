@@ -1,0 +1,87 @@
+import sidebar_items from '@/common/components/sidebar/sidebar_items';
+import App_layout from '@/common/layouts/app_layout';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
+import Auth_layout from '../common/layouts/auth_layout';
+import Protected_layout from '../common/layouts/protected_layout';
+import admin_routes from './admin_routes';
+import auth_routes from './auth_routes';
+import student_routes from './student_routes';
+import teacher_routes from './teacher_routes';
+import parent_routes from './parent_routes';
+import Parents_login from '@/features/auth/parents/Parents_login';
+
+const app_router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Auth_layout />,
+    children: auth_routes,
+  },
+
+  {
+    path: '/admin',
+    element: <Protected_layout allowed_role="ADMIN" />,
+    children: [
+      {
+        element: <App_layout sidebar_items={sidebar_items.admin} />,
+        children: admin_routes,
+      },
+    ],
+  },
+
+  {
+    path: '/teacher',
+    element: <Protected_layout allowed_role="TEACHER" />,
+    children: [
+      {
+        element: <App_layout sidebar_items={sidebar_items.teacher} />,
+        children: teacher_routes,
+      },
+    ],
+  },
+
+  {
+    path: '/student',
+    element: <Protected_layout allowed_role="STUDENT" />,
+    children: [
+      {
+        element: <App_layout sidebar_items={sidebar_items.student} />,
+        children: student_routes,
+      },
+    ],
+  },
+
+  {
+    path: '/parent',
+    children: [
+      {
+        index: true,
+        element: (
+          <Navigate
+            to="/parent/login"
+            replace
+          />
+        ),
+      },
+      {
+        path: 'login',
+        element: <Parents_login />,
+      },
+      {
+        element: <App_layout sidebar_items={sidebar_items.parent} />,
+        children: [
+          {
+            element: <Protected_layout allowed_role="PARENT" />,
+            children: parent_routes,
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    path: '*',
+    element: <div>404</div>,
+  },
+]);
+
+export default app_router;
