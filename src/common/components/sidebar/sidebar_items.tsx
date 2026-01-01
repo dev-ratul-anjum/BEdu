@@ -19,12 +19,7 @@ import {
 import { TSidebar_Link } from './sidebar_links';
 
 const sidebar_items = {
-  super_admin: () => [
-    // Copy all common super-admin items
-    ...replaceKeyPrefix(sidebar_items.admin(), '/admin', '/super-admin'),
-
-    // 👇 Add admin-specific items here (if any)
-  ],
+  super_admin: () => [...replaceKeyPrefix(sidebar_items.admin(), '/admin', '/super-admin')],
 
   admin: () => [
     {
