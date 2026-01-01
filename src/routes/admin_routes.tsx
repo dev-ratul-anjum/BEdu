@@ -8,6 +8,7 @@ import Admin_dashboard from '@/features/admin/dashboard/Admin_dashboard';
 import Role_management from '@/features/admin/role-management/Role_management';
 import Student_management from '@/features/admin/management/student_management/Student_management';
 import Add_student from '@/features/admin/management/student_management/add_student/Add_student';
+import Student_profile from '@/features/admin/management/student_management/Student_profile/Student_profile';
 
 const admin_routes = [
   { path: 'dashboard', element: <Admin_dashboard /> },
@@ -23,6 +24,10 @@ const admin_routes = [
 
   { path: 'management/student-management', element: <Student_management /> },
   { path: 'management/student-management/add-student', element: <Add_student /> },
+  {
+    path: 'management/student-management/student-profile/:studentId',
+    element: <Student_profile />,
+  },
 
   {
     index: true,
