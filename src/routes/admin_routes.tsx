@@ -38,6 +38,13 @@ const admin_routes = [
     element: <Teacher_profile />,
   },
 
+  { path: 'management/student-management', element: <Student_management /> },
+  { path: 'management/student-management/add-student', element: <Add_student /> },
+  {
+    path: 'management/student-management/student-profile/:studentId',
+    element: <Student_profile />,
+  },
+
   {
     index: true,
     element: (
