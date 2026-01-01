@@ -1,99 +1,255 @@
-import { Table, Button, Space, Image } from 'antd';
-import { Eye, Edit, Trash2 } from 'lucide-react';
-import type { ColumnsType } from 'antd/es/table';
-import { Link, useNavigate } from 'react-router-dom';
+import { Button } from '@/common/components/shadcn-ui/button';
+import { Checkbox } from '@/common/components/shadcn-ui/checkbox';
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from '@/common/components/shadcn-ui/dropdown-menu';
+import { Input } from '@/common/components/shadcn-ui/input';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/common/components/shadcn-ui/table';
+import {
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  useReactTable,
+  type ColumnDef,
+  type ColumnFiltersState,
+  type VisibilityState,
+} from '@tanstack/react-table';
+import { ChevronDown, Edit, Eye, Trash2 } from 'lucide-react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-export interface NoticeRecord {
+export const columns: ColumnDef<TNoticeTable>[] = [
+  {
+    id: 'select',
+    header: ({ table }) => (
+      <Checkbox
+        checked={
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && 'indeterminate') === 'indeterminate'
+        }
+        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        aria-label="Select all"
+      />
+    ),
+    cell: ({ row }) => (
+      <Checkbox
+        checked={row.getIsSelected()}
+        onCheckedChange={(value) => row.toggleSelected(!!value)}
+        aria-label="Select row"
+      />
+    ),
+  },
+  {
+    accessorKey: 'title',
+    header: 'Title',
+    cell: ({ row }) => <span>{row.original.title}</span>,
+  },
+  {
+    accessorKey: 'description',
+    header: 'Description',
+    cell: ({ row }) => <span>{row.original.description}</span>,
+  },
+  {
+    accessorKey: 'publishedDate',
+    header: 'PublishedDate',
+    cell: ({ row }) => <span>{row.original.publishedDate}</span>,
+  },
+  {
+    accessorKey: 'fileUrl',
+    header: 'FileUrl',
+    cell: ({ row }) => <span>{row.original.fileUrl}</span>,
+  },
+  {
+    id: 'actions',
+    header: () => <span className="text-right inline-block w-full">Actions</span>,
+    cell: ({ row }) => {
+      const notice = row.original;
+
+      return (
+        <div className="flex items-center justify-end">
+          <Button
+            variant="ghost"
+            className="hover:bg-transparent"
+            asChild
+          >
+            <Link to={notice.id}>
+              <Eye className="w-4 h-4" />
+            </Link>
+          </Button>
+
+          <Button
+            variant="ghost"
+            className="hover:bg-transparent"
+            asChild
+          >
+            <Link to={`edit-notice/${row.original.id}`}>
+              <Edit className="w-4 h-4 text-blue-500" />
+            </Link>
+          </Button>
+
+          <Button
+            variant="ghost"
+            className="hover:bg-transparent"
+            onClick={() => alert('deleted')}
+          >
+            <Trash2 className="w-4 h-4 text-red-500" />
+          </Button>
+        </div>
+      );
+    },
+  },
+];
+
+export default function NoticeTable({ notices }: { notices: TNoticeTable[] }) {
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = useState({});
+
+  const table = useReactTable({
+    data: notices,
+    columns,
+    onColumnFiltersChange: setColumnFilters,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    onColumnVisibilityChange: setColumnVisibility,
+    onRowSelectionChange: setRowSelection,
+    state: {
+      columnFilters,
+      columnVisibility,
+      rowSelection,
+    },
+  });
+
+  return (
+    <div className="w-full">
+      <div className="flex items-center py-4">
+        <Input
+          placeholder="Search Notice..."
+          value={(table.getColumn('title')?.getFilterValue() as string) ?? ''}
+          onChange={(event) => table.getColumn('title')?.setFilterValue(event.target.value)}
+          className="max-w-sm"
+        />
+
+        <DropdownMenu>
+          <Button
+            variant="outline"
+            className="ml-auto"
+            asChild
+          >
+            <DropdownMenuTrigger>
+              Columns <ChevronDown />
+            </DropdownMenuTrigger>
+          </Button>
+          <DropdownMenuContent align="end">
+            {table
+              .getAllColumns()
+              .filter((column) => column.getCanHide())
+              .map((column) => {
+                return (
+                  <DropdownMenuCheckboxItem
+                    key={column.id}
+                    className="capitalize"
+                    checked={column.getIsVisible()}
+                    onCheckedChange={(value) => column.toggleVisibility(!!value)}
+                  >
+                    {column.id}
+                  </DropdownMenuCheckboxItem>
+                );
+              })}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+      <div className="overflow-hidden rounded-md border">
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <TableHead key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(header.column.columnDef.header, header.getContext())}
+                    </TableHead>
+                  );
+                })}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && 'selected'}
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
+                  No results.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
+      <div className="flex items-center justify-end space-x-2 py-4">
+        <div className="text-muted-foreground flex-1 text-sm">
+          {table.getFilteredSelectedRowModel().rows.length} of{' '}
+          {table.getFilteredRowModel().rows.length} row(s) selected.
+        </div>
+        <div className="space-x-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+          >
+            Previous
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+          >
+            Next
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export type TNoticeTable = {
   key: string;
   id: string;
   title: string;
   description: string;
   publishedDate: string;
   fileUrl?: string;
-}
-
-interface NoticeTableProps {
-  data: NoticeRecord[];
-  onEdit?: (record: NoticeRecord) => void;
-  onDelete?: (record: NoticeRecord) => void;
-}
-
-export default function Notice_table({ data, onEdit, onDelete }: NoticeTableProps) {
-  const navigate = useNavigate();
-  const columns: ColumnsType<NoticeRecord> = [
-    {
-      title: '',
-      width: 70,
-      render: (_, record) =>
-        record.fileUrl ? (
-          <Image
-            src={record.fileUrl}
-            width={36}
-            height={36}
-            className="rounded-md object-cover"
-            preview
-          />
-        ) : (
-          <div className="w-9 h-9 border border-gray-300 rounded-md flex items-center justify-center text-xs text-gray-400">
-            N/A
-          </div>
-        ),
-    },
-    {
-      title: 'Title',
-      dataIndex: 'title',
-      key: 'title',
-    },
-    {
-      title: 'Description',
-      dataIndex: 'description',
-      key: 'description',
-    },
-    {
-      title: 'Published Date',
-      dataIndex: 'publishedDate',
-      key: 'publishedDate',
-    },
-    {
-      title: 'Action',
-      width: 150,
-      render: (_, record) => (
-        <Space size="small">
-          <Link to={`notice-details`}>
-            <Button
-              type="text"
-              icon={
-                <Eye
-                  className="w-4 h-4"
-                  onClick={() => navigate(`notice-details`)}
-                />
-              }
-            />
-          </Link>
-
-          <Button
-            type="text"
-            icon={<Edit className="w-4 h-4 text-blue-500" />}
-            onClick={() => onEdit?.(record)}
-          />
-
-          <Button
-            type="text"
-            icon={<Trash2 className="w-4 h-4 text-red-500" />}
-            onClick={() => onDelete?.(record)}
-          />
-        </Space>
-      ),
-    },
-  ];
-
-  return (
-    <Table
-      columns={columns}
-      dataSource={data}
-      pagination={false}
-      rowKey="id"
-      className="border border-gray-200 rounded-lg"
-    />
-  );
-}
+};

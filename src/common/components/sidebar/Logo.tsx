@@ -6,7 +6,7 @@ import {
 
 export function Logo() {
   return (
-    <SidebarMenu>
+    <SidebarMenu className="px-2 pt-2">
       <SidebarMenuItem>
         <SidebarMenuButton
           size="lg"

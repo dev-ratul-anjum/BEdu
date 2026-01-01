@@ -15,12 +15,12 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from '@/common/components/shadcn-ui/sidebar';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export function SidebarLinks({ items }: { items: TSidebar_Link[] }) {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+      <SidebarGroupLabel className="px-4">Platform</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) =>
           item.children ? (
@@ -32,7 +32,10 @@ export function SidebarLinks({ items }: { items: TSidebar_Link[] }) {
             >
               <SidebarMenuItem>
                 <CollapsibleTrigger asChild>
-                  <SidebarMenuButton tooltip={item.title}>
+                  <SidebarMenuButton
+                    className="px-4"
+                    tooltip={item.title}
+                  >
                     {item.icon && <item.icon />}
                     <span>{item.title}</span>
                     <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
@@ -44,9 +47,12 @@ export function SidebarLinks({ items }: { items: TSidebar_Link[] }) {
                     {item.children.map((subItem) => (
                       <SidebarMenuSubItem key={subItem.title}>
                         <SidebarMenuSubButton asChild>
-                          <Link to={subItem.url}>
+                          <NavLink
+                            to={subItem.url}
+                            className="[.active]:text-primary [.active]:bg-primary/10"
+                          >
                             <span>{subItem.title}</span>
-                          </Link>
+                          </NavLink>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                     ))}
@@ -57,13 +63,17 @@ export function SidebarLinks({ items }: { items: TSidebar_Link[] }) {
           ) : (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton
+                className="px-4"
                 asChild
                 tooltip={item.title}
               >
-                <Link to={item.url}>
+                <NavLink
+                  to={item.url}
+                  className="[.active]:text-primary [.active]:bg-primary/10"
+                >
                   <item.icon />
                   <span>{item.title}</span>
-                </Link>
+                </NavLink>
               </SidebarMenuButton>
             </SidebarMenuItem>
           )
@@ -74,7 +84,7 @@ export function SidebarLinks({ items }: { items: TSidebar_Link[] }) {
 }
 export type TSidebar_Link = {
   title: string;
-  url: string;
+  url?: string;
   icon?: LucideIcon;
   isActive?: boolean;
   children?: {

@@ -1,15 +1,12 @@
 import { Dynamic_breadcrumb } from '@/common/components/Dynamic_breadcrumb';
-import Notice_adding_form from './components/notice_adding_form/Notice_adding_form';
 import Profile_pic from '@/features/parent/components/profile_pic/Profile_pic';
+import { Notice_detail_card } from '@/features/parent/pages/detail_notice/components/Notice_details_card';
+import { Layout } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
-export interface NoticeFormValues {
-  title: string;
-  description: string;
-  file?: File;
-}
+const { Sider, Content } = Layout;
 
-export default function Add_notice() {
+export default function Notice_detail_page() {
   const navigate = useNavigate();
   const handleLogout = () => {
     navigate('/login');
@@ -19,11 +16,17 @@ export default function Add_notice() {
       <div className="flex justify-between mt-4">
         <Dynamic_breadcrumb />
         <Profile_pic
-          onProfile={() => navigate('management')}
+          onProfile={() => navigate('/admin/profile')}
           onLogout={handleLogout}
         />
       </div>
-      <Notice_adding_form onSubmit={(values) => console.log(values)} />
+      <div>
+        <Notice_detail_card
+          title="Notice Title"
+          date="2023-01-01"
+          description={'This is a notice description'}
+        />
+      </div>
     </div>
   );
 }
