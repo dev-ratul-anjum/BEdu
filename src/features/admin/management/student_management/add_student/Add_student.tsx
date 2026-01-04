@@ -37,13 +37,13 @@ const guardianSchema = z.object({
 });
 
 const formSchema = z.object({
-  firstName: z.string().min(1),
-  lastName: z.string().min(1),
-  class: z.string().min(1),
-  section: z.string().min(1),
-  roll: z.string().min(1),
+  firstName: z.string().min(1, { message: 'First name is required' }),
+  lastName: z.string().min(1, { message: 'Last name is required' }),
+  class: z.string().min(1, { message: 'Class is required' }),
+  section: z.string().min(1, { message: 'Section is required' }),
+  roll: z.string().min(1, { message: 'Roll is required' }),
   dob: z.date(),
-  gender: z.string().min(1),
+  gender: z.string().min(1, { message: 'Gender is required' }),
   bloodGroup: z.string().optional(),
   address: z.string().optional(),
   religion: z.string().optional(),
