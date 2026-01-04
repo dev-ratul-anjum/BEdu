@@ -1,3 +1,4 @@
+import { Notice } from './../../../features/parent/components/notice_carousel/Notice_carousel';
 import { Building2, LayoutDashboard, ShieldUser } from 'lucide-react';
 import { TSidebar_Link } from './sidebar_links';
 
@@ -18,6 +19,18 @@ const sidebar_items = {
     {
       url: '/admin/management',
       title: 'Management',
+      icon: Building2,
+    },
+  ],
+  parent: () => [
+    {
+      url: '/parent/dashboard',
+      title: 'Dashboard',
+      icon: LayoutDashboard,
+    },
+    {
+      url: '/parent/allnotice',
+      title: 'All Notices',
       icon: Building2,
     },
   ],
