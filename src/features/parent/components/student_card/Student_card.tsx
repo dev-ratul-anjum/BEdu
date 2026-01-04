@@ -1,4 +1,4 @@
-import { Card } from 'antd';
+import { Card, Image } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
 interface StudentData {
@@ -6,6 +6,7 @@ interface StudentData {
   rollNo: number;
   class: string;
   section: string;
+  profilePic?: string;
 }
 
 interface StudentInfoCardProps {
@@ -33,8 +34,13 @@ export const Student_card: React.FC<StudentInfoCardProps> = ({ student }) => {
                         rounded-xl flex items-center justify-center"
         >
           <div className="text-center">
-            <div className="text-3xl font-bold text-cyan-400 mb-2">👤</div>
-            <p className="text-xs text-slate-400">Student Photo</p>
+            <Image
+              src={student.profilePic}
+              alt={student.name}
+              width={128}
+              height={128}
+              className="rounded-xl"
+            />
           </div>
         </div>
 

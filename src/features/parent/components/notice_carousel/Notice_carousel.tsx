@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Card } from 'antd';
+import { Card, Image } from 'antd';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export interface Notice {
@@ -58,7 +58,13 @@ export const Notice_carousel: React.FC<NoticeCarouselProps> = ({ notices }) => {
         {/* CONTENT */}
         <div className="flex-1 min-w-0 px-8">
           <div className="flex items-center gap-3 mb-2">
-            <span className="text-2xl md:text-3xl shrink-0">{currentNotice.icon}</span>
+            <Image
+              src={currentNotice.icon}
+              alt={currentNotice.title}
+              width={48}
+              height={48}
+              className="rounded-xl"
+            />
             <div className="min-w-0">
               <h4 className="text-slate-900 font-semibold text-base md:text-lg truncate">
                 {currentNotice.title}
