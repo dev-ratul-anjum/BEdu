@@ -1,4 +1,3 @@
-import { Notice } from './../../../features/parent/components/notice_carousel/Notice_carousel';
 import { Building2, LayoutDashboard, ShieldUser } from 'lucide-react';
 import { TSidebar_Link } from './sidebar_links';
 

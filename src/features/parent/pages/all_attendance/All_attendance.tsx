@@ -1,22 +1,10 @@
 import { Monthly_attendance_card } from './components/monthly_attendance_card/Monthly_attendance_card';
 import { useNavigate } from 'react-router-dom';
-import Profile_pic from '../../components/profile_pic/Profile_pic';
-import { Dynamic_breadcrumb } from '@/common/components/Dynamic_breadcrumb';
 
 export default function AttendancePage() {
   const navigate = useNavigate();
-  const handleLogout = () => {
-    navigate('/parent/login');
-  };
   return (
     <div className="space-y-6">
-      <div className="flex justify-between mt-4">
-        <Dynamic_breadcrumb />
-        <Profile_pic
-          onProfile={() => navigate('/parent/profile')}
-          onLogout={handleLogout}
-        />
-      </div>
       <Monthly_attendance_card
         studentName="XYZ"
         month="November"
