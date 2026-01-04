@@ -110,7 +110,6 @@ export default function Add_student() {
           name: '',
           phone: '',
           occupation: '',
-          email: '',
         },
       ],
     },
@@ -209,7 +208,6 @@ export default function Add_student() {
                       name: '',
                       phone: '',
                       occupation: '',
-                      email: '',
                     })
                   }
                 >
@@ -258,10 +256,6 @@ export default function Add_student() {
                       <InputField
                         name={`guardians.${index}.occupation`}
                         label={`${prefix} Occupation`}
-                      />
-                      <InputField
-                        name={`guardians.${index}.email`}
-                        label={`${prefix} Email`}
                       />
                     </Grid>
                   </div>
