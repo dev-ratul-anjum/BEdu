@@ -33,7 +33,7 @@ const formSchema = z.object({
   class: z.string().min(1, { message: 'Class is required' }),
   section: z.string().min(1, { message: 'Section is required' }),
   roll: z.string().min(1, { message: 'Roll is required' }),
-  dob: z.date({ required_error: 'Date of birth is required' }),
+  dob: z.date(),
   gender: z.string().min(1, { message: 'Gender is required' }),
   bloodGroup: z.string().optional(),
   address: z.string().optional(),
