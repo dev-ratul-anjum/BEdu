@@ -7,6 +7,7 @@ const notices = Array.from({ length: 6 }, (_, i) => ({
   id: i + 1,
   title: `Notice Title ${i + 1}`,
   date: new Date(2025, 0, 15 - i).toLocaleDateString(),
+  image: '/.png',
 }));
 
 export default function All_notice_list() {
@@ -29,6 +30,7 @@ export default function All_notice_list() {
             key={notice.id}
             title={notice.title}
             date={notice.date}
+            image={notice.image}
             onClick={() => navigate(`/parent/detail-notice`)}
           />
         ))}

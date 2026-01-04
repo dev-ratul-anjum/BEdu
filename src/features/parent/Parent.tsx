@@ -33,6 +33,7 @@ const Parent = () => {
     rollNo: number;
     class: string;
     section: string;
+    profilePic?: string;
   }
   interface Notice {
     id: number;
@@ -50,7 +51,7 @@ const Parent = () => {
       date: '2023-01-01',
       content: 'Description for Event 1',
       type: 'event',
-      icon: 'https://via.placeholder.com/150',
+      icon: '/.png',
     },
     {
       id: 2,
@@ -58,7 +59,7 @@ const Parent = () => {
       date: '2023-01-02',
       content: 'Description for Event 2',
       type: 'event',
-      icon: 'https://via.placeholder.com/150',
+      icon: '/.png',
     },
   ];
 
@@ -67,6 +68,7 @@ const Parent = () => {
     rollNo: 25,
     class: '10th',
     section: 'A',
+    profilePic: '/.png',
   };
 
   const attendanceData: AttendanceCalendarProps = {
