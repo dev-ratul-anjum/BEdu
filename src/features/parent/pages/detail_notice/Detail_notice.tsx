@@ -24,6 +24,7 @@ export default function Detail_notice() {
         <Notice_detail_card
           title="Notice Title"
           date="2023-01-01"
+          fileUrl="/.png"
           description={'This is a notice description'}
         />
       </div>
