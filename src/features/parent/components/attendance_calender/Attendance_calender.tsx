@@ -48,13 +48,13 @@ export const Attendance_calendar: React.FC<AttendanceCalendarProps> = ({ monthDa
           {monthData.month} <span className="text-black font-bold">{monthData.year}</span>
         </h4>
         <div className="flex gap-3">
-          <div className="flex items-center gap-1 text-[20px] text-gray-200">
+          <div className="flex items-center gap-1 text-[20px] text-gray-500">
             <span className="w-2 h-2 rounded-full bg-emerald-500"></span> Present
           </div>
-          <div className="flex items-center gap-1 text-[20px] text-gray-200">
+          <div className="flex items-center gap-1 text-[20px] text-gray-500">
             <span className="w-2 h-2 rounded-full bg-red-500"></span> Absent
           </div>
-          <div className="flex items-center gap-1 text-[20px] text-gray-200">
+          <div className="flex items-center gap-1 text-[20px] text-gray-500">
             <span className="w-2 h-2 rounded-full bg-blue-500"></span> Leave
           </div>
         </div>
@@ -64,7 +64,7 @@ export const Attendance_calendar: React.FC<AttendanceCalendarProps> = ({ monthDa
         {dayLabels.map((day) => (
           <div
             key={day}
-            className="text-center text-[20px] uppercase tracking-wider text-gray-200 font-bold"
+            className="text-center text-[20px] uppercase tracking-wider text-gray-500 font-bold"
           >
             {day}
           </div>

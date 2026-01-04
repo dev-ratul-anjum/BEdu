@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
-import { Button, Typography } from 'antd';
-import { Dynamic_breadcrumb } from '@/common/components/Dynamic_breadcrumb';
+import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import Profile_pic from './components/profile_pic/Profile_pic';
 import { Student_card } from './components/student_card/Student_card';
 import { Notice_carousel } from './components/notice_carousel/Notice_carousel';
 import { Attendance_calendar } from './components/attendance_calender/Attendance_calender';
 
 const Parent = () => {
   const navigate = useNavigate();
-  const handleLogout = () => {
-    navigate('/parent/login');
-  };
 
   interface AttendanceDay {
     date: number;
@@ -89,13 +84,6 @@ const Parent = () => {
 
   return (
     <div className="w-full">
-      <div className="flex justify-between mt-4">
-        <Dynamic_breadcrumb />
-        <Profile_pic
-          onProfile={() => navigate('/parent/profile')}
-          onLogout={handleLogout}
-        />
-      </div>
       <div className="mt-4">
         <Notice_carousel notices={notices} />
       </div>

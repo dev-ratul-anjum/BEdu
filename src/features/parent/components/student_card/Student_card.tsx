@@ -49,22 +49,22 @@ export const Student_card: React.FC<StudentInfoCardProps> = ({ student }) => {
           <div className="space-y-3">
             <div className="flex items-baseline gap-4">
               <span className="text-slate-400 font-medium min-w-20">Name:</span>
-              <span className="text-slate-100 text-lg font-semibold">{student.name}</span>
+              <span className="text-slate-500 text-lg font-semibold">{student.name}</span>
             </div>
 
             <div className="flex items-baseline gap-4">
               <span className="text-slate-400 font-medium min-w-20">Class:</span>
-              <span className="text-slate-100 font-semibold">{student.class}</span>
+              <span className="text-slate-500 font-semibold">{student.class}</span>
             </div>
 
             <div className="flex items-baseline gap-4">
               <span className="text-slate-400 font-medium min-w-20">Section:</span>
-              <span className="text-slate-100 font-semibold">{student.section}</span>
+              <span className="text-slate-500 font-semibold">{student.section}</span>
             </div>
 
             <div className="flex items-baseline gap-4">
               <span className="text-slate-400 font-medium min-w-20">Roll:</span>
-              <span className="text-slate-100 font-semibold">{student.rollNo}</span>
+              <span className="text-slate-500 font-semibold">{student.rollNo}</span>
             </div>
           </div>
         </div>

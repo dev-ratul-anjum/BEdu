@@ -1,41 +1,84 @@
 import { useNavigate } from 'react-router-dom';
+import {
+  UserCheck,
+  Users,
+  Building2,
+  CalendarClock,
+  School,
+  CreditCard,
+  ClipboardList,
+  BarChart4,
+  UserPlus,
+  Bell,
+} from 'lucide-react';
 
 export default function Management() {
   const navigate = useNavigate();
 
   const managementItems = [
-    { title: 'Teacher Management', path: '/admin/management/teacher-management' },
-    { title: 'Student Management', path: '/admin/management/student-management' },
-    { title: 'Department Management', path: '/admin/management/department-management' },
-    { title: 'Routine Management', path: '/admin/management/routine-management' },
-    { title: 'Class Management', path: '/admin/management/class-management' },
-    { title: 'Fees Management', path: '/admin/management/fees-management' },
-    { title: 'Exams Routine Management', path: '/admin/management/exams-routine-management' },
-    { title: 'Result Management', path: 'result-management' }, // Placeholder
-    { title: 'Admission Management', path: 'admission-management' }, // Placeholder
-    { title: 'Notice Management', path: 'notice-management' }, // Placeholder
+    { title: 'Teacher Management', path: '/admin/management/teacher-management', icon: UserCheck },
+    { title: 'Student Management', path: '/admin/management/student-management', icon: Users },
+    {
+      title: 'Department Management',
+      path: '/admin/management/department-management',
+      icon: Building2,
+    },
+    {
+      title: 'Routine Management',
+      path: '/admin/management/routine-management',
+      icon: CalendarClock,
+    },
+    { title: 'Class Management', path: '/admin/management/class-management', icon: School },
+    { title: 'Fees Management', path: '/admin/management/fees-management', icon: CreditCard },
+    {
+      title: 'Exams Routine Management',
+      path: '/admin/management/exams-routine-management',
+      icon: ClipboardList,
+    },
+    { title: 'Result Management', path: '/admin/management/result-management', icon: BarChart4 },
+    {
+      title: 'Admission Management',
+      path: '/admin/management/admission-management',
+      icon: UserPlus,
+    },
+    { title: 'Notice Management', path: '/admin/management/notice-management', icon: Bell },
   ];
 
   return (
-    <div className="p-6">
-      <header className="mb-6">
-        <h1 className="text-xl font-semibold text-gray-800">Management</h1>
-      </header>
+    <div className="w-full min-h-screen bg-slate-50 p-6">
+      {/* Header */}
+      <div className="mb-8">
+        <h1 className="text-3xl font-semibold text-slate-800">Administration Management</h1>
+        <p className="text-slate-500 mt-1">Manage all institutional operations from one place</p>
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {managementItems.map((item, index) => (
-          <button
-            key={index}
-            onClick={() => item.path && navigate(item.path)}
-            className="
-              h-24 rounded-2xl border-2 border-slate-200 bg-white text-lg font-medium text-slate-700
-              transition-all duration-200
-              hover:bg-primary hover:border-primary hover:text-white hover:shadow-md
-              active:scale-95
-            "
+      {/* Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {managementItems.map(({ title, path, icon: Icon }) => (
+          <div
+            key={title}
+            onClick={() => navigate(path)}
+            className="group cursor-pointer rounded-2xl bg-white p-6 shadow-sm border border-slate-100
+                       hover:shadow-md hover:-translate-y-1 transition-all duration-200"
           >
-            {item.title}
-          </button>
+            <div className="flex items-center gap-4">
+              {/* Icon */}
+              <div
+                className="flex items-center justify-center h-14 w-14 rounded-full
+                           bg-indigo-100 text-indigo-600
+                           group-hover:bg-indigo-600 group-hover:text-white
+                           transition-colors"
+              >
+                <Icon size={28} />
+              </div>
+
+              {/* Text */}
+              <div>
+                <h2 className="text-lg font-medium text-slate-800">{title}</h2>
+                <p className="text-sm text-slate-500">Configure and manage {title.toLowerCase()}</p>
+              </div>
+            </div>
+          </div>
         ))}
       </div>
     </div>
